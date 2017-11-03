@@ -1,0 +1,116 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedules:weekly</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>schedules:weekly</h1>
+    <hr/>
+A schedule for weekly intervals
+ specified by days of the week. This schedule
+ will typically be used with a <a href='../../../../org/oddjob/schedules/schedules/TimeSchedule.html'>schedules:time</a> refinement property.
+ <p>
+ The days of the week are specified according to the ISO 8601 standard
+ with Monday being day 1 and Sunday being day 7, or as one of
+ MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY (case
+ insensitive).
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>from</a></td>
+      <td>The from day of the week.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>on</a></td>
+      <td>The on day of week.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>refinement</a></td>
+      <td>Provide a refinement to this schedule.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>to</a></td>
+      <td>The to day of the week.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A schedule for all day Tuesday.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>A schedule between Friday and the following Monday inclusive.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>from</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to Monday.</td></tr>
+      </table>
+      <p>
+The from day of the week.
+      </p>
+    <a name='property2'><h4>on</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The on day of week. This has the same effect as
+ setting from and to to the same thing.
+      </p>
+    <a name='property3'><h4>refinement</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Provide a refinement to this schedule.
+      </p>
+    <a name='property4'><h4>to</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to Sunday.</td></tr>
+      </table>
+      <p>
+The to day of the week.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A schedule for all day Tuesday. This schedule defines an
+ interval between midnight Tuesday morning and up to midnight Tuesday night.
+ 
+ <pre class="xml">
+&lt;schedules:weekly on="Tuesday" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"/&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+A schedule between Friday and the following Monday inclusive. 
+ This schedule is refined by a time that will define the schedule to be each
+ of the days Friday, Saturday, Sunday, Monday at 3:45pm.
+ 
+ <pre class="xml">
+&lt;schedules:weekly from="Friday" to="Monday" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;refinement&gt;
+        &lt;schedules:daily at="15:45"/&gt;
+    &lt;/refinement&gt;
+&lt;/schedules:weekly&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

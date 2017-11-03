@@ -1,0 +1,277 @@
+<html>
+  <head>
+    <title>Oddjob Reference - jmx:client</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>jmx:client</h1>
+    <hr/>
+Connect to an Oddjob <a href='../../../org/oddjob/jmx/JMXServerJob.html'>jmx:server</a>.
+ This job allows remote jobs to be monitored and controlled from 
+ a local Oddjob.
+ <p>
+ This service will run until it is manually stopped or until the connection
+ to the remote server is lost. If this job is stopped it's state will be 
+ COMPLETE, if the connection is lost the state state will be EXCEPTION.
+ <p>
+ To access and control jobs on a server from within a configuration file this
+ client must have an id. If the client has an id of <code>'freds-pc'</code>
+ and the job on the server has an id of <code>'freds-job'</code>. The job on
+ the server can be accessed from the client using the expression
+ <code>${freds-pc/freds-job}</code>.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>connection</a></td>
+      <td>The JMX service URL.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>environment</a></td>
+      <td>The environment.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>heartbeat</a></td>
+      <td>The heart beat interval, in milliseconds.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>logPollingInterval</a></td>
+      <td>The number of milliseconds between polling for new
+ log events.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>maxConsoleLines</a></td>
+      <td>The maximum number of console lines to retrieve for any
+ component.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>maxLoggerLines</a></td>
+      <td>The maximum number of log lines to retrieve for any
+ component.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>url</a></td>
+      <td>This property is now deprecated in favour of 
+ connection which reflects that the connection string no longer need 
+ only be a full JMX URL.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Connect to a remote server that is using the Platform MBean Server.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>To create a connection to a remote server that is using an RMI registry
+ using the full form of the JMX URL.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Connect, run a remote job, and disconnect.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>Connect using a username and password to a secure server.</td>
+    </tr>
+    <tr>
+      <td><a href='#example5'>Example 5</a></td>
+      <td>A local job triggers when a server job runs.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>connection</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. If not provided the client connects to the Platform 
+ MBean Server for the current VM.</td></tr>
+      </table>
+      <p>
+The JMX service URL. This is can be either
+ the full blown convoluted JMX Service URL starting 
+ <code>service.jmx....</code> or it can just be the last part of the
+ form <code>hostname[:port][/instance-name]</code>.
+      </p>
+    <a name='property2'><h4>environment</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The environment. Typically username/password
+ credentials.
+      </p>
+    <a name='property3'><h4>heartbeat</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Not, defaults to 5 seconds.</td></tr>
+      </table>
+      <p>
+The heart beat interval, in milliseconds.
+      </p>
+    <a name='property4'><h4>logPollingInterval</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The number of milliseconds between polling for new
+ log events. Defaults to 5.
+      </p>
+    <a name='property5'><h4>maxConsoleLines</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The maximum number of console lines to retrieve for any
+ component.
+      </p>
+    <a name='property6'><h4>maxLoggerLines</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The maximum number of log lines to retrieve for any
+ component.
+      </p>
+    <a name='property7'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property8'><h4>url</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+This property is now deprecated in favour of 
+ connection which reflects that the connection string no longer need 
+ only be a full JMX URL.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Connect to a remote server that is using the Platform MBean Server. This
+ example also demonstrates using the value of a remote jobs property.
+ 
+ <pre class="xml">
+&lt;oddjob id="this" xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"&gt;
+  &lt;job&gt;
+    &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;jmx:client id="remote" connection="${this.args[0]}"/&gt;
+        &lt;echo&gt;${remote/echo.text}&lt;/echo&gt;
+        &lt;stop job="${remote}"/&gt;
+      &lt;/jobs&gt;
+    &lt;/sequential&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ Note that the <a href='../../../org/oddjob/jobs/job/StopJob.html'>stop</a> is required otherwise Oddjob wouldn't exit. An 
+ Alternative to using stop, would be to make the client a child of a
+ <code>ServiceManager</code> job.
+ <p>
+ Here's an example of the command used to launch it:
+ <pre>
+ java -jar C:\Users\rob\projects\oddjob\run-oddjob.jar -f C:\Users\rob\projects\oddjob\test\java\org\oddjob\jmx\PlatformMBeanClientExample.xml localhost:13013
+ </pre>
+ 
+ This configuration is the client side of the first example in 
+ <a href='../../../org/oddjob/jmx/JMXServerJob.html'>jmx:server</a>.
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+To create a connection to a remote server that is using an RMI registry
+ using the full form of the JMX URL.
+ 
+ <pre class="xml">
+&lt;jmx:client id="freds-pc" name="Connection to Freds PC" url="service:jmx:rmi:///jndi/rmi://${hosts.freds-pc}/freds-oddjob-server" xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"/&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Connect, run a remote job, and disconnect.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;jmx:client id="freds-pc" name="Oddjob Client" url="service:jmx:rmi:///jndi/rmi://${hosts.freds-pc}/freds-oddjob-server" xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"/&gt;
+                 &lt;run job="${freds-pc/server-jobs/greeting}"/&gt;
+                 &lt;stop job="${freds-pc}"/&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The run job starts the server job but doesn't wait for it to complete.
+ We would need to add a wait job for that.
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+Connect using a username and password to a secure server.
+ 
+ <pre class="xml">
+&lt;jmx:client connection="localhost/my-oddjob" xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"&gt;
+    &lt;environment&gt;
+        &lt;jmx:client-credentials username="username" password="password"/&gt;
+    &lt;/environment&gt;
+&lt;/jmx:client&gt;</pre>
+
+    </p>
+    <a name='example5'><h4>Example 5</h4></a>
+    <p>
+A local job triggers when a server job runs.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;jmx:client id="freds-pc" name="Oddjob Client" url="service:jmx:rmi:///jndi/rmi://${hosts.freds-pc}/freds-oddjob-server" xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"/&gt;
+                &lt;scheduling:trigger on="${freds-pc/server-jobs/greeting}" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling"&gt;
+                    &lt;job&gt;
+                        &lt;sequential&gt;
+                            &lt;jobs&gt;
+                                &lt;echo id="local-job"&gt;Server Job Ran!&lt;/echo&gt;
+                                &lt;stop job="${freds-pc}"/&gt;
+                            &lt;/jobs&gt;
+                        &lt;/sequential&gt;
+                    &lt;/job&gt;
+                &lt;/scheduling:trigger&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

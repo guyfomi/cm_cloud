@@ -1,0 +1,284 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedule</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>schedule</h1>
+    <hr/>
+Applies a schedule to a given date to provide a calculated date. 
+ If the date is not provide the current date is used. This type will most often be 
+ used to calculate the current date or the current time, or a next business date.
+ <p>
+ The <code><a href='../../../../api/org/oddjob/schedules/ScheduleResult.html'>org.oddjob.schedules.ScheduleResult</a></code> is also available and this can be used to calculate 
+ recurring schedules as in the example below.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>date</a></td>
+      <td>The Date to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>result</a></td>
+      <td>The result of applying the schedule which is a 
+ ScheduleResult bean that has the properties fromDate, toDate and 
+ useNext.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>schedule</a></td>
+      <td>The schedule to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>timeZone</a></td>
+      <td>The time zone to apply the schedule for.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Display the time now.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Use a schedule with a time zone.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Calculate the next business date.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>Display the due dates for a recurring schedule.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>date</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      </table>
+      <p>
+The Date to use.
+      </p>
+    <a name='property2'><h4>result</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+The result of applying the schedule which is a 
+ ScheduleResult bean that has the properties fromDate, toDate and 
+ useNext.
+      </p>
+    <a name='property3'><h4>schedule</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      </table>
+      <p>
+The schedule to use.
+      </p>
+    <a name='property4'><h4>timeZone</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      </table>
+      <p>
+The time zone to apply the schedule for.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Display the time now. Note the date variable is passed into Oddjob during 
+ the testing of this example so the time can be fixed, but run as is it
+ will be null and so the current time will be displayed.
+
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="time"&gt;
+                    &lt;now&gt;
+                        &lt;schedule&gt;
+                            &lt;date&gt;
+                                &lt;value value="${date}"/&gt;
+                            &lt;/date&gt;
+                            &lt;schedule&gt;
+                                &lt;schedules:now xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"/&gt;
+                            &lt;/schedule&gt;
+                        &lt;/schedule&gt;
+                    &lt;/now&gt;
+                    &lt;formatted&gt;
+                        &lt;format date="${time.now}" format="hh:mm a"/&gt;
+                    &lt;/formatted&gt;
+                &lt;/variables&gt;
+                &lt;echo id="echo-time"&gt;The time now is ${time.formatted}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Use a schedule with a time zone. This example displays when tomorrow starts
+ in Hong Kong in the local time. 
+
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="time"&gt;
+                    &lt;now&gt;
+                        &lt;schedule timeZone="Asia/Hong_Kong"&gt;
+                            &lt;date&gt;
+                                &lt;value value="${date}"/&gt;
+                            &lt;/date&gt;
+                            &lt;schedule&gt;
+                                &lt;schedules:day-after xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"/&gt;
+                            &lt;/schedule&gt;
+                        &lt;/schedule&gt;
+                    &lt;/now&gt;
+                    &lt;formatted&gt;
+                        &lt;format date="${time.now}" format="hh:mm a"/&gt;
+                    &lt;/formatted&gt;
+                &lt;/variables&gt;
+                &lt;echo id="echo-time"&gt;Tomorrow in Hong Kong starts at ${time.formatted} our time.&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ Note that to display the current time in Hong Kong
+ we would use a Time Zone on the format type, not on the now schedule because
+ dates internally use UTC (Coordinated Universal Time) so now will always be 
+ the same regardless of time zone.
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Calculate the next business date. Two schedule types are used, the first calculates 
+ the next day, the next takes this and applies it to a schedule that defines the 
+ business days. The result will be the next business day.
+
+ <pre class="xml">
+&lt;oddjob xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="time"&gt;
+                    &lt;tomorrow&gt;
+                        &lt;schedule&gt;
+                            &lt;date&gt;
+                                &lt;value value="${date}"/&gt;
+                            &lt;/date&gt;
+                            &lt;schedule&gt;
+                                &lt;schedules:day-after/&gt;
+                            &lt;/schedule&gt;
+                        &lt;/schedule&gt;
+                    &lt;/tomorrow&gt;
+                    &lt;nextBusinessDay&gt;                    
+                        &lt;schedule&gt;
+                            &lt;date&gt;
+                                &lt;value value="${time.tomorrow}"/&gt;
+                            &lt;/date&gt;
+                            &lt;schedule&gt;
+                                &lt;schedules:broken&gt;
+                                    &lt;schedule&gt;
+                                        &lt;schedules:weekly from="Monday" to="Friday"&gt;
+                                            &lt;refinement&gt;
+                                                &lt;schedules:daily/&gt;
+                                            &lt;/refinement&gt;
+                                        &lt;/schedules:weekly&gt;
+                                    &lt;/schedule&gt;
+                                    &lt;breaks&gt;
+                                        &lt;schedules:list&gt;
+                                            &lt;schedules&gt;
+                                                &lt;schedules:date on="2011-12-26"/&gt;
+                                                &lt;schedules:date on="2011-12-27"/&gt;
+                                            &lt;/schedules&gt;
+                                        &lt;/schedules:list&gt;
+                                    &lt;/breaks&gt;
+                                &lt;/schedules:broken&gt;
+                            &lt;/schedule&gt;
+                        &lt;/schedule&gt;
+                    &lt;/nextBusinessDay&gt;
+                &lt;/variables&gt;
+                &lt;echo id="echo-time"&gt;The next business date is ${time.nextBusinessDay}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+Display the due dates for a recurring schedule. This would be useful for 
+ experimenting with schedules.
+
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;date&gt;
+                        &lt;value value="${date}"/&gt;
+                    &lt;/date&gt;
+                &lt;/variables&gt;
+                &lt;foreach&gt;
+                    &lt;values&gt;
+                        &lt;tokenizer text="1,2,3,4,5"/&gt;
+                    &lt;/values&gt;
+                    &lt;configuration&gt;
+                        &lt;xml&gt;
+                            &lt;foreach&gt;
+                                &lt;job&gt;
+                                    &lt;sequential&gt;
+                                        &lt;jobs&gt;
+                                            &lt;variables id="time"&gt;
+                                                &lt;schedule&gt;
+                                                    &lt;schedule&gt;
+                                                        &lt;date&gt;
+                                                            &lt;value value="${vars.date}"/&gt;
+                                                        &lt;/date&gt;
+                                                        &lt;schedule&gt;
+                                                            &lt;schedules:weekly from="Monday" to="Friday" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+                                                                &lt;refinement&gt;
+                                                                    &lt;schedules:daily from="10:30"/&gt;
+                                                                &lt;/refinement&gt;
+                                                            &lt;/schedules:weekly&gt;
+                                                        &lt;/schedule&gt;
+                                                    &lt;/schedule&gt;
+                                                &lt;/schedule&gt;
+                                            &lt;/variables&gt;
+                                            &lt;echo&gt;Next due: ${time.schedule.result}&lt;/echo&gt;
+                                            &lt;set&gt;
+                                                &lt;values&gt;
+                                                    &lt;value key="vars.date" value="${time.schedule.result.useNext}"/&gt;
+                                                &lt;/values&gt;
+                                            &lt;/set&gt;
+                                        &lt;/jobs&gt;
+                                    &lt;/sequential&gt;
+                                &lt;/job&gt;
+                            &lt;/foreach&gt;
+                        &lt;/xml&gt;
+                    &lt;/configuration&gt;
+                &lt;/foreach&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

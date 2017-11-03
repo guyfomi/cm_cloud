@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>Oddjob Reference - mkdir</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>mkdir</h1>
+    <hr/>
+Make a directory, including any necessary but 
+ nonexistent parent directories. If there already exists a 
+ file with specified name or the directory cannot be created then 
+ an exception is flagged. If the directory exists alread it is left 
+ intact.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>dir</a></td>
+      <td>The directory to create.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Make a directory including missing parent directories.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>dir</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The directory to create.
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Make a directory including missing parent directories.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;mkdir dir="${this.args[0]}/a/b/c"/&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

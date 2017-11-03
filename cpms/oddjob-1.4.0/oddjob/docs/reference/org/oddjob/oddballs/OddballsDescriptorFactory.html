@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <title>Oddjob Reference - oddballs</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>oddballs</h1>
+    <hr/>
+Create Oddjob job definition descriptors from any 
+ number of directories that follow the Oddball format. 
+ <p>
+ The Oddball directory structure is:
+ 
+ <code><pre>
+ myball
+   classes
+     com
+       acme
+         MyStuff.class
+   lib
+     someutil.jar
+ </pre></code>
+ 
+ You can have either a <code>lib</code> or <code>classes</code> or both 
+ but you must have something.
+ <p>
+ Additionally there can be as many <code>META-INF/arooa.xml</code> resources
+ on that confirm to the <a href='../../../org/oddjob/arooa/deploy/ArooaDescriptorBean.html'>arooa:descriptor</a> format for defining
+ element mappings and conversions.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>files</a></td>
+      <td>The Oddball directory or directories.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>oddballFactory</a></td>
+      <td>The factory that will create the Oddball from the
+ file specification.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Loading two Oddballs.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>files</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The Oddball directory or directories.
+      </p>
+    <a name='property2'><h4>oddballFactory</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to a directory loading factory.</td></tr>
+      </table>
+      <p>
+The factory that will create the Oddball from the
+ file specification. At the moment this defaults to the only 
+ implementation which is to load an Oddball from a directory. In future
+ it is hoped to support loading Oddballs from archives. Following the
+ existing java naming convention for archives they will probably be
+ called .oar files.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Loading two Oddballs.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;oddjob file="${this.args[0]}/test/launch/oddballs-launch.xml"&gt;
+            &lt;descriptorFactory&gt;
+                &lt;oddballs&gt;
+                    &lt;files&gt;
+                        &lt;files&gt;
+                            &lt;list&gt;
+                                &lt;file file="${this.args[0]}/test/oddballs/apple"/&gt;
+                                &lt;file file="${this.args[0]}/test/oddballs/orange"/&gt;
+                            &lt;/list&gt;
+                        &lt;/files&gt;
+                    &lt;/files&gt;
+                &lt;/oddballs&gt;
+            &lt;/descriptorFactory&gt;
+        &lt;/oddjob&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ This is equivalent to launching Oddjob with the oddball path option
+ set as in:
+ 
+ <code><pre>
+ java -jar run-oddjob.jar \
+      -op test/oddballs/apple:test/oddballs/orange \
+      -f test/launch/oddballs-launch.xml 
+ </pre></code>
+ 
+ Or if the <code>test/oddballs</code> directory only contains these two
+ directories, then using the oddball directory option:
+ 
+ <code><pre>
+ java -jar run-oddjob.jar \
+      -ob test/oddballs \
+      -f test/launch/oddballs-launch.xml 
+ </pre></code>
+ 
+ If the <code>apple</code> and <code>orange</code> directories were
+ copied to Oddjob's Oddballs directory they would be loaded by default.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,187 @@
+<html>
+  <head>
+    <title>Oddjob Reference - invoke</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>invoke</h1>
+    <hr/>
+Invoke a java method or script snippet, 
+ or JMX operation.
+ <p>
+ For a script, the source must be a <code>javax.script.Invocable</code>
+ object.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>args</a></td>
+      <td>An alternative configuration for the values to use 
+ as arguments.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>function</a></td>
+      <td>The function/method/operation name to call.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>parameters</a></td>
+      <td>The values to use as arguments.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>source</a></td>
+      <td>The java object or script Invocable on
+ which to invoke the method/function.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Invoke a method on a bean.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Invoke a static method of a class.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Invoking a function of a script.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>args</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Must match the expected arguments.</td></tr>
+      </table>
+      <p>
+An alternative configuration for the values to use 
+ as arguments. This was added for convenience as setting up a lot
+ of simple arguments can be tedious. If this property is provided then
+ parameters is ignored.
+      </p>
+    <a name='property2'><h4>function</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The function/method/operation name to call. Note
+ that for a Java static method the method name must be prefixed with
+ the word static (see examples).
+      </p>
+    <a name='property3'><h4>parameters</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Must match the expected arguments.</td></tr>
+      </table>
+      <p>
+The values to use as arguments. Note that the
+ <code>args</code> property may be more convenient for simple arguments.
+      </p>
+    <a name='property4'><h4>source</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The java object or script Invocable on
+ which to invoke the method/function. If the method is a Java static 
+ method then this is the class on which to invoke the method.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Invoke a method on a bean. The method takes a single date parameter which
+ is uses to generate a time of day dependent greeting.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;message&gt;
+                        &lt;invoke function="greeting"&gt;
+                            &lt;source&gt;
+                                &lt;bean class="org.oddjob.script.GreetingService"/&gt;
+                            &lt;/source&gt;
+                            &lt;parameters&gt;
+                                &lt;schedule&gt;
+                                    &lt;date&gt;
+                                        &lt;value value="${date}"/&gt;
+                                    &lt;/date&gt;
+                                    &lt;schedule&gt;
+                                        &lt;schedules:now xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"/&gt;
+                                    &lt;/schedule&gt;
+                                &lt;/schedule&gt;
+                            &lt;/parameters&gt;
+                        &lt;/invoke&gt;
+                    &lt;/message&gt;
+                &lt;/variables&gt;
+                &lt;echo id="echo-greeting"&gt;${vars.message}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The ${date} reference is there so that it can be injected
+ during a test, to get a guaranteed result. When this is example
+ is run as is, this is null so the system clock to be used
+ there by giving a real time based greeting.
+ <p>
+ One subtle point to note about Oddjob configuration that this example
+ highlights is to do with when types are resolved. 
+ The invoke type will be resolved when the 
+ echo job is run. The schedule type will be resolved when the 
+ variables job is
+ run. If the echo job were scheduled to run several hours after 
+ the variables job had run it would not give the correct greeting!
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Invoke a static method of a class.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;message&gt;
+                        &lt;invoke function="static greetPerson"&gt;
+                            &lt;source&gt;
+                                &lt;class name="org.oddjob.script.GreetingService"/&gt;
+                            &lt;/source&gt;
+                            &lt;parameters&gt;
+                                &lt;value value="John"/&gt;
+                            &lt;/parameters&gt;
+                        &lt;/invoke&gt;
+                    &lt;/message&gt;
+                &lt;/variables&gt;
+                &lt;echo id="echo-greeting"&gt;${vars.message}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Invoking a function of a script.
+ 
+ See the <a href='../../../org/oddjob/script/ScriptJob.html'>script</a> examples.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

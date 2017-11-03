@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>Oddjob Reference - sql-persister-service</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>sql-persister-service</h1>
+    <hr/>
+Persists job state to a database. The database must
+ have a table which can be created with the following sql.
+ <pre><code>
+ CREATE TABLE oddjob(
+   path VARCHAR(128), 
+   id VARCHAR(32), 
+   job BLOB, 
+  CONSTRAINT oddjob_pk PRIMARY KEY (path, id))
+ </pre></code>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>connection</a></td>
+      <td>The <a href='../../../org/oddjob/sql/ConnectionType.html'>connection</a> to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>The name.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>persister</a></td>
+      <td>The persister.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>serializationFactory</a></td>
+      <td>A plugin for providers of the serialization.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Using a SQL Persister.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>connection</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The <a href='../../../org/oddjob/sql/ConnectionType.html'>connection</a> to use.
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The name.
+      </p>
+    <a name='property3'><h4>persister</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>R/O.</td></tr>
+      </table>
+      <p>
+The persister.
+      </p>
+    <a name='property4'><h4>serializationFactory</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A plugin for providers of the serialization.
+ The default is for HSQL.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Using a SQL Persister.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;sql-persister-service id="sql-persister"&gt;
+                    &lt;connection&gt;
+                        &lt;connection driver="org.hsqldb.jdbcDriver" url="jdbc:hsqldb:mem:test" username="sa"/&gt;
+                    &lt;/connection&gt;
+                &lt;/sql-persister-service&gt;
+                &lt;oddjob id="oj" file="${this.dir}/SQLPersisterInner.xml"&gt;
+                    &lt;persister&gt;
+                        &lt;value value="${sql-persister.persister(test)}"/&gt;
+                    &lt;/persister&gt;
+                &lt;/oddjob&gt;
+                &lt;stop job="${sql-persister}"/&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ Note that because this is a service, it must be stopped once the inner Oddjob
+ has completed it's work. In an Oddjob that was running continually this would
+ not be necessary.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,370 @@
+<html>
+  <head>
+    <title>Oddjob Reference - foreach</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>foreach</h1>
+    <hr/>
+A job which executes its child jobs for
+ each of the provided values. The child job can access the current
+ value using the pseudo property 'current' to gain access to the
+ current value. The pseudo property 'index' provides a 0 based number for
+ the instance. 
+ <p>
+ The return state of this job depends on the return state
+ of the children (like <a href='../../../../org/oddjob/jobs/structural/SequentialJob.html'>sequential</a>). Hard resetting this job
+ will cause the children to be destroyed and recreated on the next run
+ (with possibly new values). Soft resetting this job will reset the 
+ children but when re-run will not reconfigure the values.
+ <p>
+ As yet There is no persistence for child jobs.
+ <p>
+ It is not possible to reference the internal jobs via their id from 
+ outside the foreach job, but within
+ the foreach internal configuration they can reference each other and 
+ themselves via their ids.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>configuration</a></td>
+      <td>The configuration that will be parsed
+ for each value.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>current</a></td>
+      <td>The current value</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>executorService</a></td>
+      <td>The ExecutorService to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>file</a></td>
+      <td>The name of the configuration file.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>index</a></td>
+      <td>The current index in the
+ values.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>loadable</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>parallel</a></td>
+      <td>Should jobs be executed in parallel.</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>preLoad</a></td>
+      <td>The number of values to pre-load configurations for.</td>
+    </tr>
+    <tr>
+      <td><a href='#property10'>purgeAfter</a></td>
+      <td>The number of completed jobs to keep.</td>
+    </tr>
+    <tr>
+      <td><a href='#property11'>stop</a></td>
+      <td>The stop flag.</td>
+    </tr>
+    <tr>
+      <td><a href='#property12'>values</a></td>
+      <td>Any value.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>For each of 3 values.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>For each of 3 files.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Executing children in parallel.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>Using an execution window.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>configuration</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The configuration that will be parsed
+ for each value.
+      </p>
+    <a name='property2'><h4>current</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>R/O.</td></tr>
+      </table>
+      <p>
+The current value
+      </p>
+    <a name='property3'><h4>executorService</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The ExecutorService to use. This will 
+ be automatically set by Oddjob.
+      </p>
+    <a name='property4'><h4>file</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The name of the configuration file.
+ to use for configuration.
+      </p>
+    <a name='property5'><h4>index</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>R/O.</td></tr>
+      </table>
+      <p>
+The current index in the
+ values.
+      </p>
+    <a name='property6'><h4>loadable</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property7'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property8'><h4>parallel</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to false.</td></tr>
+      </table>
+      <p>
+Should jobs be executed in parallel.
+      </p>
+    <a name='property9'><h4>preLoad</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to all configurations being loaded first.</td></tr>
+      </table>
+      <p>
+The number of values to pre-load configurations for. 
+ This property can be used with large sets of values to ensure that only a 
+ certain number are pre-loaded before execution starts.
+ <p>
+ Setting this property to 0 means that all configuration will be 
+ initially loaded.
+      </p>
+    <a name='property10'><h4>purgeAfter</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to no complete jobs being purged.</td></tr>
+      </table>
+      <p>
+The number of completed jobs to keep. Oddjob configurations
+ can be quite memory intensive, mainly due to logging, purging complete jobs
+ will stop too much memory being taken. 
+ <p>
+ Setting this property to 0
+ means that no complete jobs will be purged.
+      </p>
+    <a name='property11'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+The stop flag. This is an internal read only
+ property that is exposed for diagnostic reasons. If a child job
+ does not support stopping then the request to stop may time out but
+ it is useful to know that the stop flag is still set so this job
+ will still stop eventually.
+      </p>
+    <a name='property12'><h4>values</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Any value.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+For each of 3 values.
+ 
+ <pre class="xml">
+&lt;oddjob id="this" xmlns:arooa="http://rgordon.co.uk/oddjob/arooa"&gt;
+    &lt;job&gt;
+        &lt;foreach id="foreach"&gt;
+            &lt;values&gt;
+                &lt;list&gt;
+                    &lt;values&gt;
+                        &lt;value value="Red"/&gt;
+                        &lt;value value="Blue"/&gt;
+                        &lt;value value="Green"/&gt;
+                    &lt;/values&gt;
+                &lt;/list&gt;
+            &lt;/values&gt;
+            &lt;configuration&gt;
+                &lt;arooa:configuration resource="org/oddjob/jobs/structural/ForEachEchoColour.xml"/&gt;
+            &lt;/configuration&gt;
+        &lt;/foreach&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The internal configuration is:
+ 
+ <pre class="xml">
+&lt;foreach id="colours"&gt;
+    &lt;job&gt;
+        &lt;echo id="echo-colour" name="${colours.current}"&gt;I'm number ${colours.index} and my name is ${echo-colour.name}&lt;/echo&gt;
+    &lt;/job&gt;
+&lt;/foreach&gt;</pre>
+
+ 
+ Unlike other jobs, a job in a for each has it's name configured when it is 
+ loaded, before it is run. The job references its self using its id.
+ <p>
+ This example will display the following on the console:
+ <pre>
+ I'm number 0 and my name is Red
+ I'm number 1 and my name is Blue
+ I'm number 2 and my name is Green
+ </pre>
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+For each of 3 files. The 3 files <code>test1.txt</code>, 
+ <code>test2.txt</code> and <code>test3.txt</code> are 
+ copied to the <code>work/foreach directory</code>. The oddjob argument 
+ <code>${this.args[0]}</code> is so that a base directory can be passed
+ in as part of the unit test for this example.
+ 
+ <pre class="xml">
+&lt;oddjob id="this" xmlns:arooa="http://rgordon.co.uk/oddjob/arooa"&gt;
+    &lt;job&gt;
+        &lt;foreach&gt;
+            &lt;values&gt;
+                &lt;files files="${this.args[0]}/test/io/reference/test?.txt"/&gt;
+            &lt;/values&gt;
+            &lt;configuration&gt;
+                &lt;arooa:configuration&gt;
+                    &lt;xml&gt;
+                        &lt;xml&gt;
+                            &lt;foreach id="copy-files"&gt;
+                                &lt;job&gt;
+                                    &lt;copy to="${this.args[0]}/work/foreach"&gt;
+                                        &lt;from&gt;
+                                            &lt;value value="${copy-files.current}"/&gt;
+                                        &lt;/from&gt;
+                                    &lt;/copy&gt;
+                                &lt;/job&gt;
+                            &lt;/foreach&gt;
+                        &lt;/xml&gt;
+                    &lt;/xml&gt;
+                &lt;/arooa:configuration&gt;
+            &lt;/configuration&gt;
+        &lt;/foreach&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ Also <a href='../../../../org/oddjob/io/ExistsJob.html'>exists</a> has a similar example.
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Executing children in parallel. This example uses a 
+ <a href='../../../../org/oddjob/scheduling/ExecutorThrottleType.html'>throttle</a> to limit the number of parallel 
+ executions to three.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;foreach parallel="true"&gt;
+            &lt;values&gt;
+                &lt;tokenizer text="1,2,3,4,5,6,7,8,9"/&gt;
+            &lt;/values&gt;
+            &lt;configuration&gt;
+                &lt;xml&gt;
+                    &lt;foreach id="loop"&gt;
+                        &lt;job&gt;
+                            &lt;wait name="Wait ${loop.current}"/&gt;
+                        &lt;/job&gt;
+                    &lt;/foreach&gt;
+                &lt;/xml&gt;
+            &lt;/configuration&gt;
+            &lt;executorService&gt;
+                &lt;throttle limit="3"/&gt;
+            &lt;/executorService&gt;
+        &lt;/foreach&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+Using an execution window. Only the configuration for two jobs will be 
+ pre-loaded, and only the last three complete jobs will remain loaded.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;foreach preLoad="2" purgeAfter="3"&gt;
+            &lt;values&gt;
+                &lt;tokenizer text="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"/&gt;
+            &lt;/values&gt;
+            &lt;configuration&gt;
+                &lt;xml&gt;
+                    &lt;foreach id="loop"&gt;
+                        &lt;job&gt;
+                            &lt;wait name="Wait ${loop.current} " pause="1"/&gt;
+                        &lt;/job&gt;
+                    &lt;/foreach&gt;
+                &lt;/xml&gt;
+            &lt;/configuration&gt;
+        &lt;/foreach&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

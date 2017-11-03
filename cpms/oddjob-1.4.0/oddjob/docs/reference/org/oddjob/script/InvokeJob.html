@@ -1,0 +1,204 @@
+<html>
+  <head>
+    <title>Oddjob Reference - invoke</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>invoke</h1>
+    <hr/>
+Invoke a java method or script snippet.
+ <p>
+ This is a wrapper for <a href='../../../org/oddjob/script/InvokeType.html'>invoke</a>. The result of the
+ invocation is placed in the <code>result</code> property.
+ <p>
+ Note that stopping this job will simply attempt to interrupt the
+ thread invoking the method. The outcome of this will obviously vary.
+ <p>
+ Oddjob will do it's best to convert arguments to the signature of
+ the method or operation. An exception will result if it can't achieve 
+ this.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>args</a></td>
+      <td>An alternative configuration for the values to use 
+ as arguments.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>function</a></td>
+      <td>The function/method/operation name to call.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>parameters</a></td>
+      <td>The values to use as arguments.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>result</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>source</a></td>
+      <td>The java object or script Invocable on
+ which to invoke the method/function.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>stop</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Invoking a method on a bean.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Invoking a static method.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Examples elsewhere.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>args</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Must match the expected arguments.</td></tr>
+      </table>
+      <p>
+An alternative configuration for the values to use 
+ as arguments. This was added for convenience as setting up a lot
+ of simple arguments can be tedious. If this property is provided then
+ parameters is ignored.
+      </p>
+    <a name='property2'><h4>function</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The function/method/operation name to call. Note
+ that for a Java static method the method name must be prefixed with
+ the word static (see InvokeType examples).
+      </p>
+    <a name='property3'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property4'><h4>parameters</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Must match the expected arguments.</td></tr>
+      </table>
+      <p>
+The values to use as arguments. Note that the
+ <code>args</code> property may be more convenient for simple arguments.
+      </p>
+    <a name='property5'><h4>result</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property6'><h4>source</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The java object or script Invocable on
+ which to invoke the method/function. If the method is a Java static 
+ method then this is the class on which to invoke the method.
+      </p>
+    <a name='property7'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Invoking a method on a bean.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;invoke id="invoke-job" function="echo"&gt;
+                    &lt;source&gt;
+                        &lt;bean class="org.oddjob.script.EchoService"/&gt;
+                    &lt;/source&gt;
+                    &lt;parameters&gt;
+                        &lt;value value="Hello"/&gt;
+                    &lt;/parameters&gt;
+                &lt;/invoke&gt;
+                &lt;echo id="echo"&gt;${invoke-job.result}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+
+ Where <code>EchoService</code> is:
+ 
+ <p><em>java.io.IOException: No Resource found: org/oddjob/script/EchoService.java</em></p>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Invoking a static method. Note that this uses args instead of parameters
+ for convenience.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;invoke function="static totalPrice" id="invoke-totalPrice"&gt;
+            &lt;args&gt;
+                &lt;tokenizer text="Red Apples, 24, 47.3"/&gt;
+            &lt;/args&gt;
+            &lt;source&gt;
+                &lt;class name="org.oddjob.script.InvokeJobTest"/&gt;
+            &lt;/source&gt;
+        &lt;/invoke&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Examples elsewhere. 
+ <p>
+ See <a href='../../../org/oddjob/script/InvokeType.html'>invoke</a> for several more examples. Property configuration
+ is the same for the type and the job.
+ <p>
+ The <a href='../../../org/oddjob/jmx/JMXServiceJob.html'>jmx:service</a> job has an example of 
+ invoking a JMX operation.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

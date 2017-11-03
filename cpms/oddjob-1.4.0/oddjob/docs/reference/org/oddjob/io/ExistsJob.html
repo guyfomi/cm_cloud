@@ -1,0 +1,187 @@
+<html>
+  <head>
+    <title>Oddjob Reference - exists</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>exists</h1>
+    <hr/>
+Test if a file exists. This job will flag
+ complete if the file exists, not complete if it doesn't, and 
+ will signal an exception if the path to the file does not exist.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>exists</a></td>
+      <td>The files that match the file specification.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>file</a></td>
+      <td>The file specification.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>lastModified</a></td>
+      <td>If a single file is found, this is the last
+ modified date of the file.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>result</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>size</a></td>
+      <td>If a single file is found, this is the size
+ of the file in bytes, or -1 if a single file hasn't been found.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A simple example checking for a single file.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>File polling.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Using exists and processing the files found.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>exists</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>R/O.</td></tr>
+      </table>
+      <p>
+The files that match the file specification.
+      </p>
+    <a name='property2'><h4>file</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The file specification. The file specification 
+ can contain wild card characters.
+      </p>
+    <a name='property3'><h4>lastModified</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>R/O.</td></tr>
+      </table>
+      <p>
+If a single file is found, this is the last
+ modified date of the file.
+      </p>
+    <a name='property4'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property5'><h4>result</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property6'><h4>size</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>R/O.</td></tr>
+      </table>
+      <p>
+If a single file is found, this is the size
+ of the file in bytes, or -1 if a single file hasn't been found.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A simple example checking for a single file.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;exists file="${this.args[0]}/test/io/reference/test1.txt"/&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+File polling.
+ 
+ <pre class="xml">
+&lt;oddjob id="this" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;job&gt;
+        &lt;sequential name="The Classic File Polling Example"&gt;
+            &lt;jobs&gt;
+                &lt;scheduling:retry limits="${timer.current}"&gt;
+                    &lt;schedule&gt;
+                        &lt;schedules:interval interval="00:00:02"/&gt;
+                    &lt;/schedule&gt;
+                    &lt;job&gt;
+                        &lt;sequential id="echo-when-file"&gt;
+                            &lt;jobs&gt;
+                                &lt;exists id="check" name="Check File Exists" file="${work.dir}/done.flag"/&gt;
+                                &lt;echo&gt;Found ${check.exists[0]}&lt;/echo&gt;
+                            &lt;/jobs&gt;
+                        &lt;/sequential&gt;
+                    &lt;/job&gt;
+                &lt;/scheduling:retry&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Using exists and processing the files found.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential name="Find Files"&gt;
+            &lt;jobs&gt;
+                &lt;exists id="exists" file="${this.args[0]}/test/io/reference/test*.txt"/&gt;
+                &lt;foreach id="found"&gt;
+                    &lt;values&gt;
+                        &lt;value value="${exists.exists}"/&gt;
+                    &lt;/values&gt;
+                    &lt;configuration&gt;
+                        &lt;xml&gt;
+                            &lt;foreach id="found"&gt;
+                                &lt;job&gt;
+                                    &lt;echo&gt;found ${found.current}&lt;/echo&gt;
+                                &lt;/job&gt;
+                            &lt;/foreach&gt;
+                        &lt;/xml&gt;
+                    &lt;/configuration&gt;
+                &lt;/foreach&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

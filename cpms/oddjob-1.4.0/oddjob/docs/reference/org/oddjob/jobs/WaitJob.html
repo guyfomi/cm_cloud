@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <title>Oddjob Reference - wait</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>wait</h1>
+    <hr/>
+This Job will either wait a given number of milliseconds
+ or will wait for a property or job to become available. 
+ <p>
+ If the for property is provided, then the delay is used as the number of
+ milliseconds between checking if the property is available.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>for</a></td>
+      <td>The property to wait for.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>pause</a></td>
+      <td>The wait delay in milliseconds.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>state</a></td>
+      <td>A state condition to wait for.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>stop</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>The <a href='../../../org/oddjob/scheduling/ExecutorThrottleType.html'>throttle</a> has a simple example.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>This example waits for a variable 'text' to be set.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>for</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The property to wait for.
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property3'><h4>pause</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No if for property is set, otherwise yes.</td></tr>
+      </table>
+      <p>
+The wait delay in milliseconds.
+      </p>
+    <a name='property4'><h4>state</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A state condition to wait for. When this is 
+ set this job will wait for the job referenced with the <code>
+ for</code> property match the given state condition. 
+ See the Oddjob User guide for a full list of state conditions.
+      </p>
+    <a name='property5'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+The <a href='../../../org/oddjob/scheduling/ExecutorThrottleType.html'>throttle</a> has a simple example.
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+This example waits for a variable 'text' to be set. The value could be set
+ across the network or by a another job running in parallel.  
+ 
+ <pre class="xml">
+&lt;sequential name="Waiting For a Property"&gt;
+    &lt;jobs&gt;
+        &lt;variables id="waitvars"/&gt;
+        &lt;wait name="Wait for Variable" for="${waitvars.text}" pause="2000"/&gt;
+        &lt;echo name="Echo Text"&gt;${waitvars.text}&lt;/echo&gt;
+    &lt;/jobs&gt;
+&lt;/sequential&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

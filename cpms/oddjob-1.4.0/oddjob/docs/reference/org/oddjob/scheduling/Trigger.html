@@ -1,0 +1,227 @@
+<html>
+  <head>
+    <title>Oddjob Reference - scheduling:trigger</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>scheduling:trigger</h1>
+    <hr/>
+A trigger runs it's job when the job being triggered
+ on enters the state specified.
+ <p>
+ Once the trigger's job runs the trigger
+ will reflect the state of the it's job. The trigger will continue to 
+ reflect it's job's state until it is reset. 
+ <p>Subsequent state changes in
+ the triggering job are ignored until the trigger is reset and re-run.
+ <p>
+ If the triggering job is destroyed, because it is deleted or on a remote
+ server the trigger will enter an exception state.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>cancelWhen</a></td>
+      <td>A state condition that will cause the trigger
+ to cancel.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>job</a></td>
+      <td>The job to run when the trigger fires.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>newOnly</a></td>
+      <td>Fire trigger on new events only.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>on</a></td>
+      <td>The job the trigger will trigger on.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>state</a></td>
+      <td>The state condition which will cause the trigger
+ to fire.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A simple trigger.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>A trigger that runs once two other jobs have completed.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Cancelling a trigger.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>Examples Elsewhere.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>cancelWhen</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to not cancelling.</td></tr>
+      </table>
+      <p>
+A state condition that will cause the trigger
+ to cancel.
+      </p>
+    <a name='property2'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The job to run when the trigger fires.
+      </p>
+    <a name='property3'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property4'><h4>newOnly</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+Fire trigger on new events only. If set the time on 
+ the event will be compared with the last that this trigger received and
+ only a new event will cause the trigger to fire.
+      </p>
+    <a name='property5'><h4>on</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The job the trigger will trigger on.
+      </p>
+    <a name='property6'><h4>state</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to COMPLETE.</td></tr>
+      </table>
+      <p>
+The state condition which will cause the trigger
+ to fire. See the Oddjob User guide for a full list of state
+ conditions.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A simple trigger.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential name="Trigger Example"&gt;
+            &lt;jobs&gt;
+                &lt;scheduling:trigger name="Alert Trigger" on="${important}" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling"&gt;
+                    &lt;job&gt;
+                        &lt;echo name="Alert"&gt;Important job has completed!&lt;/echo&gt;
+                    &lt;/job&gt;
+                &lt;/scheduling:trigger&gt;
+                &lt;folder name="A Folder of Jobs"&gt;
+                    &lt;jobs&gt;
+                        &lt;echo id="important" name="Run Me"&gt;I'm important&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+A trigger that runs once two other jobs have completed.
+ 
+ <pre class="xml">
+&lt;oddjob xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling" xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+    &lt;job&gt;
+        &lt;sequential name="Trigger on Two Things"&gt;
+            &lt;jobs&gt;
+                &lt;scheduling:trigger id="trigger" on="${watch-both}"&gt;
+                    &lt;job&gt;
+                        &lt;echo id="notify" name="Triggered Job"&gt;You ran two things!&lt;/echo&gt;
+                    &lt;/job&gt;
+                &lt;/scheduling:trigger&gt;
+                &lt;state:and id="watch-both" name="Watch Two Jobs"&gt;
+                    &lt;jobs&gt;
+                        &lt;state:mirror job="${thing1}" name="Mirror Job 1"/&gt;
+                        &lt;state:mirror job="${thing2}" name="Mirror Job 2"/&gt;
+                    &lt;/jobs&gt;
+                &lt;/state:and&gt;
+                &lt;folder name="A Folder of Jobs"&gt;
+                    &lt;jobs&gt;
+                        &lt;echo id="thing1" name="Run me!"&gt;Thank you&lt;/echo&gt;
+                        &lt;echo id="thing2" name="Run me!"&gt;Thank you&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Cancelling a trigger.
+ 
+ <pre class="xml">
+&lt;oddjob id="this" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling"&gt;
+    &lt;job&gt;
+        &lt;sequential name="Trigger Example"&gt;
+            &lt;jobs&gt;
+                &lt;scheduling:trigger id="trigger" name="Alert Trigger" on="${our-job}" state="FAILURE" cancelWhen="FINISHED"&gt;
+                    &lt;job&gt;
+                        &lt;echo name="Alert" id="triggered-job"&gt;That job shouldn't fail!&lt;/echo&gt;
+                    &lt;/job&gt;
+                &lt;/scheduling:trigger&gt;
+                &lt;folder name="A Folder of Jobs"&gt;
+                    &lt;jobs&gt;
+                        &lt;echo id="our-job" name="Run Me"&gt;I won't fail&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+Examples Elsewhere.
+ <ul>
+  <li>The scheduling example (<code>examples/scheduling/dailyftp.xml</code>)
+  uses a trigger to send an email if one of the FTP transfers fails.</li>
+ </ul>
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

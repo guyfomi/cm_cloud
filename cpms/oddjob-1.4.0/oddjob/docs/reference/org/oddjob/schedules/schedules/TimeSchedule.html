@@ -1,0 +1,167 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedules:time</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>schedules:time</h1>
+    <hr/>
+Provide a schedule for an interval of time. When used as a
+ refinement this schedule will narrow the parent interval down to an interval of 
+ time on the first day of the parent interval, or if the <code>toLast</code>
+ property is specified, from the first day to the last day of the parent interval. When used as the 
+ topmost definition for a schedule then this schedule specifies a single interval
+ of time starting on the current day.
+ <p>
+ To provide a schedule for each day at a certain time see the <a href='../../../../org/oddjob/schedules/schedules/DailySchedule.html'>schedules:daily</a>
+ schedules.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>at</a></td>
+      <td>The time at which this schedule is for.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>from</a></td>
+      <td>The from time.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>refinement</a></td>
+      <td>Provide a refinement to this schedule.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>to</a></td>
+      <td>The to time.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>toLast</a></td>
+      <td>The to time for the end of the parent interval.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A simple time example.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Using an interval with time to schedule something every 15 minutes between 
+ 10pm and 4am the next day.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Schedule something over a whole week between two times.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>at</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The time at which this schedule is for. 
+ This has the same effect as setting from and to to the same thing.
+      </p>
+    <a name='property2'><h4>from</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to the start of any parent interval
+ or the beginning of time.</td></tr>
+      </table>
+      <p>
+The from time.
+      </p>
+    <a name='property3'><h4>refinement</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Provide a refinement to this schedule.
+      </p>
+    <a name='property4'><h4>to</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to the end of the last day of the
+ parent interval, or the end of time.</td></tr>
+      </table>
+      <p>
+The to time. If specified, this is the
+ time on the first day of the parent interval.
+      </p>
+    <a name='property5'><h4>toLast</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. The to property, or it's default value,
+ will be used instead.</td></tr>
+      </table>
+      <p>
+The to time for the end of the parent interval.
+ This differs from the to property in that the to property is for the first
+ day of the parent interval.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A simple time example.
+ 
+ <pre class="xml">
+&lt;schedules:time at="10:00" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"/&gt;</pre>
+
+ 
+ When used with a <a href='../../../../org/oddjob/scheduling/Timer.html'>scheduling:timer</a> this would run a job just once at 10am, and
+ never again. If the
+ timer was started after 10am, then the job would run the following day at 10am.
+ If it was required that the job would run any time the timer was started 
+ after 10am then the <code>
+ from</code> property should be used instead of the <code>at</code> property.
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Using an interval with time to schedule something every 15 minutes between 
+ 10pm and 4am the next day. The end time is 03:50 yet the last interval is
+ 03:45 to 04:00 because the interval starts before the end time.
+ 
+ <pre class="xml">
+&lt;schedules:time from="22:00" to="03:50" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;refinement&gt;
+        &lt;schedules:interval interval="00:15"/&gt;
+    &lt;/refinement&gt;
+&lt;/schedules:time&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Schedule something over a whole week between two times. This demonstrates
+ how the <code>toLast</code> property works.
+ 
+ <pre class="xml">
+&lt;schedules:weekly from="Monday" to="Friday" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;refinement&gt;
+        &lt;schedules:time from="08:00" toLast="18:00"&gt;
+            &lt;refinement&gt;
+                &lt;schedules:interval interval="02:00"/&gt;
+            &lt;/refinement&gt;
+        &lt;/schedules:time&gt;
+    &lt;/refinement&gt;
+&lt;/schedules:weekly&gt;</pre>
+
+ 
+ The schedule would be due every two hours all day and all night from 8am 
+ Monday morning until 6pm Friday afternoon.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

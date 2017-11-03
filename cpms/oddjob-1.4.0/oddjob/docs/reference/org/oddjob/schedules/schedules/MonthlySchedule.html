@@ -1,0 +1,231 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedules:monthly</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>schedules:monthly</h1>
+    <hr/>
+A schedule for monthly intervals. The intervals
+ can be specified as days of the month, a day of the week in a week of the month,
+ or less usefully as weeks of the month. 
+ <p>
+ The day of the month is given
+ as an number, normally 1 to 31. 0 and negative numbers can be used to specify
+ days from the end of the month. The words LAST and PENULTIMATE 
+ (case insensitive) can also be
+ used as a convenience. Note that unlike the java 
+ <code>GregorianCalander</code>, 0 and negative numbers are taken to be
+ this month, not the previous month. i.e. on="0" is the last day of the month and
+ is equivalent to on="LAST".
+ <p>
+ Days and week of the month are given as the day number, 1 to 7, or as one
+ of MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY 
+ (case insensitive). The week of 
+ the month is specified as a number, typically 1 to 5, or using one of FIRST,
+ SECOND, THIRD, FOURTH, FIFTH, PENULTIMATE, or LAST (case insensitive).
+ <p>
+ If the week of the month is specified on it's own then the first week is
+ taken to be the first complete week of the month.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>fromDay</a></td>
+      <td>The from day of the month.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>fromDayOfWeek</a></td>
+      <td>The from day of the week.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>fromWeek</a></td>
+      <td>The from week of the month.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>inWeek</a></td>
+      <td>The in week of the month.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>onDay</a></td>
+      <td>The day on which this schedule is for.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>onDayOfWeek</a></td>
+      <td>The on day of the week.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>refinement</a></td>
+      <td>Provide a refinement to this schedule.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>toDay</a></td>
+      <td>The to day of the month.</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>toDayOfWeek</a></td>
+      <td>The to day of the week.</td>
+    </tr>
+    <tr>
+      <td><a href='#property10'>toWeek</a></td>
+      <td>The to week of the month.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A range of days of the month.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>On a single day of the month.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>On the last Friday of the month.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>fromDay</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to 1.</td></tr>
+      </table>
+      <p>
+The from day of the month.
+      </p>
+    <a name='property2'><h4>fromDayOfWeek</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The from day of the week. Used in conjunction with
+ <code>fromWeekOfMonth</code>.
+      </p>
+    <a name='property3'><h4>fromWeek</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The from week of the month.
+      </p>
+    <a name='property4'><h4>inWeek</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The in week of the month. This is equivalent to 
+ setting <code>fromWeek</code> and <code>toWeek</code> to the same thing.
+      </p>
+    <a name='property5'><h4>onDay</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The day on which this schedule is for. 
+ This has the same effect as setting <code>fromDay</code>
+ and <code>toDay</code> to the same thing.
+      </p>
+    <a name='property6'><h4>onDayOfWeek</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The on day of the week. This is equivalent to 
+ setting <code>fromDayOfWeek</code> and  <code>toDayOfWeek</code>
+ to the same thing.
+      </p>
+    <a name='property7'><h4>refinement</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Provide a refinement to this schedule.
+      </p>
+    <a name='property8'><h4>toDay</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to the last day of the month.</td></tr>
+      </table>
+      <p>
+The to day of the month.
+      </p>
+    <a name='property9'><h4>toDayOfWeek</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The to day of the week. Used in conjunction with
+ <code>toDayOfWeek</code>.
+      </p>
+    <a name='property10'><h4>toWeek</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The to week of the month.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A range of days of the month.
+ 
+ <pre class="xml">
+&lt;schedules:monthly fromDay="17" toDay="22" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+     &lt;refinement&gt;
+        &lt;schedules:daily at="10:00"/&gt;
+     &lt;/refinement&gt;
+&lt;/schedules:monthly&gt;</pre>
+
+ 
+ This would schedule a job to run every day from the 17th of each month to
+ the 25th of each month at 10am.
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+On a single day of the month.
+ 
+ <pre class="xml">
+&lt;schedules:monthly onDay="15" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"/&gt;</pre>
+
+ 
+ This will run a job on the 15th of every month.
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+On the last Friday of the month.
+ 
+ <pre class="xml">
+&lt;schedules:monthly onDayOfWeek="FRIDAY" inWeek="LAST" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+     &lt;refinement&gt;
+        &lt;schedules:time at="07:00"/&gt;
+     &lt;/refinement&gt;
+&lt;/schedules:monthly&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

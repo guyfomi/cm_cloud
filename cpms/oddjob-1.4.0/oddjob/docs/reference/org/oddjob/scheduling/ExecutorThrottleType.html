@@ -1,0 +1,134 @@
+<html>
+  <head>
+    <title>Oddjob Reference - throttle</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>throttle</h1>
+    <hr/>
+Throttle parallel execution. This will limit the
+ number of jobs running in parallel.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>limit</a></td>
+      <td>The maximum number of simultaneous jobs this
+ throttle will allow.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>original</a></td>
+      <td>The ExecuutorService to throttle.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Throttling parallel execution.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Sharing a throttle.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>limit</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The maximum number of simultaneous jobs this
+ throttle will allow.
+      </p>
+    <a name='property2'><h4>original</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The ExecuutorService to throttle. This
+ will be automatically set by Oddjob.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Throttling parallel execution.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;parallel id="parallel"&gt;
+            &lt;executorService&gt;
+                &lt;throttle limit="2"/&gt;
+            &lt;/executorService&gt;
+            &lt;jobs&gt;
+                &lt;wait name="Wait 1"/&gt;
+                &lt;wait name="Wait 2"/&gt;
+                &lt;wait name="Wait 3"/&gt;
+                &lt;wait name="Wait 4"/&gt;
+            &lt;/jobs&gt;
+        &lt;/parallel&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Sharing a throttle. The same throttle is shared between
+ to <a href='../../../org/oddjob/jobs/structural/ParallelJob.html'>parallel</a> jobs. The total number of jobs executing between
+ both parallels is 2.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;throttle&gt;
+                        &lt;convert&gt;
+                          &lt;value&gt;
+                            &lt;throttle limit="2"/&gt;
+                          &lt;/value&gt;
+                        &lt;/convert&gt;
+                    &lt;/throttle&gt;
+                &lt;/variables&gt;
+                &lt;parallel id="parallel-1"&gt;
+                    &lt;executorService&gt;
+                        &lt;value value="${vars.throttle.is}"/&gt;
+                    &lt;/executorService&gt;
+                    &lt;jobs&gt;
+                        &lt;wait name="Wait 1"/&gt;
+                        &lt;wait name="Wait 2"/&gt;
+                    &lt;/jobs&gt;
+                &lt;/parallel&gt;
+                &lt;parallel id="parallel-2"&gt;
+                    &lt;executorService&gt;
+                        &lt;value value="${vars.throttle.is}"/&gt;
+                    &lt;/executorService&gt;
+                    &lt;jobs&gt;
+                        &lt;wait name="Wait 3"/&gt;
+                        &lt;wait name="Wait 4"/&gt;
+                    &lt;/jobs&gt;
+                &lt;/parallel&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The throttle type is a factory type and so would provide a new instance
+ each time it's used. To overcome this the throttle is 
+ wrapped in a convert <a href='../../../org/oddjob/arooa/types/ConvertType.html'>convert</a> that creates a single instance.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

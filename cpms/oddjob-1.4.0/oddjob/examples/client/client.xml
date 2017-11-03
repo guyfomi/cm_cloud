@@ -1,0 +1,8 @@
+<oddjob>
+    <job>
+        <jmx:client xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"
+                name="Oddjob Client"
+                id="client"
+                connection="localhost/my-oddjob"/>
+    </job>
+</oddjob>

@@ -1,0 +1,211 @@
+<html>
+	<head>
+		<title>User Guide - Oddjob Explorer</title>
+	</head>
+	<body>
+	
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="beginning.html">Previous</a>]
+		[<a href="examples.html">Next</a>]
+		
+		<h1>Oddjob Explorer</h1>
+
+		<p>Your window on the Oddjob world. Before moving on let's have a quick
+		walk through the 
+		Oddjob Explorer views and controls.</p>
+		
+		<ul>
+			<li><a href="#panels">The Panels</a></li>
+			<li><a href="#file">The File Menu</a></li>
+			<li><a href="#edit">The Edit Menu</a></li>
+			<li><a href="#job">The Job Menu</a></li>
+		</ul>
+
+		<h4 id="panels">The Panels</h4>
+		
+		<dl>
+		<dt>Job Tree Panel</dt>
+		<dd><p>Displays the hierarchy of jobs.</p></dd>
+
+		<dt>Detail View</dt>
+		<dd><p>Displays detail on a job selected in the tree view. It consists of
+		four panels:</p>
+
+		<dl>
+		<dt>State Panel</dt>
+		<dd><p>Displays the current state of a job, where available. The time
+		is the time the job changed to that state and the exception is the
+		full stack trace of the cause of the job being in an exception state.
+		</p></dd>
+		
+		<dt>Console Panel</dt>
+		<dd><p>Displays messages written to the console of the job being run. The
+		console is shared at a process level so in any one jobs console view you
+		will see messages from all jobs in the same process.</p></dd>
+		
+		<dt>Log Panel</dt>
+		<dd><p>Displays log messages produced by the job, where available. Log
+		messages are of different levels, DEBUG, INFO, WARNING, ERROR 
+		and FATAL. Each level message is displayed in a different colour.
+		</p></dd>
+		
+		<dt>Properties Panel</dt>
+		<dd><p>Displays the properties of a job. Some of these properties are
+		visible before a job is run because they are constant or default values,
+		some will only be available when the job has run.
+		</p></dd>
+		</dl>
+		</dd>
+		</dl>
+		
+		<h4 id="file">File Menu</h4>
+		
+		<a href="images/explorer1.gif"><img src="images/explorer1.gif" 
+				height="320" width="500" alt="The File Menu"/></a>
+				
+		<dl>
+		<dt>New Explorer</dt>
+		<dd><p>Creates a new Explorer window.</p></dd>
+		
+		<dt>New Oddjob</dt>
+		<dd><p>Creates a new Oddbjob configuration.</p></dd>
+		
+		<dt>Open</dt>
+		<dd><p>Starts Oddjob with the selected configuration file.</p></dd>
+		
+		<dt>Close</dt>
+		<dd><p>Closes the current view and destroys the internal Oddjob. Both
+		Open and Exit perform these actions so Close won't be used much.</p>
+		<p>Note:
+		you can not close the current view until all local running jobs have
+		completed or have been stopped. If a job won't stop then you must
+		kill the Oddjob Explorer process. This strategy ensures that no processes
+		are left running that a user is unaware of.</p></dd>
+
+		<dt>Save</dt>
+		<dd><p>Saves the Oddjob configuration of the currently selected jobs Oddjob,
+		or the root Oddjob if no job is selected.</p></dd>
+		
+		<dt>Save As</dt>
+		<dd><p>Saves the root Oddjob configuration in a different file.</p></dd>
+		
+		<dt>Recent History</dt>		
+		<dd><p>Displays recent file history. Recent file history is stored in
+		the directory used to launch Oddjob. When you change this directory
+		you loose this history. Launching two Oddjob Explorers will 
+		confuse history and only that of the last closed will 
+		be persisted.</p></dd>
+		
+		<dt>Exit</dt>
+		<dd><p>Performs a Close action and then exits Oddjob Explorer. 
+		The same as closing the main window.</p></dd>
+		</dl>
+
+		<h4 id="edit">Edit Menu</h4>
+		
+		<a href="images/explorer2.gif"><img src="images/explorer2.gif" 
+				height="320" width="500" alt="The Job Menu"/></a>
+				
+		<dl>
+		<dt>Cut</dt>
+		<dd><p>Delete the current job after copying its configuration to the 
+		clip-board.</p></dd>
+		
+		<dt>Copy</dt>
+		<dd><p>Copy the current job's configuration to the clip-board.</p></dd>
+		
+		<dt>Paste</dt>
+		<dd><p>Paste configuration from the clip-board to create a child job of
+		the current job.</p></dd>
+		
+		<dt>Delete</dt>
+		<dd><p>Delete the current job.</p></dd>
+		</dl>
+				
+		<h4 id="job">Job Menu</h4>
+		
+		<p>
+		The Job Menu applies to the job currently selected in the tree view.
+		Here a nested Oddjob job has been selected.
+		</p>
+		
+		<a href="images/explorer3.gif"><img src="images/explorer3.gif" 
+				height="320" width="500" alt="The Job Menu"/></a>
+		
+				
+		<dl>
+		<dt>Load</dt>
+		<dd><p>For jobs that can load a configuration, such as Oddjob, this action 
+		will load the configuration without running it. If a job can't
+		load a configuration (and most can't) this option won't appear.</p></dd>
+		
+		<dt>Unload</dt>
+		<dd><p>For jobs that have loaded a configuration, such as Oddjob, this action 
+		will unload a configuration. Again this option will normally not
+		be visible.</p></dd>
+		
+		<dt>Run</dt>
+		<dd><p>Runs a job immediately.</p></dd>
+		
+		<dt>Soft Reset</dt>
+		<dd><p>Performs a soft reset on the job.</p></dd>
+		
+		<dt>Hard Reset</dt>
+		<dd><p>Performs a hard reset on the job.</p></dd>
+		
+		<dt>Stop</dt>
+		<dd><p>Stops the job.</p></dd>
+		
+		<dt>Force</dt>
+		<dd><p>Force a Component to do something. Generally this will 
+		attempt to force the Job to COMPLETE, but the job must not be running.
+		</p>
+		<p>This action was introduced in version 1.1 and isn't shown in 
+		the screen shot.</p></dd>
+		
+		<dt>Set Property</dt>
+		<dd><p>Sets a property of a job.</p>
+		
+		<p>Here's an example of changing the text property of the Echo job.</p>
+		
+		<a href="images/explorer5.gif"><img src="images/explorer5.gif" 
+		height="320" width="500" alt="Setting a Property Job"/></a>
+		
+		<p>Note that unlike changing configuration this change will be lost
+		when the job is destroyed. If the property is being set at runtime 
+		(see later) Oddjob will also overwrite anything set with this option.
+		</p></dd>
+		
+		<dt>Designer</dt>
+		<dd><p>Launches Oddjob Designer which allows the configuration of the currently
+		selected job to be changed.</p></dd>
+		
+		<dt>Design Inside</dt>
+		<dd><p>For a job that owns a configuration, such as Oddjob, this allows
+		the internal configuration of that job to to be changed. This option
+		is only enabled once the configuration has been loaded either with 
+		the Load and because the job has been run.</p></dd>
+		
+		<dt>Add Job</dt>
+		<dd><p>For a job that supports children this is quick way to add
+		a child Job. It is often more convenient than using Designer 
+		to add the job.</p></dd>
+		
+		</dl>
+		
+		<p>Here is another view of the job menu, this time a Sequential job 
+		is selected so we can see the Add Job option.</p>
+		
+		<a href="images/explorer4.gif"><img src="images/explorer4.gif" 
+				height="320" width="500" alt="The Job Menu of a Parent Job"/></a>
+		
+		<hr/>
+		
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="beginning.html">Previous</a>]
+		[<a href="examples.html">Next</a>]
+		
+	</body>
+</html>

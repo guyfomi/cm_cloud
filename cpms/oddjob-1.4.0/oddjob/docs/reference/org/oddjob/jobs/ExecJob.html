@@ -1,0 +1,353 @@
+<html>
+  <head>
+    <title>Oddjob Reference - exec</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>exec</h1>
+    <hr/>
+Execute an external program. This job will
+ flag complete if the return state of the external program is 0,
+ otherwise it will flag not complete.
+ <p>
+ Processes may behave differently on different operating systems - for
+ instance stop doesn't always kill the process. Please see
+ <a href="http://bugs.sun.com/bugdatabase/view_bug.do;:YfiG?bug_id=4109888">
+ http://bugs.sun.com/bugdatabase/view_bug.do;:YfiG?bug_id=4109888</a>
+ for additional information.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>args</a></td>
+      <td>A string list of arguments.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>command</a></td>
+      <td>The command to execute.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>dir</a></td>
+      <td>The working directory.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>environment</a></td>
+      <td>An environment variable to be
+ set before the program is executed.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>exitValue</a></td>
+      <td>The exit value of the process.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>newEnvironment</a></td>
+      <td>Create a fresh/clean environment.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>redirectStderr</a></td>
+      <td>Redirect the standard error stream in
+ standard output.</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>stderr</a></td>
+      <td>An output to where stderr
+ of the proces will be written.</td>
+    </tr>
+    <tr>
+      <td><a href='#property10'>stdin</a></td>
+      <td>An input stream which will
+ act as stdin for the process.</td>
+    </tr>
+    <tr>
+      <td><a href='#property11'>stdout</a></td>
+      <td>An output to where stdout
+ for the process will be written.</td>
+    </tr>
+    <tr>
+      <td><a href='#property12'>stop</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A simple example.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Using the existing environment with an additional environment variable.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Capturing console output to a file.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>Capturing console output to the logger.</td>
+    </tr>
+    <tr>
+      <td><a href='#example5'>Example 5</a></td>
+      <td>Using the output of one process as the input of another.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>args</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A string list of arguments.
+      </p>
+    <a name='property2'><h4>command</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>TEXT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>yes, unless args are
+ provided instead.</td></tr>
+      </table>
+      <p>
+The command to execute. The command is
+ interpreted as space delimited text which may
+ be specified over several lines. Arguments that need to
+ include spaces must be quoted. Within quoted arguments quotes
+ may be escaped using a backslash.
+      </p>
+    <a name='property3'><h4>dir</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No</td></tr>
+      </table>
+      <p>
+The working directory.
+      </p>
+    <a name='property4'><h4>environment</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An environment variable to be
+ set before the program is executed. This is a 
+ <code>MapType</code> like property.
+      </p>
+    <a name='property5'><h4>exitValue</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+The exit value of the process.
+      </p>
+    <a name='property6'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property7'><h4>newEnvironment</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Create a fresh/clean environment.
+      </p>
+    <a name='property8'><h4>redirectStderr</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Redirect the standard error stream in
+ standard output.
+      </p>
+    <a name='property9'><h4>stderr</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An output to where stderr
+ of the proces will be written.
+      </p>
+    <a name='property10'><h4>stdin</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An input stream which will
+ act as stdin for the process.
+      </p>
+    <a name='property11'><h4>stdout</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An output to where stdout
+ for the process will be written.
+      </p>
+    <a name='property12'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A simple example.
+ 
+ <pre class="xml">
+&lt;exec name="Batch Example"&gt;
+cmd /C "${oddjob.dir}\bin\greeting.bat" Hello
+&lt;/exec&gt;</pre>
+
+ 
+ Oddjob will treat arguments in quotes as single program argument and allows
+ them to be escaped with backslash. If this is too confusing it is sometimes 
+ easier to specify the command as individual arguments. The
+ above is equivalent to:
+ 
+ <pre class="xml">
+&lt;exec name="Batch Example"&gt;
+    &lt;args&gt;
+        &lt;list&gt;
+            &lt;values&gt;
+                &lt;value value="cmd"/&gt;
+                &lt;value value="/C"/&gt;
+                &lt;value value="${oddjob.dir}\bin\greeting.bat"/&gt;
+                &lt;value value="Hello"/&gt;
+            &lt;/values&gt;
+        &lt;/list&gt;
+    &lt;/args&gt;
+&lt;/exec&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Using the existing environment with an additional environment variable.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;exec name="Example With Environment" id="exec"&gt;
+            &lt;environment&gt;
+                &lt;value key="ODDJOB_FILE" value="myfile.txt"/&gt;
+            &lt;/environment&gt;
+${platform.set.command}
+        &lt;/exec&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Capturing console output to a file. The output is Oddjob's command
+ line help.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;exec redirectStderr="true"&gt;
+            &lt;stdout&gt;
+                &lt;file file="${work.dir}/ExecOutput.log"/&gt;
+            &lt;/stdout&gt;
+            java -jar "${oddjob.run.jar}" -h
+        &lt;/exec&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+Capturing console output to the logger. Note how the logger output
+ can be defined with different log levels for stdout and sterr.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;exec&gt;
+            &lt;stdout&gt;
+                &lt;logout level="INFO"/&gt;
+            &lt;/stdout&gt;
+            &lt;stderr&gt;
+                &lt;logout level="WARN"/&gt;
+            &lt;/stderr&gt;
+            java -jar ${oddjob.run.jar} -f Missing.xml
+        &lt;/exec&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example5'><h4>Example 5</h4></a>
+    <p>
+Using the output of one process as the input of another. Standard input for 
+ the first process is provided by a buffer. A second buffer captures the
+ output of that process and passess it to the second process. The output
+ of the second process is captured and sent to the console of the parent
+ process.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;ourBuffer&gt;
+                        &lt;buffer/&gt;
+                    &lt;/ourBuffer&gt;
+                &lt;/variables&gt;
+                &lt;exec&gt;
+                    &lt;stdin&gt;
+                        &lt;buffer&gt;apples
+oranges
+pears
+&lt;/buffer&gt;
+                    &lt;/stdin&gt;
+                    &lt;stdout&gt;
+                        &lt;value value="${vars.ourBuffer}"/&gt;
+                    &lt;/stdout&gt;
+java -jar "${oddjob.run.jar}" -f "${this.dir}/OddjobCat.xml"
+        &lt;/exec&gt;
+                &lt;exec id="exec"&gt;
+                    &lt;stdin&gt;
+                        &lt;value value="${vars.ourBuffer}"/&gt;
+                    &lt;/stdin&gt;
+                    &lt;stdout&gt;
+                        &lt;stdout/&gt;
+                    &lt;/stdout&gt;
+java -jar "${oddjob.run.jar}" -f "${this.dir}/OddjobCat.xml"
+        &lt;/exec&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

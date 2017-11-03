@@ -1,0 +1,4 @@
+component_id;asset_id;width;serial;model;reference_diameter;rolling_element_diameter;rolling_elements;contact_angle;outer_ring_frequency_bpfo;innen_ring_frequency_bpfi;cage_frequency_bpfi;rotation_frequency_bsf;contact_frequency_bsf;name
+39;27;10;Serial 1;Model 1;ReferenceDiameter 1;RollingElementDiameter 1;RollingElements 1;ContactAngle 1;OuterRingFrequencyBP;InnenRingFrequencyBPFI 1;CageFrequencyBPFI 1;RotationFrequencyBSF 1;ContactFrequencyBSF 1;Component 1
+47;34;0;;;;;;;;;;;;wl_test
+48;27;0;;;;;;;;;;;;Component 2

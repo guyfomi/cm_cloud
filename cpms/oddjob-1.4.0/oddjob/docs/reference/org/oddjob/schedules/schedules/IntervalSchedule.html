@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedules:interval</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>schedules:interval</h1>
+    <hr/>
+This schedule returns an interval 
+ from the given time to the interval time later.
+ <p>
+ This schedule is commonly used as a refinement of another schedule 
+ such as the <a href='../../../../org/oddjob/schedules/schedules/DailySchedule.html'>schedules:daily</a>, <a href='../../../../org/oddjob/schedules/schedules/TimeSchedule.html'>schedules:time</a> or <a href='../../../../org/oddjob/schedules/schedules/CountSchedule.html'>schedules:count</a>
+ schedules.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>interval</a></td>
+      <td>The interval time.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Every 20 minutes.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Examples Elsewhere.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>interval</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No but defaults to no interval.</td></tr>
+      </table>
+      <p>
+The interval time. The interval must be specified
+ in one of the formats:
+ <dl>
+ <dt>hh:mm</dt><dd>Hours and minutes.</dd>
+ <dt>hh:mm:ss</dt><dd>Hours, minutes and seconds.</dd>
+ <dt>hh.mm.ss.SSS</dt><dd>Hours, minutes, seconds and milliseconds.</dd>
+ </dl>
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Every 20 minutes.
+
+ <pre class="xml">
+&lt;schedules:interval interval="00:20" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"/&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Examples Elsewhere.
+ <ul>
+  <li><a href='../../../../org/oddjob/schedules/schedules/TimeSchedule.html'>schedules:time</a></li>
+  <li><a href='../../../../org/oddjob/schedules/schedules/DailySchedule.html'>schedules:daily</a></li>
+  <li><a href='../../../../org/oddjob/schedules/schedules/CountSchedule.html'>schedules:count</a></li>
+ </ul>
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,36 @@
+[21-Dec-2012 17:30:50 America/New_York] PHP Warning:  mysqli_connect() [<a href='function.mysqli-connect'>function.mysqli-connect</a>]: (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php on line 76
+[21-Dec-2012 17:30:50 America/New_York] PHP Fatal error:  Uncaught exception 'Exception' with message 'Connect failed: Access denied for user 'root'@'localhost' (using password: NO)' in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php:79
+Stack trace:
+#0 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(179): Piwik_Tracker_Db_Mysqli->connect()
+#1 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(195): Piwik_Tracker::connectPiwikTrackerDb()
+#2 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(64): Piwik_Tracker::connectDatabase()
+#3 /home/bragu/public_html/demo/ext/piwik/piwik.php(77): Piwik_Tracker->main()
+#4 {main}
+  thrown in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php on line 79
+[21-Dec-2012 17:31:08 America/New_York] PHP Warning:  mysqli_connect() [<a href='function.mysqli-connect'>function.mysqli-connect</a>]: (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php on line 76
+[21-Dec-2012 17:31:08 America/New_York] PHP Fatal error:  Uncaught exception 'Exception' with message 'Connect failed: Access denied for user 'root'@'localhost' (using password: NO)' in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php:79
+Stack trace:
+#0 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(179): Piwik_Tracker_Db_Mysqli->connect()
+#1 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(195): Piwik_Tracker::connectPiwikTrackerDb()
+#2 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(64): Piwik_Tracker::connectDatabase()
+#3 /home/bragu/public_html/demo/ext/piwik/piwik.php(77): Piwik_Tracker->main()
+#4 {main}
+  thrown in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php on line 79
+[21-Dec-2012 17:36:15 America/New_York] PHP Warning:  mysqli_connect() [<a href='function.mysqli-connect'>function.mysqli-connect</a>]: (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php on line 76
+[21-Dec-2012 17:36:15 America/New_York] PHP Fatal error:  Uncaught exception 'Exception' with message 'Connect failed: Access denied for user 'root'@'localhost' (using password: NO)' in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php:79
+Stack trace:
+#0 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(179): Piwik_Tracker_Db_Mysqli->connect()
+#1 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(195): Piwik_Tracker::connectPiwikTrackerDb()
+#2 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(64): Piwik_Tracker::connectDatabase()
+#3 /home/bragu/public_html/demo/ext/piwik/piwik.php(77): Piwik_Tracker->main()
+#4 {main}
+  thrown in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php on line 79
+[21-Dec-2012 17:36:32 America/New_York] PHP Warning:  mysqli_connect() [<a href='function.mysqli-connect'>function.mysqli-connect</a>]: (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php on line 76
+[21-Dec-2012 17:36:32 America/New_York] PHP Fatal error:  Uncaught exception 'Exception' with message 'Connect failed: Access denied for user 'root'@'localhost' (using password: NO)' in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php:79
+Stack trace:
+#0 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(179): Piwik_Tracker_Db_Mysqli->connect()
+#1 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(195): Piwik_Tracker::connectPiwikTrackerDb()
+#2 /home/bragu/public_html/demo/ext/piwik/core/Tracker.php(64): Piwik_Tracker::connectDatabase()
+#3 /home/bragu/public_html/demo/ext/piwik/piwik.php(77): Piwik_Tracker->main()
+#4 {main}
+  thrown in /home/bragu/public_html/demo/ext/piwik/core/Tracker/Db/Mysqli.php on line 79

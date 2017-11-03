@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <title>Oddjob Reference - archive</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>archive</h1>
+    <hr/>
+A Job that is capable of taking a snapshot of the
+ state of it's child jobs. An <a href='../../../org/oddjob/persist/ArchiveBrowserJob.html'>archive-browser</a>
+ can be used to browse an archive created with this job.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>archiveIdentifier</a></td>
+      <td>The identifier of the snapshot that will
+ be taken when this job runs.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>archiveName</a></td>
+      <td>The name of the acrhive that all snapshots
+ will be stored in.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>archiver</a></td>
+      <td>The persister to use to store archives.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>job</a></td>
+      <td>The child job.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Create an archive after each scheduled run.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>archiveIdentifier</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The identifier of the snapshot that will
+ be taken when this job runs.
+      </p>
+    <a name='property2'><h4>archiveName</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The name of the acrhive that all snapshots
+ will be stored in.
+      </p>
+    <a name='property3'><h4>archiver</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes, but will fall back on the current Oddjob persister.</td></tr>
+      </table>
+      <p>
+The persister to use to store archives.
+      </p>
+    <a name='property4'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No, but pointless if missing.</td></tr>
+      </table>
+      <p>
+The child job.
+      </p>
+    <a name='property5'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Create an archive after each scheduled run. The time of the schedule
+ is used to identify the archive.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;scheduling:timer id="the-timer" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling"&gt;
+                    &lt;schedule&gt;
+                        &lt;schedules:count count="3" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+                        	&lt;refinement&gt;
+                        		&lt;schedules:interval interval="00:00:00.100"/&gt;
+                        	&lt;/refinement&gt;
+                        &lt;/schedules:count&gt;
+                    &lt;/schedule&gt;
+                    &lt;job&gt;
+                    	&lt;archive archiveName="Batch_01"&gt;
+                    		&lt;archiver&gt;
+                    			&lt;file-persister dir="${this.args[0]}"/&gt;
+                    		&lt;/archiver&gt;
+                    	    &lt;archiveIdentifier&gt;
+                    	    	&lt;format date="${the-timer.current.fromDate}" format="mm_ss_SSS"/&gt;
+                    	    &lt;/archiveIdentifier&gt;
+                    		&lt;job&gt;
+		                        &lt;echo&gt;Run at ${the-timer.current.fromDate}&lt;/echo&gt;
+                        	&lt;/job&gt;
+                        &lt;/archive&gt;
+                    &lt;/job&gt;
+                &lt;/scheduling:timer&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,249 @@
+<html>
+  <head>
+    <title>Oddjob Reference - jmx:server</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>jmx:server</h1>
+    <hr/>
+A service which allows a job hierarchy to
+ be monitored and managed remotely using a <a href='../../../org/oddjob/jmx/JMXClientJob.html'>jmx:client</a>. 
+ <p>
+ Security can be added using the environment property. Simple JMX security comes
+ prepackaged as <a href='../../../org/oddjob/jmx/server/SimpleServerSecurity.html'>jmx:server-security</a>. Note that the access file is
+ an Oddjob specific access file. Oddjob requires full read/write access because
+ it uses JMX operations and all JMX operation require full read/write access.
+ Oddjob uses a JMX access format file but provides it's own primitive access 
+ control on top the JMX layer. Oddjob's access control removes an entire java 
+ interface from the client side proxy if any of it's methods are write.
+ One affect of this is that a read only account can't access properties of
+ the remote job with the ${server/remote-job} syntax because this functionality
+ is provided by the same interface (BeanUtils <code>DynaBean</code>) that allows
+ a remote job's properties to be written.
+ <p> 
+ For more information on JMX Security see
+ <a href="http://java.sun.com/javase/6/docs/technotes/guides/jmx/tutorial/security.html">
+ The JMX Tutorial</a>.
+ <p>
+ This service will use the Platform MBeanServer if no <code>url</code> 
+ property is provided. Creating an unsecured Oddjob server on a private
+ network can be achieved simply by launching Oddjob with a command line
+ such as:</p>
+ <pre>
+ java -Dcom.sun.management.jmxremote.port=nnnn \
+ -Dcom.sun.management.jmxremote.ssl=false \
+ -Dcom.sun.management.jmxremote.authenticate=false \
+ -jar run-oddjob.jar -f my-config.xml
+ </pre>
+ And then including this service somewhere in the configuration. Note that
+ the properties must be to the left of the -jar, not to the right because
+ the must be available to the JVM before Oddjob starts.
+ <p>
+ The <code>server.xml</code> Oddjob configration file in Oddjob's top
+ level directory provides a simple Oddjob server that uses an RMI 
+ Registry.
+ <p>
+ More information on Oddjob servers can be found in the User Guide under
+ 'Sharing Jobs on the Network'.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>address</a></td>
+      <td>The address of this server.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>environment</a></td>
+      <td>An environment such
+ as security settings.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>handlerFactories</a></td>
+      <td>Additional handler factories that allow
+ any interface to be invoked from a remote Oddjob.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>logFormat</a></td>
+      <td>The log format for formatting log messages.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>root</a></td>
+      <td>The root node.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>url</a></td>
+      <td>The JMX service URL.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Creating a server using the platform MBean Server.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Creating a server using an RMI registry.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Creating a secure server.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>address</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+The address of this server. This is mainly 
+ useful for testing
+      </p>
+    <a name='property2'><h4>environment</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An environment such
+ as security settings.
+      </p>
+    <a name='property3'><h4>handlerFactories</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Additional handler factories that allow
+ any interface to be invoked from a remote Oddjob.
+      </p>
+    <a name='property4'><h4>logFormat</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The log format for formatting log messages. For more
+ information on the format please see <a href="http://logging.apache.org/log4j/docs/">
+ http://logging.apache.org/log4j/docs/</a>
+      </p>
+    <a name='property5'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property6'><h4>root</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The root node.
+      </p>
+    <a name='property7'><h4>url</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The JMX service URL. If this is not provided the 
+ server connects to the Platform MBean Server.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Creating a server using the platform MBean Server.
+ 
+ <pre class="xml">
+&lt;oddjob xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"&gt;
+  &lt;job&gt;
+    &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;jmx:server root="${echo}"/&gt;
+        &lt;echo id="echo"&gt;Hello from an Oddjob Server!&lt;/echo&gt;
+      &lt;/jobs&gt;
+    &lt;/sequential&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ This is probably the simplest way to launch Oddjob as a server.
+ <p>
+ Here's an example of the command used to launch it:
+ <pre>
+ java -Dcom.sun.management.jmxremote.port=13013 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -jar C:\Users\rob\projects\oddjob\run-oddjob.jar -f C:\Users\rob\projects\oddjob\test\java\org\oddjob\jmx\PlatformMBeanServerExample.xml
+ </pre>
+ For an example of a client to connect to this server see the first 
+ example for <a href='../../../org/oddjob/jmx/JMXClientJob.html'>jmx:client</a>.
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Creating a server using an RMI registry.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;rmireg/&gt;
+                &lt;jmx:server id="server1" root="${server-jobs}" url="service:jmx:rmi://ignored/jndi/rmi://localhost/freds-oddjob-server" xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"/&gt;
+                &lt;oddjob file="${this.dir}/ServerJobs.xml" id="server-jobs"/&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The nested Oddjob can be any normal Oddjob configuration. Here is the 
+ nested Oddjob used in some client examples. The greeting is in 
+ a folder because it will only be run from the client.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;folder&gt;
+            &lt;jobs&gt;
+                &lt;echo id="greeting"&gt;Hello World&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/folder&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Creating a secure server.
+ 
+ <pre class="xml">
+&lt;jmx:server root="${some-job}" url="service:jmx:rmi://ignored/jndi/rmi://localhost/my-oddjob" xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"&gt;
+    &lt;environment&gt;
+        &lt;jmx:server-security&gt;
+            &lt;passwordFile&gt;
+                &lt;file file="C:\rob\java\jmx_examples\Security\simple\config\password.properties"/&gt;
+            &lt;/passwordFile&gt;
+        &lt;/jmx:server-security&gt;
+    &lt;/environment&gt;
+&lt;/jmx:server&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

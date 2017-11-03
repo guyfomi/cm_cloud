@@ -1,0 +1,294 @@
+<html>
+  <head>
+    <title>Oddjob Reference - check</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>check</h1>
+    <hr/>
+Checks a value for certain criteria. This
+ job is analogous to the Unix 'test' command. 
+ <p>
+ This Job will COMPLETE if all checks pass. It will be INCOMPLETE
+ if any fail.
+ <p>
+ The conditional values are converted into the type of the 
+ value before the checks are made. Thus in the example below 
+ if the row count property is an integer, the 1000 is converted
+ into an integer for the comparison.
+ <p>
+ If the value property is not provided the job will be INCOMPLETE unless
+ the null property is set to true.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>eq</a></td>
+      <td>The value must be equal to this.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>ge</a></td>
+      <td>The value must be greater than or equal to this.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>gt</a></td>
+      <td>The value must be greater than this.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>le</a></td>
+      <td>The value must be less than or equals to this.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>lt</a></td>
+      <td>The value must be less than this.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>name</a></td>
+      <td>The name of this job.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>ne</a></td>
+      <td>The value must be not equal to this.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>null</a></td>
+      <td>Must the value be null for the check to pass.</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>result</a></td>
+      <td>The result of the check.</td>
+    </tr>
+    <tr>
+      <td><a href='#property10'>value</a></td>
+      <td>The value to check.</td>
+    </tr>
+    <tr>
+      <td><a href='#property11'>z</a></td>
+      <td>The value to check.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Example text comparisons.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Numeric checks.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Check a Property Exists.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>eq</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The value must be equal to this.
+      </p>
+    <a name='property2'><h4>ge</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The value must be greater than or equal to this.
+      </p>
+    <a name='property3'><h4>gt</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The value must be greater than this.
+      </p>
+    <a name='property4'><h4>le</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The value must be less than or equals to this.
+      </p>
+    <a name='property5'><h4>lt</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The value must be less than this.
+      </p>
+    <a name='property6'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The name of this job. Can be any text.
+      </p>
+    <a name='property7'><h4>ne</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The value must be not equal to this.
+      </p>
+    <a name='property8'><h4>null</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, if this does exist the check value null will fail.</td></tr>
+      </table>
+      <p>
+Must the value be null for the check to pass. 
+ True the value must be null. False it must not be null. If this 
+ property is true other checks will cause an exception because they
+ require the value property has a value.
+      </p>
+    <a name='property9'><h4>result</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+The result of the check.
+      </p>
+    <a name='property10'><h4>value</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, but the check value is not null will fail.</td></tr>
+      </table>
+      <p>
+The value to check.
+      </p>
+    <a name='property11'><h4>z</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, but the check value is not null will fail.</td></tr>
+      </table>
+      <p>
+The value to check.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Example text comparisons. All these checks COMPLETE.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+  &lt;job&gt;
+    &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;check value="apple" eq="apple"/&gt;
+        &lt;check value="apple" ne="orange"/&gt;
+        &lt;check value="apple" lt="orange"/&gt;
+        &lt;check value="apple" le="apple"/&gt;
+        &lt;check value="orange" gt="apple"/&gt;
+        &lt;check value="orange" ge="orange"/&gt;
+        &lt;check value="anything" null="false"/&gt;
+        &lt;check value="${missing}" null="true"/&gt;
+        &lt;check value="pear" z="false"/&gt;
+        &lt;check value="" z="true"/&gt;
+      &lt;/jobs&gt;
+    &lt;/sequential&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ Checks that are INCOMPLETE.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+  &lt;job&gt;
+    &lt;!-- needed to force predictable state transitions for the unit test, 
+      so Oddjob goes to INCOMPLETE not ACTIVE first. --&gt;
+    &lt;state:join xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+      &lt;job&gt;
+        &lt;parallel id="all-checks"&gt;
+          &lt;jobs&gt;
+            &lt;check value="apple" eq="orange"/&gt;
+            &lt;check value="apple" ne="apple"/&gt;
+            &lt;check value="orange" lt="apple"/&gt;
+            &lt;check value="orange" le="apple"/&gt;
+            &lt;check value="apple" gt="orange"/&gt;
+            &lt;check value="apple" ge="orange"/&gt;
+            &lt;check value="anything" null="true"/&gt;
+            &lt;check value="${missing}" null="false"/&gt;
+          &lt;/jobs&gt;
+        &lt;/parallel&gt;
+      &lt;/job&gt;
+    &lt;/state:join&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Numeric checks. Note that the value must be the numeric value. The
+ operand attributes values are converted to the type of the value before
+ the comparison. If the value was "999" and the lt was "${sequence.current}"
+ this check would not be COMPLETE because the text "999" is greater than 
+ "1000".
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+  &lt;job&gt;
+    &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;sequence id="sequence" from="1000"/&gt;
+        &lt;check value="${sequence.current}" eq="1000"/&gt;
+        &lt;check value="${sequence.current}" ne="999"/&gt;
+        &lt;check value="${sequence.current}" lt="1001"/&gt;
+        &lt;check value="${sequence.current}" le="1000"/&gt;
+        &lt;check value="${sequence.current}" gt="999"/&gt;
+        &lt;check value="${sequence.current}" ge="1000"/&gt;
+      &lt;/jobs&gt;
+    &lt;/sequential&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Check a Property Exists. The second check will be INCOMPLETE because the
+ property doesn't exist.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+  &lt;job&gt;
+    &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;properties&gt;
+          &lt;values&gt;
+            &lt;value key="property.that.exists" value="some-value"/&gt;
+          &lt;/values&gt;
+        &lt;/properties&gt;
+        &lt;check name="Check Something that Exists" value="${property.that.exists}" id="should-complete"/&gt;
+        &lt;check name="Check Something that doesn't Exist" value="${property.doesnt.exist}" id="should-incomplete"/&gt;
+      &lt;/jobs&gt;
+    &lt;/sequential&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

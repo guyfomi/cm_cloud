@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <title>Oddjob Reference - arooa:descriptors</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>arooa:descriptors</h1>
+    <hr/>
+An Arooa Descriptor Factory that is a container
+ for a collection of other descriptors. The other descriptors will
+ most probably be <a href='../../../../org/oddjob/arooa/deploy/ArooaDescriptorBean.html'>arooa:descriptor</a>s.
+ <p>
+ This type can be used wherever an <a href='../../../../org/oddjob/arooa/deploy/ArooaDescriptorBean.html'>arooa:descriptor</a> can
+ be used.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>descriptors</a></td>
+      <td>A list of Arooa Descriptor Factories.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Oddjob's descriptor!.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>descriptors</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      </table>
+      <p>
+A list of Arooa Descriptor Factories.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Oddjob's descriptor!. Note that it started life before the descriptor 
+ elements were created, and so <a href='../../../../org/oddjob/arooa/types/IsType.html'>is</a> is used instead of 
+ <a href='../../../../org/oddjob/arooa/deploy/BeanDefinition.html'>arooa:bean-def</a> elements.
+ 
+ <pre class="xml">
+&lt;arooa:descriptors xmlns:arooa="http://rgordon.co.uk/oddjob/arooa"&gt;
+    &lt;descriptors&gt;
+        &lt;bean class="org.oddjob.arooa.deploy.ArooaDescriptorDescriptorFactory"/&gt;
+        &lt;arooa:descriptor&gt;
+            &lt;conversions&gt;
+                &lt;value value="org.oddjob.state.StateConditions$Conversions"/&gt;
+                &lt;value value="org.oddjob.state.StateOperators$Conversions"/&gt;
+                &lt;value value="org.oddjob.values.types.DateType$Conversions"/&gt;
+                &lt;value value="org.oddjob.values.types.FormatType$Conversions"/&gt;
+                &lt;value value="org.oddjob.values.types.TokenizerType$Conversions"/&gt;
+                &lt;value value="org.oddjob.script.InvokeType$Conversions"/&gt;
+                &lt;value value="org.oddjob.script.ScriptInvoker$Conversions"/&gt;
+                &lt;value value="org.oddjob.script.MethodInvoker$Conversions"/&gt;
+                &lt;value value="org.oddjob.schedules.ScheduleType$Conversions"/&gt;
+                &lt;value value="org.oddjob.values.types.PropertyType$Conversions"/&gt;
+                &lt;value value="org.oddjob.values.properties.PropertiesType$Conversions"/&gt;
+                &lt;value value="org.oddjob.sql.SQLConversions"/&gt;
+            &lt;/conversions&gt;
+            &lt;components&gt;
+                &lt;is element="archive" className="org.oddjob.persist.ArchiveJob"/&gt;
+                &lt;is element="archive-browser" className="org.oddjob.persist.ArchiveBrowserJob"/&gt;
+                &lt;is element="bean-bus" className="org.oddjob.beanbus.mega.MegaBeanBus" designFactory="org.oddjob.arooa.design.etc.UnknownComponentDF"/&gt;
+                &lt;is element="bean-report" className="org.oddjob.jobs.BeanReportJob"/&gt;
+                &lt;is element="check" className="org.oddjob.jobs.CheckJob" designFactory="org.oddjob.jobs.CheckJobDesFa"/&gt;
+                &lt;is element="depends" className="org.oddjob.jobs.job.DependsJob" designFactory="org.oddjob.designer.components.JustJobDC"/&gt;
+                &lt;is element="echo" className="org.oddjob.jobs.EchoJob" designFactory="org.oddjob.designer.components.EchoDC"/&gt;
+                &lt;is element="exec" className="org.oddjob.jobs.ExecJob" designFactory="org.oddjob.designer.components.ExecDC"/&gt;
+                &lt;is element="explorer" className="org.oddjob.monitor.MultiExplorerLauncher"/&gt;
+                &lt;is element="folder" className="org.oddjob.jobs.structural.JobFolder" designFactory="org.oddjob.designer.components.FolderDC"&gt;
+                    &lt;properties&gt;
+                        &lt;arooa:property name="jobs" type="COMPONENT"/&gt;
+                    &lt;/properties&gt;
+                &lt;/is&gt;
+                &lt;is element="foreach" className="org.oddjob.jobs.structural.ForEachJob" designFactory="org.oddjob.designer.components.ForEachDC"/&gt;
+                &lt;is element="grab" className="org.oddjob.jobs.GrabJob"/&gt;
+                &lt;is element="input" className="org.oddjob.input.InputJob"/&gt;
+                &lt;is element="invoke" className="org.oddjob.script.InvokeJob" designFactory="org.oddjob.script.InvokeEitherDF"/&gt;
+                &lt;is element="launch" className="org.oddjob.jobs.LaunchJob"/&gt;
+                &lt;is element="oddjob" className="org.oddjob.Oddjob" designFactory="org.oddjob.designer.components.OddjobDC"/&gt;
+                &lt;is element="parallel" className="org.oddjob.jobs.structural.ParallelJob" designFactory="org.oddjob.designer.components.ParallelDC"/&gt;
+                &lt;is element="properties" className="org.oddjob.values.properties.PropertiesJob" designFactory="org.oddjob.values.properties.PropertiesDesFa"/&gt;
+                &lt;is element="reset" className="org.oddjob.jobs.job.ResetJob" designFactory="org.oddjob.designer.components.ResetJobDC"/&gt;
+                &lt;is element="repeat" className="org.oddjob.jobs.structural.RepeatJob" designFactory="org.oddjob.designer.components.RepeatDC"/&gt;
+                &lt;is element="rmireg" className="org.oddjob.rmi.RMIRegistryJob"/&gt;
+                &lt;is element="run" className="org.oddjob.jobs.job.RunJob" designFactory="org.oddjob.designer.components.JustJobDC"/&gt;
+                &lt;arooa:bean-def element="script" className="org.oddjob.script.ScriptJob" designFactory="org.oddjob.script.ScriptJobDF"/&gt;
+                &lt;is element="sequence" className="org.oddjob.jobs.SequenceJob"/&gt;
+                &lt;is element="sequential" className="org.oddjob.jobs.structural.SequentialJob" designFactory="org.oddjob.designer.components.SequentialDC"/&gt;
+                &lt;is element="services" className="org.oddjob.framework.ServicesJob"/&gt;
+                &lt;is element="set" className="org.oddjob.values.SetJob"/&gt;
+                &lt;is element="sql" className="org.oddjob.sql.SQLJob" designFactory="org.oddjob.designer.components.SqlDC"/&gt;
+                &lt;is element="sql-keeper-service" className="org.oddjob.sql.SQLKeeperService"/&gt;
+                &lt;is element="sql-persister-service" className="org.oddjob.sql.SQLPersisterService"/&gt;
+                &lt;is element="start" className="org.oddjob.jobs.job.StartJob" designFactory="org.oddjob.designer.components.JustJobDC"/&gt;
+                &lt;is element="stop" className="org.oddjob.jobs.job.StopJob" designFactory="org.oddjob.designer.components.JustJobDC"/&gt;
+                &lt;is element="wait" className="org.oddjob.jobs.WaitJob" designFactory="org.oddjob.designer.components.WaitDC"/&gt;
+            &lt;/components&gt;
+            &lt;values&gt;
+                &lt;is element="connection" className="org.oddjob.sql.ConnectionType" designFactory="org.oddjob.designer.elements.ConnectionDE"/&gt;
+                &lt;is element="date" className="org.oddjob.values.types.DateType" designFactory="org.oddjob.designer.elements.DateDE"/&gt;
+                &lt;is element="file-persister" className="org.oddjob.persist.FilePersister"/&gt;
+                &lt;is element="format" className="org.oddjob.values.types.FormatType" designFactory="org.oddjob.designer.elements.FormatDE"/&gt;
+                &lt;is element="invoke" className="org.oddjob.script.InvokeType" designFactory="org.oddjob.script.InvokeEitherDF"/&gt;
+                &lt;is element="input-text" className="org.oddjob.input.requests.InputText"/&gt;
+                &lt;is element="input-password" className="org.oddjob.input.requests.InputPassword"/&gt;
+                &lt;is element="input-confirm" className="org.oddjob.input.requests.InputConfirm"/&gt;
+                &lt;is element="input-message" className="org.oddjob.input.requests.InputMessage"/&gt;
+                &lt;is element="input-file" className="org.oddjob.input.requests.InputFile"/&gt;
+                &lt;is element="logout" className="org.oddjob.logging.log4j.LogoutType"/&gt;
+                &lt;!-- is element='magic-bean' className='org.oddjob.values.types.MagicBeanType'/ --&gt;
+                &lt;is element="magic-class" className="org.oddjob.values.types.MagicClassType"/&gt;
+                &lt;is element="schedule" className="org.oddjob.schedules.ScheduleType"/&gt;
+                &lt;is element="oddballs" className="org.oddjob.oddballs.OddballsDescriptorFactory"/&gt;
+                &lt;is element="properties" className="org.oddjob.values.properties.PropertiesType" designFactory="org.oddjob.values.properties.PropertiesDesFa"/&gt;
+                &lt;is element="sql-results-bean" className="org.oddjob.sql.SQLResultsBean"/&gt;
+                &lt;is element="sql-results-sheet" className="org.oddjob.sql.SQLResultsSheet"/&gt;
+                &lt;is element="throttle" className="org.oddjob.scheduling.ExecutorThrottleType"/&gt;
+                &lt;is element="tokenizer" className="org.oddjob.values.types.TokenizerType" designFactory="org.oddjob.values.types.TokenizerTypeDF"/&gt;
+                &lt;is element="sequence" className="org.oddjob.values.types.SequenceType"/&gt;
+                &lt;is element="url-class-loader" className="org.oddjob.util.URLClassLoaderType"/&gt;
+            &lt;/values&gt;
+        &lt;/arooa:descriptor&gt;
+        &lt;import resource="org/oddjob/io/arooa.xml"/&gt;
+        &lt;import resource="org/oddjob/schedules/schedules.xml"/&gt;
+        &lt;import resource="org/oddjob/scheduling/scheduling.xml"/&gt;
+        &lt;import resource="org/oddjob/state/state.xml"/&gt;
+        &lt;import resource="org/oddjob/jmx/jmx.xml"/&gt;
+        &lt;bean class="org.oddjob.values.VariablesJobDescriptorFactory"/&gt;
+    &lt;/descriptors&gt;
+&lt;/arooa:descriptors&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

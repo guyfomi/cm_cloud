@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedules:day-before</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>schedules:day-before</h1>
+    <hr/>
+A schedule that returns the day before when it's
+ parent schedule is due.
+ <p>
+ This is designed to be used with the <a href='../../../../org/oddjob/schedules/schedules/BrokenSchedule.html'>schedules:broken</a>'s alternative
+ property to move processing to the day before the holiday.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>refinement</a></td>
+      <td>Provide a refinement to this schedule.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A schedule for the last day of the month, or the previous working day
+ if the last day falls on a non working day.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>refinement</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Provide a refinement to this schedule.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A schedule for the last day of the month, or the previous working day
+ if the last day falls on a non working day.
+ 
+ <pre class="xml">
+&lt;schedules:broken xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;schedule&gt;
+        &lt;schedules:monthly onDay="LAST"&gt;
+                &lt;refinement&gt;
+                    &lt;schedules:time at="17:00"/&gt;
+                &lt;/refinement&gt;
+        &lt;/schedules:monthly&gt;
+    &lt;/schedule&gt;
+    &lt;breaks&gt;
+        &lt;schedules:list&gt;
+            &lt;schedules&gt;
+                &lt;schedules:weekly from="SATURDAY" to="SUNDAY"/&gt;
+                &lt;value value="${holidays}"/&gt;
+            &lt;/schedules&gt;
+        &lt;/schedules:list&gt;        
+    &lt;/breaks&gt;
+    &lt;alternative&gt;
+        &lt;schedules:day-before&gt;
+            &lt;refinement&gt;
+                &lt;schedules:time at="21:00"/&gt;
+            &lt;/refinement&gt;
+        &lt;/schedules:day-before&gt;
+    &lt;/alternative&gt;
+&lt;/schedules:broken&gt;</pre>
+
+ 
+ Note that the refinement schedules for a different time when the day before is 
+ used. This reflects the situation where data is often available later before
+ a weekend or holiday.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

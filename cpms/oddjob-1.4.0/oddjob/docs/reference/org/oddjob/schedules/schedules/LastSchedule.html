@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedules:last</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>schedules:last</h1>
+    <hr/>
+This schedule will return it's last due nested 
+ schedule within the given parent interval.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>refinement</a></td>
+      <td>Provide a refinement to this schedule.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Last Tuesday or Wednesday of the month, whichever is last.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>refinement</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Provide a refinement to this schedule.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Last Tuesday or Wednesday of the month, whichever is last.
+ 
+ <pre class="xml">
+&lt;schedules:monthly fromDay="-6" toDay="0" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;refinement&gt;
+        &lt;schedules:last&gt;
+            &lt;refinement&gt;
+                &lt;schedules:list&gt;
+                    &lt;schedules&gt;
+                        &lt;schedules:weekly on="Tuesday"/&gt;
+                        &lt;schedules:weekly on="Wednesday"/&gt;
+                    &lt;/schedules&gt;
+                &lt;/schedules:list&gt;
+            &lt;/refinement&gt;
+        &lt;/schedules:last&gt;
+    &lt;/refinement&gt;
+&lt;/schedules:monthly&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

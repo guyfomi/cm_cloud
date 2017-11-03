@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <title>Oddjob Reference - state:equals</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>state:equals</h1>
+    <hr/>
+Runs it's child job and then compares the state of the child job to 
+ the given state. It's own state is complete if the states match, 
+ incomplete otherwise.
+ <p>
+ This job is probably most useful in it's 'not equals' form - i.e. to 
+ check when something hasn't completed.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>job</a></td>
+      <td>The job to run who's state will be compared.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>state</a></td>
+      <td>The state to match.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>stop</a></td>
+      <td>Read only view of the internal stop flag.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>COMPLETE when the child job isn't complete.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The job to run who's state will be compared.
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property3'><h4>state</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to COMPLETE.</td></tr>
+      </table>
+      <p>
+The state to match.
+      </p>
+    <a name='property4'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Read only view of the internal stop flag. 
+ This flag is cleared with a reset.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+COMPLETE when the child job isn't complete. This example 
+ demonstrates how the <code>state:equals</code> job can be used to reverse
+ the meaning of the <code>exists</code> job. A request to 
+ shutdown a database may complete asynchronously, and the only
+ way to tell if shutdown is complete is to check that the Database's
+ lock file has be removed. This example demonstrates how Oddjob 
+ can check for this situation
+ before attempting to back up the database.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;scheduling:retry name="Database Backup" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling"&gt;
+            &lt;schedule&gt;
+                &lt;schedules:interval interval="00:00:02" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"/&gt;
+            &lt;/schedule&gt;
+            &lt;job&gt;
+                &lt;sequential id="db-backup"&gt;
+                    &lt;jobs&gt;
+                        &lt;state:equals state="!COMPLETE" xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+                            &lt;job&gt;
+                                &lt;state:resets harden="true"&gt;
+                                    &lt;job&gt;
+                                        &lt;exists file="${db.lock.file}"/&gt;
+                                    &lt;/job&gt;
+                                &lt;/state:resets&gt;
+                            &lt;/job&gt;
+                        &lt;/state:equals&gt;
+                        &lt;echo&gt;Backing up the Database...&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/sequential&gt;
+            &lt;/job&gt;
+        &lt;/scheduling:retry&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

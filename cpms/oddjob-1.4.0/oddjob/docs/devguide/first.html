@@ -1,0 +1,172 @@
+<html>
+	<head>
+		<title>Dev Guide - First Job</title>
+		<style type="text/css">
+			@import url(styles.css);
+		</style>
+	</head>	
+	<body>
+	
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="embedding.html">Previous</a>]
+		[<a href="background.html">Next</a>]
+		
+		<h1>Custom Jobs</h1>
+
+		<p>Writing an Oddjob job.</p>
+		
+	<ul>
+		<li><a href="#hello">Hello World</a></li>
+		<li><a href="#people">Hello Rod, Jane and Freddy</a></li>
+		<li><a href="#summary">A Developers Dozen</a></li>
+	</ul>
+
+				
+	<h4 id="hello">Hello World</h4>
+	<p>Writing a job for Oddjob is really really easy. How easy?
+	This easy:</p>
+
+<pre class="code">
+package org.oddjob.devguide;
+
+<font color="0000FF">public</font> <font color="0000FF">class</font> HelloWorldJob <font color="0000FF">implements</font> Runnable {
+
+    <font color="0000FF">public</font> <font color="0000FF">void</font> run() {
+        System.out.println(<font color="FF0000"><i>&quot;Hello World!&quot;</i></font>);
+    }
+}
+</pre>
+
+ 
+ 	<p>Oddjob will run any <code>java.lang.Runnable</code> or 
+ 	<code>java.util.concurrent.Callable</code> as is. No need to learn a
+ 	new API!
+ 	</p>
+ 
+ 	<p>To get Oddjob to run our job we need to create a configuration file:</p>
+ 	
+<pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;bean class="org.oddjob.devguide.HelloWorldJob"/&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 	
+	<p>And run it:</p>
+
+<pre class="command">
+$ java -jar run-oddjob.jar -cp examples/classes -f examples/devguide/hello1.xml<br/>
+Hello World!
+</pre>
+
+	<p>Notice that the classpath option -cp is after the -jar. This is 
+	Oddjobs option, not Java's. This is because -jar ignores any existing classpath and
+	any classpath option.
+	</p>
+
+	<p>We can now also load it in Oddjob Explorer (but we need still need 
+	the classpath).</p>
+	
+<pre class="command">
+$ java -jar run-oddjob.jar -cp examples/classes <br/>
+</pre>
+
+	<p>Open the file and we get:</p>
+	
+	<a href="images/hello1.gif"><img src="images/hello1.gif"
+				height="320" width="500" alt="Hello in Oddjob"/></a>
+	
+	<h4 id="people">Hello Rod, Jane, and Freddy</h4>
+	
+	<p>A Job is not much use if it's not configurable, so moving
+	quickly on lets show you how to write a configurable job.</p>
+
+<pre class="code">
+package org.oddjob.devguide;
+
+<font color="0000FF">public</font> <font color="0000FF">class</font> HelloPeopleJob <font color="0000FF">implements</font> Runnable {
+
+    <font color="0000FF">private</font> String[] who;
+    
+    <font color="0000FF">public</font> <font color="0000FF">void</font> setWho(String[] who) {
+        <font color="0000FF">this</font>.who = who; 
+    }
+    
+    <font color="0000FF">public</font> String[] getWho() {
+        <font color="0000FF">return</font> who;
+    }
+        
+    <font color="0000FF">public</font> <font color="0000FF">void</font> run() {
+        <font color="0000FF">for</font> (<font color="0000FF">int</font> i = 0; i &lt; who.length; ++i) {
+            System.out.println(<font color="FF0000"><i>&quot;Hello &quot;</i></font> + who[i] + <font color="FF0000"><i>&quot;!&quot;</i></font>);            
+        }
+    }
+    
+    <font color="0000FF">public</font> String toString() {
+        <font color="0000FF">return</font> <font color="FF0000"><i>&quot;Hello People&quot;</i></font>;
+    }
+}
+</pre>
+
+	
+		<p>
+		A quick configuration:
+		</p>
+			
+<pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;bean class="org.oddjob.devguide.HelloPeopleJob"&gt;
+            &lt;who&gt;
+                &lt;list&gt;
+                    &lt;values&gt;
+                        &lt;value value="Rod"/&gt;
+                        &lt;value value="Jane"/&gt;
+                        &lt;value value="Freddy"/&gt;
+                    &lt;/values&gt;
+                &lt;/list&gt;
+            &lt;/who&gt;
+        &lt;/bean&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+						
+		<p>And fire it up as before:</p>
+
+	<a href="images/hello2.gif"><img src="images/hello2.gif"
+				height="320" width="500" alt="Hello People in Oddjob"/></a>
+	
+	<p>You might have noticed that this job also has a nice name. That's
+	because I've sneakily given our new job a <code>toString()</code> 
+	method, and that's what explorer uses to label the job.</p>
+	
+	<h4 id="summary">A Developers Dozen</h4>
+
+		<p>So lets take a moment to reflect on what we've got:</p>
+		
+		<ul>
+			<li>A job that can be configured.</li>
+			<li>A job that can be monitored and controlled in 
+			a user friendly way - good enough for technical users or support
+			staff.</li>
+			<li>A job that can be deployed on a server and monitored and
+			controlled remotely.</li>
+			<li>A job that can be deployed in a Servlet Container and monitored and
+			controlled via a browser.</li>
+			<li>A job that can be scheduled to run at any time, from anywhere.</li>
+			<li>A job that has no dependency on any framework.</li>
+		</ul>
+	
+		<p>Not bad for a dozen lines of code.</p>
+		
+		<hr/>
+
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="embedding.html">Previous</a>]
+		[<a href="background.html">Next</a>]
+		
+	</body>
+</html>

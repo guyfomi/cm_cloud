@@ -1,0 +1,329 @@
+<html>
+	<head>
+		<title>Dev Guide - Dependency Injection and JSR 330</title>
+		<style type="text/css">
+			@import url(styles.css);
+		</style>
+	</head>	
+	<body>
+	
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="arooa.html">Previous</a>]
+		[<a href="oddballs.html">Next</a>]
+		
+		<h1>Dependency Injection and JSR 330</h1>
+
+		<p>Automatic dependency injection.</p>
+		
+		<ul>
+			<li><a href="#introduction">Introduction</a></li>
+			<li><a href="#servicesjob">The Services Job</a></li>
+		</ul>
+	
+	<h4 id="introduction">Introduction</h4>
+
+	<p>The Arooa framework also supports the automatic injection of 
+	properites by using the <code>@Inject</code> annotation specified
+	by JSR 330.
+	</p>
+
+	<p>Support for the standard is not complete within Oddjob. In particular only
+ 	the <code>@Named</code> qualifier is supported. Other <code>@Qualifier</code>s will
+ 	be ignored. 
+	</p>	
+	
+	<p>During Arooa's configuration cycle, when it finds a property
+	requiring automatic dependency injection, it interrogates all 
+	components in the configuration that implement the
+	<a href="../api/org/oddjob/arooa/registry/ServiceProvider.html">ServiceProvider</a>
+	interface for a matching Object to inject. If none is found Arooa moves
+	on without a warning. 
+	</p>
+	
+	<p>Now I hope that so far you're impressed by how much you can achieve
+	with Oddjob while keeping your code independent of Oddjob and we don't
+	want to spoil this by having your service beans implement some Oddjob interface.
+	Well we don't, because Oddjob has a job for that.</p> 
+	
+	<h4 id="servicesjob">The Services Job</h4>
+
+	<p>The services job takes the objects registered with it, and provides
+	them to Arooa as potential canidates for automatic dependency injection.
+	This job is so named because within Oddjob the injected objects will 
+	typically be services that other jobs require to perform their tasks.
+	</p>
+	
+ 	<p>The easist way to learn about the service job is via example. Here's
+ 	a simple example - a hungry job requires a snack to do some work.
+ 	</p>
+ 		
+	<p>Here's the hungry job. Note the use of <code>@inject</code></p>
+	
+<pre class="code">
+    <font color="0000FF">public</font> <font color="0000FF">static</font> <font color="0000FF">class</font> HungryJob <font color="0000FF">implements</font> Runnable {
+        
+        <font color="0000FF">private</font> SnackProvider snackProvider;
+        
+        @Override
+        <font color="0000FF">public</font> <font color="0000FF">void</font> run() {
+            Snack snack = snackProvider.provideSnack();
+            System.out.println(<font color="FF0000"><i>&quot;Snack eaten: &quot;</i></font> + snack.toString() + <font color="FF0000"><i>&quot;.&quot;</i></font>);
+        }
+        
+        @Inject
+        <font color="0000FF">public</font> <font color="0000FF">void</font> setSnackProvider(SnackProvider snackProvider) {
+            <font color="0000FF">this</font>.snackProvider = snackProvider;
+        }
+    }
+</pre>
+
+   
+	<p>The hungry job uses a <code>SnackProvider</code> to retrieve it's snack.
+	</p>
+
+<pre class="code">
+    <font color="0000FF">interface</font> SnackProvider {
+        
+        <font color="0000FF">public</font> Snack provideSnack();
+    }
+</pre>
+
+
+	<p>A snack is just:</p>
+
+<pre class="code">
+    <font color="0000FF">interface</font> Snack {
+        <font color="009900"><i>// A marker interface only.     </i></font>
+    }
+</pre>
+
+
+	<p>And here's our <code>SnackProvider</code>, A cafe.</p>
+	
+<pre class="code">
+    <font color="0000FF">public</font> <font color="0000FF">static</font> <font color="0000FF">class</font> Cafe <font color="0000FF">implements</font> SnackProvider {
+            
+        @Override
+        <font color="0000FF">public</font> Snack provideSnack() {
+            <font color="0000FF">return</font> <font color="0000FF">new</font> Snack() {
+                @Override
+                <font color="0000FF">public</font> String toString() {
+                    <font color="0000FF">return</font> <font color="FF0000"><i>&quot;Green Eggs and Ham&quot;</i></font>;
+                }
+            };
+        }
+    }
+</pre>
+
+
+	<p>Here's the Oddjob configuration that ties it all together. Our cafe
+	is registered with the services job. When the hungry job is configured, 
+	our services job provides the cafe as the service for injection.</p>
+	
+<pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;services&gt;
+                    &lt;registeredServices&gt;
+                        &lt;is&gt;
+                            &lt;service&gt;
+                                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$Cafe"/&gt;
+                            &lt;/service&gt;
+                        &lt;/is&gt;
+                    &lt;/registeredServices&gt;
+                &lt;/services&gt;
+                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$HungryJob"/&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+
+	<p>Here's the output:</p>
+	
+<pre class="command">
+Snack eaten: Green Eggs and Ham.
+</pre>
+	
+ 	<p>For when a job requires a more specialised service there is the
+ 	<code>@Named</code> qualifier. Here our hungry Job is vegetarian.</p>
+
+<pre class="code">
+    <font color="0000FF">public</font> <font color="0000FF">static</font> <font color="0000FF">class</font> HungryVegetarianJob <font color="0000FF">implements</font> Runnable {
+        
+        <font color="0000FF">private</font> SnackProvider snackProvider;
+        
+        @Override
+        <font color="0000FF">public</font> <font color="0000FF">void</font> run() {
+            Snack snack = snackProvider.provideSnack();
+            System.out.println(<font color="FF0000"><i>&quot;Snack eaten: &quot;</i></font> + snack.toString() + <font color="FF0000"><i>&quot;.&quot;</i></font>);
+        }
+        
+        @Inject @Named(<font color="FF0000"><i>&quot;Vegetarian&quot;</i></font>)
+        <font color="0000FF">public</font> <font color="0000FF">void</font> setSnackProvider(SnackProvider snackProvider) {
+            <font color="0000FF">this</font>.snackProvider = snackProvider;
+        }
+    }
+</pre>
+
+
+	<p>But fortunately a vegetarian cafe is available.
+	</p>
+	 
+<pre class="code">
+    <font color="0000FF">public</font> <font color="0000FF">static</font> <font color="0000FF">class</font> VegetarianCafe <font color="0000FF">implements</font> SnackProvider {
+        
+        <font color="0000FF">public</font> Snack provideSnack() {
+            <font color="0000FF">return</font> <font color="0000FF">new</font> Snack() {
+                @Override
+                <font color="0000FF">public</font> String toString() {
+                    <font color="0000FF">return</font> <font color="FF0000"><i>&quot;Salad&quot;</i></font>;
+                }
+            };
+        }
+    }
+</pre>
+
+ 
+ 	<p>Here's the modified configuration with both types of hungry job, 
+ 	and the output.</p>
+ 	
+<pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;services&gt;
+                    &lt;registeredServices&gt;
+                        &lt;is&gt;
+                            &lt;service&gt;
+                                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$Cafe"/&gt;
+                            &lt;/service&gt;
+                        &lt;/is&gt;
+                        &lt;is&gt;
+                            &lt;service&gt;
+                                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$VegetarianCafe"/&gt;
+                            &lt;/service&gt;
+                            &lt;qualifier&gt;
+                                &lt;value value="Vegetarian"/&gt;
+                            &lt;/qualifier&gt;
+                        &lt;/is&gt;
+                    &lt;/registeredServices&gt;
+                &lt;/services&gt;
+                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$HungryJob"/&gt;
+                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$HungryVegetarianJob"/&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+<pre class="command">
+Snack eaten: Green Eggs and Ham.
+Snack eaten: Salad.
+</pre>
+ 
+	<p>If there is no service that matches the qualifier, as here:</p>
+	 
+<pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;services&gt;
+                    &lt;registeredServices&gt;
+                        &lt;is&gt;
+                            &lt;service&gt;
+                                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$Cafe"/&gt;
+                            &lt;/service&gt;
+                        &lt;/is&gt;
+                    &lt;/registeredServices&gt;
+                &lt;/services&gt;
+                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$HungryVegetarianJob"/&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+  
+  <p>By default, if no service matching the qualifier can be provided, the
+  first service of the correct type is used. As in this example, this can 
+  result in our vegetarian being given something it shouldn't eat.</p>
+  
+<pre class="command">
+Snack eaten: Green Eggs and Ham.
+</pre>
+    
+   <p>The intransigent property can be used to ensure only an exact match
+   is chosen.</p>
+   
+<pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;services&gt;
+                    &lt;registeredServices&gt;
+                        &lt;is intransigent="true"&gt;
+                            &lt;service&gt;
+                                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$Cafe"/&gt;
+                            &lt;/service&gt;
+                        &lt;/is&gt;
+                    &lt;/registeredServices&gt;
+                &lt;/services&gt;
+                &lt;bean class="org.oddjob.devguide.ServicesJobExamplesTest$ResilientVegetarianJob"/&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+  
+  <p>The default cafe is not automatically injected. Our Hungry vegetarian must
+  be prepared to not get a snack.</p>
+  
+<pre class="code">
+    <font color="0000FF">public</font> <font color="0000FF">static</font> <font color="0000FF">class</font> ResilientVegetarianJob <font color="0000FF">implements</font> Runnable {
+        
+        <font color="0000FF">private</font> SnackProvider snackProvider;
+        
+        @Override
+        <font color="0000FF">public</font> <font color="0000FF">void</font> run() {
+            <font color="0000FF">if</font> (snackProvider == null) {
+                System.out.println(<font color="FF0000"><i>&quot;No Snack!&quot;</i></font>);
+            }
+            <font color="0000FF">else</font> {
+                Snack snack = snackProvider.provideSnack();
+                System.out.println(<font color="FF0000"><i>&quot;Snack eaten: &quot;</i></font> + snack.toString() + <font color="FF0000"><i>&quot;.&quot;</i></font>);
+            }
+        }
+        
+        @Inject @Named(<font color="FF0000"><i>&quot;Vegetarian&quot;</i></font>)
+        <font color="0000FF">public</font> <font color="0000FF">void</font> setSnackProvider(SnackProvider snackProvider) {
+            <font color="0000FF">this</font>.snackProvider = snackProvider;
+        }
+    }
+</pre>
+
+
+	<p>Our resilient hungry job handles the lack of a snack provider with only 
+	minimal fuss!</p>
+	
+<pre class="command">
+No Snack!
+</pre>
+  
+	<p>And that is how to get started with automatically 
+	injecting your services into your jobs.</p>
+	
+		<hr/>
+
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="arooa.html">Previous</a>]
+		[<a href="oddballs.html">Next</a>]
+		
+	</body>
+</html>

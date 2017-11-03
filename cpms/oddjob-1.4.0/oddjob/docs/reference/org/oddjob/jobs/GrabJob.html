@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <title>Oddjob Reference - grab</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>grab</h1>
+    <hr/>
+Grab work to do. By competing for work with
+ other Grabbers this job facilitates distribution of work between
+ multiple Oddjob processes.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>identifier</a></td>
+      <td>This job's identifier which is unique to
+ the Oddjob process, such as server name.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>instance</a></td>
+      <td>The instance of identifier for a single grab.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>job</a></td>
+      <td>The child job.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>keeper</a></td>
+      <td>The keeper of work from which this job
+ attempts to grab work.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>onLoosing</a></td>
+      <td>The action on loosing.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>winner</a></td>
+      <td>The identifier of the winner.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>See the user guide.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>identifier</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+This job's identifier which is unique to
+ the Oddjob process, such as server name.
+      </p>
+    <a name='property2'><h4>instance</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The instance of identifier for a single grab. 
+ This is an identifier for each run of the grab jobb and will be
+ something like the scheduled date/time.
+      </p>
+    <a name='property3'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No, but pointless if missing.</td></tr>
+      </table>
+      <p>
+The child job.
+      </p>
+    <a name='property4'><h4>keeper</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The keeper of work from which this job
+ attempts to grab work.
+      </p>
+    <a name='property5'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property6'><h4>onLoosing</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, Defaults to COMPLETE.</td></tr>
+      </table>
+      <p>
+The action on loosing. Available actions are:
+ <dl>
+ 	<dt>COMPLETE</dt>
+ 	<dd>Set the job state to COMPLETE.</dd>
+  <dt>INCOMPLETE</dt>
+  <dd>Set the job state to INCOMPLETE.</dd>
+  <dt>WAIT</dt>
+  <dd>Wait until the job completes.</dd>
+      </p>
+    <a name='property7'><h4>winner</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>R/O.</td></tr>
+      </table>
+      <p>
+The identifier of the winner. Will be equal
+ to this jobs identifier if this job has won.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+See the user guide.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <title>Oddjob Reference - input</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>input</h1>
+    <hr/>
+Ask for input from the user. 
+ <p>
+ The medium with 
+ which Oddjob asks for input will depend on how it's running. When
+ running in Oddjob Explorer a GUI dialogue will be used. When running
+ from the console, input from the console will be requested.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>inputHandler</a></td>
+      <td>The input handler to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>properties</a></td>
+      <td>Provide all the merged properties defined by this 
+ job.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>requests</a></td>
+      <td>A list of requests for input.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>stop</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Request lots of input.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>inputHandler</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. This will be set automatically by Oddjob.</td></tr>
+      </table>
+      <p>
+The input handler to use.
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property3'><h4>properties</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+Provide all the merged properties defined by this 
+ job.
+      </p>
+    <a name='property4'><h4>requests</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, but there will be no values.</td></tr>
+      </table>
+      <p>
+A list of requests for input.
+      </p>
+    <a name='property5'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Request lots of input.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;input&gt;
+                    &lt;requests&gt;
+                        &lt;input-file prompt="Install Directory" default="/home/oddjob/foo" property="config.install"/&gt;
+                        &lt;input-text prompt="System" default="Development" property="config.system"/&gt;
+                        &lt;input-text prompt="Username" property="config.username"/&gt;
+                        &lt;input-password prompt="Password" property="config.password"/&gt;
+                        &lt;input-confirm prompt="Agree To Licence" default="false" property="config.agree"/&gt;
+                    &lt;/requests&gt;
+                &lt;/input&gt;
+                &lt;check value="${config.agree}" eq="true"/&gt;
+                &lt;echo&gt;Password for ${config.username} is ${config.password}&lt;/echo&gt;
+                &lt;input&gt;
+                    &lt;requests&gt;
+                        &lt;input-message&gt;Logging On to ${config.system} Now!&lt;/input-message&gt;
+                    &lt;/requests&gt;
+                &lt;/input&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

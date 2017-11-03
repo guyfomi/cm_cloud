@@ -1,0 +1,144 @@
+<html>
+  <head>
+    <title>Oddjob Reference - sql-results-sheet</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>sql-results-sheet</h1>
+    <hr/>
+Writes SQL results to an output stream.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>dataOnly</a></td>
+      <td>Don't display headings.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>empty</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>name</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>output</a></td>
+      <td>The output stream to write results to.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>to</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A result sheet for multiple statements.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>dataOnly</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to showing headings.</td></tr>
+      </table>
+      <p>
+Don't display headings.
+      </p>
+    <a name='property2'><h4>empty</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property3'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property4'><h4>output</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to stdout.</td></tr>
+      </table>
+      <p>
+The output stream to write results to.
+      </p>
+    <a name='property5'><h4>to</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A result sheet for multiple statements.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+  &lt;job&gt;
+    &lt;sql&gt;
+      &lt;connection&gt;
+        &lt;connection driver="org.hsqldb.jdbcDriver" url="jdbc:hsqldb:mem:test" username="sa" password=""/&gt;
+      &lt;/connection&gt;
+      &lt;input&gt;
+        &lt;buffer&gt;
+create table FRUIT(
+  TYPE varchar(16),
+  VARIETY varchar(16),
+  COLOUR varchar(32),
+  SIZE double);
+insert into FRUIT values ('Apple', 'Cox', 'Red and Green', 7.6);
+insert into FRUIT values ('Orange', 'Jaffa', 'Orange', 9.245);
+
+select * from FRUIT;
+
+shutdown;
+        &lt;/buffer&gt;
+      &lt;/input&gt;
+      &lt;results&gt;
+        &lt;sql-results-sheet/&gt;
+      &lt;/results&gt;
+    &lt;/sql&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ This writes the following to the console:
+ 
+ <code><pre>
+ [0 rows affected, 16 ms.]
+ 
+ [1 rows affected, 0 ms.]
+ 
+ [1 rows affected, 0 ms.]
+ 
+ TYPE    VARIETY  COLOUR         SIZE
+ ------  -------  -------------  -----
+ Apple   Cox      Red and Green  7.6
+ Orange  Jaffa    Orange         9.245
+ 
+ [2 rows, 212 ms.]
+ 
+ [0 rows affected, 0 ms.]
+ 
+ </pre></code>
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

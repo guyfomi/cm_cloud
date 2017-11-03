@@ -1,0 +1,179 @@
+<html>
+  <head>
+    <title>Oddjob Reference - delete</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>delete</h1>
+    <hr/>
+Delete a file or directory, or files 
+ and directories.
+ <p>
+ Unless the force property is set, this job will cause an
+ exception if an attempt is made to delete a non empty directory.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>dirCount</a></td>
+      <td>Count of the directories deleted.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>errorCount</a></td>
+      <td>Count of the errors.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>fileCount</a></td>
+      <td>Count of the files deleted.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>files</a></td>
+      <td>The file, directory, or files and directories
+ to delete.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>force</a></td>
+      <td>Forceably delete non empty directories.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>logEvery</a></td>
+      <td>Logs the number of files and directories deleted
+ every n number of items.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>maxErrors</a></td>
+      <td>The maximum number of errors to allow before
+ failing.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>reallyRoot</a></td>
+      <td>Flag to indicate that it is the intention to 
+ delete files at the root level.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Delete all files from a directory.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>dirCount</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+Count of the directories deleted.
+      </p>
+    <a name='property2'><h4>errorCount</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+Count of the errors.
+      </p>
+    <a name='property3'><h4>fileCount</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+Count of the files deleted.
+      </p>
+    <a name='property4'><h4>files</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The file, directory, or files and directories
+ to delete. Note the files must be valid file name, they can not
+ contain wildcard characters. This will be the case by default if
+ the <a href='../../../org/oddjob/io/FilesType.html'>files</a> is used to specify the files.
+      </p>
+    <a name='property5'><h4>force</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+Forceably delete non empty directories.
+      </p>
+    <a name='property6'><h4>logEvery</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to 0.</td></tr>
+      </table>
+      <p>
+Logs the number of files and directories deleted
+ every n number of items. If this property is 1 then the file or
+ directory path is logged every delete. If this property is less than
+ one then the counts are logged only at the end.
+      </p>
+    <a name='property7'><h4>maxErrors</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to 0.</td></tr>
+      </table>
+      <p>
+The maximum number of errors to allow before
+ failing. Sometimes when deleting a large number of files, it is not
+ desirable to have one or two locked files from stopping all the other
+ files from being deleted.
+      </p>
+    <a name='property8'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property9'><h4>reallyRoot</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+Flag to indicate that it is the intention to 
+ delete files at the root level. This is to catch the situation 
+ where variable substitution is used to specify the file path but
+ the variable doesn't exists - e.g. The file specification is 
+ <code>${some.dir}/*</code> but <code>some.dir</code> has not been
+ defined.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Delete all files from a directory. The directory is the first of
+ Oddjob's arguments.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;delete id="delete"&gt;
+            &lt;files&gt;
+                &lt;files files="${this.args[0]}/*"/&gt;
+            &lt;/files&gt;
+        &lt;/delete&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <title>Oddjob Reference - state:join</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>state:join</h1>
+    <hr/>
+Waits for a COMPLETE state from it's child job before allowing
+ the thread of execution to continue.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>job</a></td>
+      <td>The child job.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>stop</a></td>
+      <td>Read only view of the internal stop flag.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>An join that waits for two triggers.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No, but pointless if missing.</td></tr>
+      </table>
+      <p>
+The child job.
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property3'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Read only view of the internal stop flag. 
+ This flag is cleared with a reset.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+An join that waits for two triggers. In this example another trigger
+ to run the last job might be a better solution because it wouldn't hog
+ a thread - but there are situations when join is just simpler.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;folder&gt;
+                    &lt;jobs&gt;
+                        &lt;state:flag id="apples" xmlns:state="http://rgordon.co.uk/oddjob/state"/&gt;
+                        &lt;state:flag id="oranges" xmlns:state="http://rgordon.co.uk/oddjob/state"/&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+                &lt;state:join id="our-join" xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+                    &lt;job&gt;
+                        &lt;sequential&gt;
+                            &lt;jobs&gt;
+                                &lt;scheduling:trigger on="${apples}" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling"&gt;
+                                    &lt;job&gt;
+                                        &lt;echo&gt;Apples&lt;/echo&gt;
+                                    &lt;/job&gt;
+                                &lt;/scheduling:trigger&gt;
+                                &lt;scheduling:trigger on="${oranges}" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling"&gt;
+                                    &lt;job&gt;
+                                        &lt;echo&gt;Oranges&lt;/echo&gt;
+                                    &lt;/job&gt;
+                                &lt;/scheduling:trigger&gt;
+                            &lt;/jobs&gt;
+                        &lt;/sequential&gt;
+                    &lt;/job&gt;
+                &lt;/state:join&gt;
+                &lt;echo id="last-job"&gt;And that's that!&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

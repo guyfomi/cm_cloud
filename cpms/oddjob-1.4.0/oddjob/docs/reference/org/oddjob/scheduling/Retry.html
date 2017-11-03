@@ -1,0 +1,202 @@
+<html>
+  <head>
+    <title>Oddjob Reference - scheduling:retry</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>scheduling:retry</h1>
+    <hr/>
+This is a timer that runs it's job according to the schedule until
+ the schedule expires or the job completes successfully.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>clock</a></td>
+      <td>The clock to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>current</a></td>
+      <td>This is the current/next result from the
+ schedule.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>job</a></td>
+      <td>The job to run when it's due.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>lastDue</a></td>
+      <td>The time the schedule was lastDue.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>limits</a></td>
+      <td>Used to limit the schedule.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>schedule</a></td>
+      <td>The Schedule used to provide execution 
+ times.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>timeZone</a></td>
+      <td>The time zone the schedule is to run
+ in.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>File Polling.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Using Retry with a Timer.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>clock</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Set automatically.</td></tr>
+      </table>
+      <p>
+The clock to use. Tells the current time.
+      </p>
+    <a name='property2'><h4>current</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Set automatically.</td></tr>
+      </table>
+      <p>
+This is the current/next result from the
+ schedule. This properties fromDate is used to set the nextDue date for
+ the schedule and it's useNext (normally the same as toDate) property is 
+ used to calculate the following new current property after execution. This
+ property is most useful for the Timer to pass limits to 
+ the Retry, but is also useful for diagnostics.
+      </p>
+    <a name='property3'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The job to run when it's due.
+      </p>
+    <a name='property4'><h4>lastDue</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+The time the schedule was lastDue. This is set
+ from the nextDue property when the job begins to execute.
+      </p>
+    <a name='property5'><h4>limits</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Used to limit the schedule. Usually this
+ will be configured to be a parent timer's current interval.
+      </p>
+    <a name='property6'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property7'><h4>schedule</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The Schedule used to provide execution 
+ times.
+      </p>
+    <a name='property8'><h4>timeZone</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Set automatically.</td></tr>
+      </table>
+      <p>
+The time zone the schedule is to run
+ in. This is the text id of the time zone, such as "Europe/London".
+ More information can be found at
+ <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TimeZone.html">
+ TimeZone</a>.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+File Polling. Check every 5 seconds for a file.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;scheduling:retry name="File Polling Example" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+            &lt;schedule&gt;
+                &lt;schedules:interval interval="00:00:05"/&gt;
+            &lt;/schedule&gt;
+            &lt;job&gt;
+                &lt;sequential id="look" name="Look for files"&gt;
+                    &lt;jobs&gt;
+                        &lt;exists file="${this.dir}/work/*.foo" id="check" name="Check File Exists"/&gt;
+                        &lt;echo name="Echo to Console"&gt;Found ${check.exists[0]}&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/sequential&gt;
+            &lt;/job&gt;
+        &lt;/scheduling:retry&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Using Retry with a Timer. A daily job retries twice.
+ 
+ <pre class="xml">
+&lt;oddjob xmlns:schedules="http://rgordon.co.uk/oddjob/schedules" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling" xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+    &lt;job&gt;
+        &lt;scheduling:timer id="timer"&gt;
+            &lt;schedule&gt;
+                &lt;schedules:daily from="08:00"/&gt;
+            &lt;/schedule&gt;
+            &lt;job&gt;
+                &lt;scheduling:retry id="retry"&gt;
+                    &lt;schedule&gt;
+                        &lt;schedules:count count="2"/&gt;
+                    &lt;/schedule&gt;
+                    &lt;job&gt;
+                        &lt;state:flag id="flag-job" state="EXCEPTION"/&gt;
+                    &lt;/job&gt;
+                &lt;/scheduling:retry&gt;
+            &lt;/job&gt;
+        &lt;/scheduling:timer&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

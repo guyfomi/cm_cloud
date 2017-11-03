@@ -1,0 +1,22 @@
+<oddjob xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling"
+        xmlns:schedules="http://rgordon.co.uk/oddjob/schedules">
+    <job>
+        <sequential>
+            <jobs>
+                <variables id="shared-schedules">
+                    <regular>
+                        <schedules:interval interval="00:00:10"/>
+                    </regular>
+                </variables>
+                <scheduling:timer>
+                    <schedule>
+                        <value value="${shared-schedules.regular}"/>
+                    </schedule>
+                    <job>
+                        <echo>Hello</echo>
+                    </job>
+                </scheduling:timer>
+            </jobs>
+        </sequential>
+    </job>
+</oddjob>

@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedules:list</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>schedules:list</h1>
+    <hr/>
+Provide a schedule based on a list of schedules. All schedules are
+ evaluated and that schedule which is due to start first is used.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>schedules</a></td>
+      <td>The list of schedules.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Schedule on Monday and a Friday.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>schedules</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, but pointless if missing.</td></tr>
+      </table>
+      <p>
+The list of schedules.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Schedule on Monday and a Friday.
+ 
+ <pre class="xml">
+&lt;schedules:list xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;schedules&gt;
+        &lt;schedules:weekly on="Monday"/&gt;
+        &lt;schedules:weekly on="Friday"/&gt;
+    &lt;/schedules&gt;
+&lt;/schedules:list&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

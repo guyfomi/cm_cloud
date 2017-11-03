@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <title>Oddjob Reference - state:cascade</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>state:cascade</h1>
+    <hr/>
+A job which triggers the next job after the previous one completes.
+ This job differs from a <a href='../../../org/oddjob/jobs/structural/SequentialJob.html'>sequential</a> task in that the latter
+ follows the thread of execution, and only checks state to ensure
+ it can continue. This job's thread of execution passes onwards after the
+ cascade has been set up. This job will complete asynchronously once all
+ it's children have completed.
+ 
+ <h4>State Operator</h4>
+ This job doesn't currently expose a State Operator property as 
+ <a href='../../../org/oddjob/jobs/structural/SequentialJob.html'>sequential</a> does. The state behaviour is equivalent to the
+ WORST state operator, which is what is desired in most situations. A
+ <code>stateOperator</code> property may be added in future versions
+ if needed.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>jobs</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>stop</a></td>
+      <td>Read only view of the internal stop flag.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A cascade of two jobs.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Showing cascade being used with <a href='../../../org/oddjob/jobs/structural/ParallelJob.html'>parallel</a>.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>jobs</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property3'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Read only view of the internal stop flag. 
+ This flag is cleared with a reset.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A cascade of two jobs.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;state:cascade xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+            &lt;jobs&gt;
+                &lt;echo&gt;This runs first.&lt;/echo&gt;
+                &lt;echo&gt;Then this.&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/state:cascade&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Showing cascade being used with <a href='../../../org/oddjob/jobs/structural/ParallelJob.html'>parallel</a>. The cascade will
+ wait for the parallel job to finish before running the third job.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;state:cascade xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+            &lt;jobs&gt;
+                &lt;parallel&gt;
+                    &lt;jobs&gt;
+                        &lt;echo&gt;Oranges could be first or second.&lt;/echo&gt;
+                        &lt;echo&gt;Pears could be first or second.&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/parallel&gt;
+                &lt;echo&gt;Apples are guaranteed to be third.&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/state:cascade&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

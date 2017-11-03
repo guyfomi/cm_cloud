@@ -1,0 +1,212 @@
+<html>
+  <head>
+    <title>Oddjob Reference - state:if</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>state:if</h1>
+    <hr/>
+This job implements an if/then/else logic based on job state. This job can 
+ contain any number of child jobs. The first provides the state for
+ the condition.
+ If this state matches the given state, the second job is
+ executed. If it doesn't, then the third job is executed, (if it exists).
+ <p>
+ The completion state is that of the then or else job. If either don't 
+ exist then the Job is flagged as complete.
+ <p>
+ If any more than three jobs are provided the extra jobs are ignored.
+ <p>
+ If the first job enters an ACTIVE state then condition will not be
+ evaluated until the first job leaves the ACTIVE state. This job will
+ not block while this is happening. The thread of execution will pass
+ to its next sibling and this job will also enter the ACTIVE state.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>executorService</a></td>
+      <td>Used for an asynchronous evaluation of the if.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>jobs</a></td>
+      <td>The child jobs.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>state</a></td>
+      <td>The state condition to check against.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>stop</a></td>
+      <td>Read only view of the internal stop flag.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>If a file exists.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>An example showing lots of if's.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Asynchronous evaluation.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>executorService</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Will be provided by the framework.</td></tr>
+      </table>
+      <p>
+Used for an asynchronous evaluation of the if.
+      </p>
+    <a name='property2'><h4>jobs</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>At least one.</td></tr>
+      </table>
+      <p>
+The child jobs.
+      </p>
+    <a name='property3'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property4'><h4>state</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to COMPLETE.</td></tr>
+      </table>
+      <p>
+The state condition to check against. 
+ See the Oddjob User guide for a full list of state conditions.
+      </p>
+    <a name='property5'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Read only view of the internal stop flag. 
+ This flag is cleared with a reset.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+If a file exists. 
+ 
+ <pre class="xml">
+&lt;oddjob id="this" xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+    &lt;job&gt;
+        &lt;state:if&gt;
+            &lt;jobs&gt;
+                &lt;exists name="Check File Exists" file="${this.dir}/data/some.txt"/&gt;
+                &lt;echo id="then" name="Echo to Console"&gt;File Exists&lt;/echo&gt;
+                &lt;echo id="else" name="Echo to Console"&gt;File Doesn't Exist&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/state:if&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+An example showing lots of if's. All these if's go to COMPLETE state 
+ when run.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+            &lt;jobs&gt;
+                &lt;state:if&gt;
+                    &lt;jobs&gt;
+                        &lt;echo&gt;Hello&lt;/echo&gt;
+                        &lt;echo&gt;Good Bye&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/state:if&gt;
+                &lt;state:if&gt;
+                    &lt;jobs&gt;
+                        &lt;state:flag name="Exception" state="EXCEPTION"/&gt;
+                        &lt;state:flag name="Unexpected 1" state="EXCEPTION"/&gt;
+                        &lt;echo&gt;No Hello&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/state:if&gt;
+                &lt;state:if&gt;
+                    &lt;jobs&gt;
+                        &lt;echo&gt;Only Hello&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/state:if&gt;
+                &lt;state:if state="!COMPLETE"&gt;
+                    &lt;jobs&gt;
+                        &lt;state:flag name="Exception" state="EXCEPTION"/&gt;
+                        &lt;echo&gt;No Hello&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/state:if&gt;
+                &lt;state:if state="!COMPLETE"&gt;
+                    &lt;jobs&gt;
+                        &lt;echo&gt;Hello&lt;/echo&gt;
+                        &lt;state:flag name="Unexpected 2" state="EXCEPTION"/&gt;
+                    &lt;/jobs&gt;
+                &lt;/state:if&gt;
+                &lt;state:if state="!EXCEPTION"&gt;
+                    &lt;jobs&gt;
+                        &lt;echo&gt;Hello&lt;/echo&gt;
+                        &lt;echo&gt;Good Bye&lt;/echo&gt;
+                        &lt;state:flag name="Unexpected 3" state="EXCEPTION"/&gt;
+                    &lt;/jobs&gt;
+                &lt;/state:if&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Asynchronous evaluation. Only when the first job moves beyond it's ACTIVE
+ state will the condition be evaluated and the then job (second job) 
+ be executed. The execution of the second job is also asynchronous.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;state:if id="if-job" xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+            &lt;jobs&gt;
+                &lt;parallel&gt;
+                    &lt;jobs&gt;
+                        &lt;state:flag/&gt;
+                    &lt;/jobs&gt;
+                &lt;/parallel&gt;
+                &lt;echo id="then-job"&gt;That Worked!&lt;/echo&gt;
+                &lt;echo id="else-job"&gt;This should never be shown.&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/state:if&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

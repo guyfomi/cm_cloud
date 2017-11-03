@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <title>Oddjob Reference - state:or</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>state:or</h1>
+    <hr/>
+A job who's return state is a logical OR of the child states.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>executorService</a></td>
+      <td>The ExecutorService to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>jobs</a></td>
+      <td>The child jobs.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>join</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>stop</a></td>
+      <td>Read only view of the internal stop flag.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>COMPLETE if either files exist, INCOMPLETE otherwise.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>executorService</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The ExecutorService to use. This will 
+ be automatically set by Oddjob.
+      </p>
+    <a name='property2'><h4>jobs</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No, but pointless if missing.</td></tr>
+      </table>
+      <p>
+The child jobs.
+      </p>
+    <a name='property3'><h4>join</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property4'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property5'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Read only view of the internal stop flag. 
+ This flag is cleared with a reset.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+COMPLETE if either files exist, INCOMPLETE otherwise.
+ 
+ <pre>
+ &lt;or:and xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+  &lt;jobs&gt;
+   &lt;exists file="doesntexist1"&gt;/>
+   &lt;exists file="doesntexist2"&gt;/>
+  &lt;/jobs&gt;
+ &lt;/or:and&gt;
+ </pre>
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

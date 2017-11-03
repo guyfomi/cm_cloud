@@ -1,0 +1,232 @@
+<html>
+  <head>
+    <title>Oddjob Reference - sql-results-bean</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>sql-results-bean</h1>
+    <hr/>
+Captures SQL results in a bean that 
+ has properties to provide those results to other jobs.
+ <p>
+ The properties row, rows, rowSets properties
+ in turn expose the results as beans so the colums can be accessed as
+ properties.
+ <p>
+ If a single query result set consisted of a single row:
+ 
+ <code><pre>
+ NAME        AGE
+ John        47
+ </pre></code>
+ 
+ then:
+ 
+ <code><pre>
+ row.NAME == rows[0].NAME == rowSets[0][0].NAME == 'John'
+ row.AGE == rows[0].AGE == rowSets[0][0].AGE == 47
+ </pre></code>
+ 
+ If a single query result set consisted of more than a single row:
+ 
+ <code><pre>
+ NAME        AGE
+ John        47
+ Jane        72
+ </pre></code>
+ 
+ then the row property is unavailable and any attempt to access
+ it would result in an exception, and:
+ 
+ <code><pre>
+ rows[1].NAME == rowSets[0][1].NAME == 'Jane'
+ rows[1].AGE == rowSets[0][1].AGE == '72'
+ </pre></code>
+ 
+ If the query results in a multiple query result set:
+ 
+ <code><pre>
+ NAME        AGE
+ John        47
+ Jane        72
+ </pre></code>
+ 
+ <code><pre>
+ FRUIT       COLOUR
+ Apple       Green
+ </pre></code>
+ 
+ then the row property and the rows properties are 
+ unavailable and any attempt to access either would result in an exception.
+ The rowSets property can be used as follows:
+ 
+ <code><pre>
+ rowSets[0][1].NAME == 'Jane'
+ rowSets[0][1].AGE == '72'
+ rowSets[1][0].FRUIT == 'Apple'
+ rowSets[1][0].COLOUR == 'Green'
+ </pre></code>
+ 
+ The case of the properties depends on the database used.
+ <p>
+ 
+ Any attempt to access a row or row set that doesn't exist will result
+ in an exception.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>empty</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>row</a></td>
+      <td>The result of a query when only one result is expected.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>rowCount</a></td>
+      <td>The total number of rows returned by all the 
+ queries.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>rowSetCount</a></td>
+      <td>The number of rows sets, which will be the same
+ as the number of queries that returned results.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>rowSets</a></td>
+      <td>A two dimensional array of all of the rows
+ that each individual query returned.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>rows</a></td>
+      <td>An array of the rows when the query set contains only 
+ one result returning query.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>to</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>updateCount</a></td>
+      <td>The total update count for all queries.</td>
+    </tr>
+    <tr>
+      <td><a href='#property10'>updateCounts</a></td>
+      <td>An Array of the update counts, one element per
+ data modification statement.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>See <a href='../../../org/oddjob/sql/SQLJob.html'>sql</a> for an example.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>empty</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property3'><h4>row</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+The result of a query when only one result is expected. 
+ If no results were returned by the queries this property is null. If
+ there are more than one row an exception will occur.
+      </p>
+    <a name='property4'><h4>rowCount</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+The total number of rows returned by all the 
+ queries.
+      </p>
+    <a name='property5'><h4>rowSetCount</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+The number of rows sets, which will be the same
+ as the number of queries that returned results.
+      </p>
+    <a name='property6'><h4>rowSets</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+A two dimensional array of all of the rows
+ that each individual query returned.
+      </p>
+    <a name='property7'><h4>rows</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+An array of the rows when the query set contains only 
+ one result returning query.
+ If no results were returned by the queries this property is null. If
+ there are more than one result sets an exception will occur.
+      </p>
+    <a name='property8'><h4>to</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property9'><h4>updateCount</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+The total update count for all queries.
+      </p>
+    <a name='property10'><h4>updateCounts</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+An Array of the update counts, one element per
+ data modification statement.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+See <a href='../../../org/oddjob/sql/SQLJob.html'>sql</a> for an example.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

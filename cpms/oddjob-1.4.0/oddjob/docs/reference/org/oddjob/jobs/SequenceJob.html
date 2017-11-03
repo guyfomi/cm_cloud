@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <title>Oddjob Reference - sequence</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>sequence</h1>
+    <hr/>
+Provide a sequence number which is 
+ incremented each time the job is executed.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>current</a></td>
+      <td>The current sequence number.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>from</a></td>
+      <td>The sequence number to start from.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>name</a></td>
+      <td>The name of this job.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>watch</a></td>
+      <td>This can be any object which
+ will be watched, and when it changes the sequence
+ will be reset.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Using a sequence in a file name.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>current</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Set automatically, but can be changed manually.</td></tr>
+      </table>
+      <p>
+The current sequence number.
+      </p>
+    <a name='property2'><h4>from</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to 0.</td></tr>
+      </table>
+      <p>
+The sequence number to start from.
+      </p>
+    <a name='property3'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The name of this job.
+      </p>
+    <a name='property4'><h4>watch</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      </table>
+      <p>
+This can be any object which
+ will be watched, and when it changes the sequence
+ will be reset. This will most likely be a date.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Using a sequence in a file name.
+ 
+ <pre class="xml">
+&lt;oddjob id="this" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;job&gt;
+        &lt;scheduling:timer id="daily"&gt;
+            &lt;schedule&gt;
+                &lt;schedules:daily/&gt;
+            &lt;/schedule&gt;
+            &lt;job&gt;
+                &lt;scheduling:timer&gt;
+                    &lt;schedule&gt;
+                        &lt;schedules:count count="10"/&gt;
+                    &lt;/schedule&gt;
+                    &lt;job&gt;
+                        &lt;sequential&gt;
+                            &lt;jobs&gt;
+                                &lt;sequence id="seqnum" watch="${daily.current}"/&gt;
+                                &lt;variables id="vars"&gt;
+                                    &lt;seqnumFormatted&gt;
+                                        &lt;format format="0000" number="${seqnum.current}"/&gt;
+                                    &lt;/seqnumFormatted&gt;
+                                &lt;/variables&gt;
+                                &lt;copy name="Create file" to="${work.dir}/sequence${vars.seqnumFormatted}.txt"&gt;
+                                    &lt;input&gt;
+                                        &lt;value value="This text will be in every file."/&gt;
+                                    &lt;/input&gt;
+                                &lt;/copy&gt;
+                            &lt;/jobs&gt;
+                        &lt;/sequential&gt;
+                    &lt;/job&gt;
+                &lt;/scheduling:timer&gt;
+            &lt;/job&gt;
+        &lt;/scheduling:timer&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The watch property is set to watch when the daily scheule move forward
+ so the sequence is restarted.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

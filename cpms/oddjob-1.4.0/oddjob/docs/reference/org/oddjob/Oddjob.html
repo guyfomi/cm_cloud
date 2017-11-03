@@ -1,0 +1,583 @@
+<html>
+  <head>
+    <title>Oddjob Reference - oddjob</title>
+  </head>
+  <body>
+  [<a href="../../index.html">Index</a>]
+    <h1>oddjob</h1>
+    <hr/>
+The starting point for a hierarchy of jobs. The Oddjob job
+ creates and runs a job hierarchy by processing a supplied configuration.
+ <p>
+ Oddjob creates a 'root' job on which to create the hierarchy. Through this 
+ root Oddjob aquires the first job to run and also exposes some of it's own
+ properties for the jobs in the configuration to use. The root job's properties 
+ are:
+ 
+ <dl>
+  <dt><b>job</b></dt>
+  <dd>The top level job. This is the single job that Oddjob runs. This property is 
+      optional but Oddjob won't do much if a job for it to run isn't supplied. 
+      This is the Oddjob root's only writeable property and is write only.</dd>
+  <dt><b>file</b></dt>
+  <dd>The path of the configuration file that Oddjob has loaded. Read Only.</dd>
+  <dt><b>dir</b></dt>
+  <dd>The path of the configuration file's directory. Read Only.</dd>
+  <dt><b>args</b></dt>
+  <dd>An array of arguments passed in on the command line or from a parent 
+      Oddjob. See below. Read Only.</dd>
+  <dt><b>services</b></dt>
+  <dd>Provides access to Oddjobs underlying services. Used by
+      the frameworks automatic configuration mechanism to configure the properties
+      of jobs that are documented as set automatically. May be ignored for every day
+      use. Read Only.</dd>
+ </dl>
+ 
+ <p>For these properties to be accessible the root oddjob must be given an id. 
+ As can be seen from the examples, the author uses the id '<code>this</code>'
+ but the choice is arbitrary.</p>
+ 
+ <h4>Nesting Oddjobs</h4>
+ 
+ <p>
+ An Oddjob job allows an Oddjob instance to be created within an existing Oddjob
+ configuration. This way complicated processes can be created in manageable and
+ separately testable units.  
+ <p>
+ Properties of jobs in a nested Oddjob can be accessed using the notation 
+ <i>${nested-oddjob-id/job-id.property}</i> where nested-oddjob-id is the id in
+ the outer configuration, not the inner one.
+ 
+ <h4>Saving Oddjob's State</h4>
+ 
+ <p>
+ The <code>persister</code> property on a nested Oddjob will allow it's state to
+ be saved. See the 
+ <a href="http://rgordon.co.uk/projects/oddjob/userguide/saving.html">User Guide</a>
+ for more information on how to set a persister.
+ 
+ <h4>Customising Oddjob</h4>
+ 
+ <p>
+ Oddjob's <code>descriptorFactory</code> and <code>classLoader</code> properties 
+ allow bespoke components and
+ types to be used. The
+ <a href="http://rgordon.co.uk/projects/oddjob/devguide/index.html">developer guide</a>
+  is all about writing custom job's for Oddjob. 
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>args</a></td>
+      <td>An array of arguments the Oddjob configuration can use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>classLoader</a></td>
+      <td>The classLoader to use when loading
+ the configuration.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>configuration</a></td>
+      <td>The configuration.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>descriptorFactory</a></td>
+      <td>An <code><a href='../../../api/org/oddjob/arooa/deploy/ArooaDescriptorFactory.html'>org.oddjob.arooa.deploy.ArooaDescriptorFactory</a></code> that
+ will be used when loading the configuration.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>dir</a></td>
+      <td>The name of the directory the configuration
+ file is in.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>export</a></td>
+      <td>Values to be exported into the nested 
+ configuration.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>file</a></td>
+      <td>The name of the configuration file.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>inheritance</a></td>
+      <td>Set how an Oddjob should share the values and
+ properties of it's parent.</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>inputHandler</a></td>
+      <td>A handler for user input.</td>
+    </tr>
+    <tr>
+      <td><a href='#property10'>lastReset</a></td>
+      <td>Used internally to remember which
+ reset to apply after loading a configuration.</td>
+    </tr>
+    <tr>
+      <td><a href='#property11'>loadable</a></td>
+      <td>Can Oddjob be loaded.</td>
+    </tr>
+    <tr>
+      <td><a href='#property12'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property13'>oddjobExecutors</a></td>
+      <td>Executors for Oddjob to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property14'>oddjobServices</a></td>
+      <td>Services for Oddjob to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property15'>persister</a></td>
+      <td>A component which is able to save and restore
+ jobs.</td>
+    </tr>
+    <tr>
+      <td><a href='#property16'>properties</a></td>
+      <td>Properties to be set in the nested 
+ configuration.</td>
+    </tr>
+    <tr>
+      <td><a href='#property17'>stop</a></td>
+      <td>Read only view of the internal stop flag.</td>
+    </tr>
+    <tr>
+      <td><a href='#property18'>version</a></td>
+      <td>This Oddjob's version.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Hello World with Oddjob.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Using an argument passed into Oddjob that may or may not be set.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Nesting Oddjob.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>A nested Oddjob with one argument passed to the child.</td>
+    </tr>
+    <tr>
+      <td><a href='#example5'>Example 5</a></td>
+      <td>A nested Oddjob with a property past to the child.</td>
+    </tr>
+    <tr>
+      <td><a href='#example6'>Example 6</a></td>
+      <td>Using export to pass values to a nested Oddjob.</td>
+    </tr>
+    <tr>
+      <td><a href='#example7'>Example 7</a></td>
+      <td>Examples elsewhere.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>args</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An array of arguments the Oddjob configuration can use.
+      </p>
+    <a name='property2'><h4>classLoader</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The classLoader to use when loading
+ the configuration.
+ <p>
+ See also <a href='../../org/oddjob/util/URLClassLoaderType.html'>url-class-loader</a>
+      </p>
+    <a name='property3'><h4>configuration</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      </table>
+      <p>
+The configuration. An alternative to
+ setting a file. This can be useful when the configuration
+ is to come from some other input.
+ <p>
+ See also <a href='../../org/oddjob/arooa/types/XMLConfigurationType.html'>arooa:configuration</a>
+      </p>
+    <a name='property4'><h4>descriptorFactory</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An <code><a href='../../../api/org/oddjob/arooa/deploy/ArooaDescriptorFactory.html'>org.oddjob.arooa.deploy.ArooaDescriptorFactory</a></code> that
+ will be used when loading the configuration. This augments Oddjob's
+ internal descriptor, and allows custom jobs to have their own
+ definitions.
+ <p>
+ See also <a href='../../org/oddjob/arooa/deploy/ArooaDescriptorBean.html'>arooa:descriptor</a>, <a href='../../org/oddjob/arooa/deploy/ListDescriptorBean.html'>arooa:descriptors</a>
+ and <a href='../../org/oddjob/oddballs/OddballsDescriptorFactory.html'>oddballs</a>
+      </p>
+    <a name='property5'><h4>dir</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>R/O</td></tr>
+      </table>
+      <p>
+The name of the directory the configuration
+ file is in.
+      </p>
+    <a name='property6'><h4>export</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No</td></tr>
+      </table>
+      <p>
+Values to be exported into the nested 
+ configuration. Values will be registered in the inner
+ oddjob using the key of this mapped property.
+      </p>
+    <a name='property7'><h4>file</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The name of the configuration file.
+ to configure this oddjob.
+      </p>
+    <a name='property8'><h4>inheritance</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to PROPERTIES.</td></tr>
+      </table>
+      <p>
+Set how an Oddjob should share the values and
+ properties of it's parent. Valid values are:
+ <dl>
+ <dt>NONE</dt>
+ <dd>No values or properties are automatically inherited.</dd>
+ <dt>PROPERTIES</dt>
+ <dd>All properties are inherited. Only properties are inherited, values
+ must be exported explicitly using the export property.</dd>
+ <dt>SHARED</dt>
+ <dd>All properties and values are shared between the parent and child
+ Oddjobs. Any properties or values set in the child will be visible
+ in the parent. This setting is particularly useful for shared common
+ configuration.</dd>
+      </p>
+    <a name='property9'><h4>inputHandler</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A handler for user input. This will be 
+ provided internally and will only be required in specialised
+ situations.
+      </p>
+    <a name='property10'><h4>lastReset</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+Used internally to remember which
+ reset to apply after loading a configuration.
+      </p>
+    <a name='property11'><h4>loadable</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Can Oddjob be loaded. Used by the Load/Unload actions.
+      </p>
+    <a name='property12'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property13'><h4>oddjobExecutors</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Executors for Oddjob to use. This is
+ set automatically in Oddjob. For advanced use, user 
+ supplied <code><a href='../../../api/org/oddjob/OddjobExecutors.html'>org.oddjob.OddjobExecutors</a></code> may be provided.
+      </p>
+    <a name='property14'><h4>oddjobServices</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Services for Oddjob to use. This is
+ set automatically in Oddjob. Unlikely to be required.
+      </p>
+    <a name='property15'><h4>persister</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A component which is able to save and restore
+ jobs.
+ <p>
+ See also <a href='../../org/oddjob/persist/FilePersister.html'>file-persister</a> and <a href='../../org/oddjob/sql/SQLPersisterService.html'>sql-persister-service</a>.
+      </p>
+    <a name='property16'><h4>properties</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No</td></tr>
+      </table>
+      <p>
+Properties to be set in the nested 
+ configuration. Can be set using a <a href='../../org/oddjob/values/properties/PropertiesType.html'>properties</a>.
+      </p>
+    <a name='property17'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Read only view of the internal stop flag. 
+ This flag is cleared with a reset.
+      </p>
+    <a name='property18'><h4>version</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+This Oddjob's version.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Hello World with Oddjob. Oddjob is configured to run the <a href='../../org/oddjob/jobs/EchoJob.html'>echo</a> job.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;echo id="echo"&gt;Hello World&lt;/echo&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Using an argument passed into Oddjob that may or may not be set.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;state:if xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+                    &lt;jobs&gt;
+                        &lt;check value="${this.args[0]}"/&gt;
+                        &lt;properties&gt;
+                            &lt;values&gt;
+                                &lt;value key="our.file.name" value="${this.args[0]}"/&gt;
+                            &lt;/values&gt;
+                        &lt;/properties&gt;
+                        &lt;input&gt;
+                            &lt;requests&gt;
+                                &lt;input-text prompt="File Name?" property="our.file.name"/&gt;
+                            &lt;/requests&gt;
+                        &lt;/input&gt;
+                    &lt;/jobs&gt;
+                &lt;/state:if&gt;
+                &lt;echo&gt;File Name is ${our.file.name}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Nesting Oddjob. Note how the <code>dir</code> property of the
+ Oddjob root is used as the path of the nested configuration file.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;oddjob id="nested" file="${this.dir}/HelloWorld.xml"/&gt;
+                &lt;echo&gt;Nested job said: ${nested/echo.text}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ <p>
+ The nested job is the first example:
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;echo id="echo"&gt;Hello World&lt;/echo&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ This example also shows how a property within the nested file can be
+ accessed within the parent configuration.
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+A nested Oddjob with one argument passed to the child.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;oddjob id="nested" file="${this.dir}/EchoArg.xml"&gt;
+            &lt;args&gt;
+                &lt;list&gt;
+                    &lt;values&gt;
+                        &lt;value value="Hello World"/&gt;
+                    &lt;/values&gt;
+                &lt;/list&gt;
+            &lt;/args&gt;
+        &lt;/oddjob&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ And EchoArg.xml:
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;echo id="echo"&gt;${this.args[0]}&lt;/echo&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example5'><h4>Example 5</h4></a>
+    <p>
+A nested Oddjob with a property past to the child.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;oddjob id="nested" file="${this.dir}/EchoProperty.xml"&gt;
+            &lt;properties&gt;
+                &lt;properties&gt;
+                    &lt;values&gt;
+                        &lt;value key="our.greeting" value="Hello World"/&gt;
+                    &lt;/values&gt;
+                &lt;/properties&gt;
+            &lt;/properties&gt;
+        &lt;/oddjob&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ And EchoProperty.xml:
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;echo id="echo"&gt;${our.greeting}&lt;/echo&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ Unlike the properties of jobs, free format properties like this can't be
+ accessed using the nested convention.
+ <pre>
+ ${nested/our.greeting} DOES NOT WORK!
+ </pre>
+ This may be fixed in future versions.
+    </p>
+    <a name='example6'><h4>Example 6</h4></a>
+    <p>
+Using export to pass values to a nested Oddjob.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;folder&gt;
+                    &lt;jobs&gt;
+                        &lt;echo id="secret"&gt;I'm a secret job&lt;/echo&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+                &lt;oddjob id="inner"&gt;
+                    &lt;export&gt;
+                        &lt;value key="secret" value="${secret}"/&gt;
+                    &lt;/export&gt;
+                    &lt;configuration&gt;
+                        &lt;arooa:configuration xmlns:arooa="http://rgordon.co.uk/oddjob/arooa"&gt;
+                            &lt;xml&gt;
+                                &lt;xml&gt;
+                                    &lt;oddjob&gt;
+                                        &lt;job&gt;
+                                            &lt;run job="${secret}"/&gt;
+                                        &lt;/job&gt;
+                                    &lt;/oddjob&gt;
+                                &lt;/xml&gt;
+                            &lt;/xml&gt;
+                        &lt;/arooa:configuration&gt;
+                    &lt;/configuration&gt;
+                &lt;/oddjob&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ Here a job is exported into a nested Oddjob. The
+ exported object is actually a <a href='../../org/oddjob/arooa/types/ValueType.html'>value</a>. The value is converted back
+ to the job when the job property of the run job is set. Expressions such
+ as <code>${secret.text}</code> are not valid (because value does not have a 
+ text property!). Even <code>${secret.value.text}</code> will not work because
+ of value wraps the job in yet another layer of complexity.
+    </p>
+    <a name='example7'><h4>Example 7</h4></a>
+    <p>
+Examples elsewhere.
+ <ul>
+  <li><a href='../../org/oddjob/persist/FilePersister.html'>file-persister</a></li>
+  <li><a href='../../org/oddjob/sql/SQLPersisterService.html'>sql-persister-service</a></li>
+  <li><a href='../../org/oddjob/oddballs/OddballsDescriptorFactory.html'>oddballs</a></li>
+  <li><a href='../../org/oddjob/util/URLClassLoaderType.html'>url-class-loader</a></li>
+ </ul>
+ <p>
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

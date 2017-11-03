@@ -1,0 +1,57 @@
+<oddjob>
+    <job>
+        <sequential>
+            <jobs>
+                <variables id="vars">
+                    <connection>
+                        <connection driver="org.hsqldb.jdbcDriver" url="jdbc:hsqldb:mem:test" username="sa"/>
+                    </connection>
+                </variables>
+                <sql>
+                    <connection>
+                        <value value="${vars.connection}"/>
+                    </connection>
+                    <input>
+                        <buffer><![CDATA[CREATE TABLE oddjob_grabbable(key VARCHAR(128),
+    instance VARCHAR(128),
+    winner VARCHAR(32),
+    complete boolean,
+    CONSTRAINT oddjob_pk PRIMARY KEY (key, instance))]]></buffer>
+                    </input>
+                </sql>
+                <sql-keeper-service id="keeper-service">
+                    <connection>
+                        <value value="${vars.connection}"/>
+                    </connection>
+                </sql-keeper-service>
+                <sequence id="sequence"/>
+                <parallel id="grabbers">
+                    <jobs>
+                        <grab id="grabber1" identifier="grabber-1">
+                            <instance>
+                                <value value="${sequence.current}"/>
+                            </instance>
+                            <job>
+                                <echo id="echo1">Grabbed By 1</echo>
+                            </job>
+                            <keeper>
+                                <value value="${keeper-service.keeper(simple)}"/>
+                            </keeper>
+                        </grab>
+                        <grab id="grabber2" identifier="grabber-2">
+                            <instance>
+                                <value value="${sequence.current}"/>
+                            </instance>
+                            <job>
+                                <echo id="echo2">Grabbed By 2</echo>
+                            </job>
+                            <keeper>
+                                <value value="${keeper-service.keeper(simple)}"/>
+                            </keeper>
+                        </grab>
+                    </jobs>
+                </parallel>
+            </jobs>
+        </sequential>
+    </job>
+</oddjob>

@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <title>Oddjob Reference - tokenizer</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>tokenizer</h1>
+    <hr/>
+Tokenizes text. This type provides conversion to an array
+ or list of strings.
+ <p>
+ The delimiter can be provided as either plain text or a regular expression.
+ The default delimiter is the regular expression <code>\s*,\s*</code> which is
+ CSV with optional white space either side.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>delimiter</a></td>
+      <td>The delimiter.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>escape</a></td>
+      <td>An escape character to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>quote</a></td>
+      <td>An quote character to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>regexp</a></td>
+      <td>True if The delimiter as a regular expression.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>text</a></td>
+      <td>The value to parse.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Tokenize comma separated values.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>delimiter</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The delimiter. This is treated as plain 
+ text unless the regexp property is true, and then it is treated
+ as a regular expression.
+      </p>
+    <a name='property2'><h4>escape</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An escape character to use.
+      </p>
+    <a name='property3'><h4>quote</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An quote character to use.
+      </p>
+    <a name='property4'><h4>regexp</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+True if The delimiter as a regular expression.
+      </p>
+    <a name='property5'><h4>text</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. If missing the result of the conversion will be
+ null.</td></tr>
+      </table>
+      <p>
+The value to parse.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Tokenize comma separated values.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;foreach preLoad="7" purgeAfter="3"&gt;
+            &lt;values&gt;
+                &lt;tokenizer text="1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12"/&gt;
+            &lt;/values&gt;
+            &lt;configuration&gt;
+                &lt;xml&gt;
+                    &lt;foreach id="test"&gt;
+                        &lt;job&gt;
+                            &lt;echo name="Echo ${test.current}"&gt;I'm ${test.current}&lt;/echo&gt;
+                        &lt;/job&gt;
+                    &lt;/foreach&gt;
+                &lt;/xml&gt;
+            &lt;/configuration&gt;
+        &lt;/foreach&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,398 @@
+<html>
+  <head>
+    <title>Oddjob Reference - ant</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>ant</h1>
+    <hr/>
+Run a series of <a href="http://ant.apache.org">Ant</a>
+ tasks. 
+ 
+ <p>
+ <em>Not all tasks have been tested!</em>
+ 
+ <h3>The Ant Project</h3>
+ Oddjob creates it's own Ant project to use internally this project can be
+ shared between different AntJob jobs using the 'project' attribute. This
+ allows taskdefs and properties to be defined in one place and shared
+ in many jobs.
+ 
+ <h3>Property Expansion</h3>
+ <p>Oddjob component properties can be referenced inside Ant tasks using
+ the ${id.property} notation. Ant will look up the Oddjob property
+ before it looks up properties defined with the &lt;property&gt; tag.
+ The oddjob derived properties of an Ant task aren't 
+ constant. Oddjob variables can change unlike Ant properties.
+
+ <p>
+ Note: Ant looks up properties beginning with 'ant.' - Therefore <em>no 
+ component can have an id of 'ant'</em> as the lookup will fail to retrieve the
+ properties from that component (unless of course the 'ant' component implements all
+ the properties that Ant requires!).
+ 
+ <h3>ClassLoaders and Task Definitions</h3>
+ <p>
+ A class path or class loader can be supplied and this will be used for
+ task definitions and antlibs. Name space antlibs will only work if
+ the antlib is placed in the oj-ant/lib directory. This is
+ becuase name space ant libs require the ant lib to be loaded in the same 
+ class loader as Ant.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>baseDir</a></td>
+      <td>The base directory.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>classLoader</a></td>
+      <td>An optional class loader which will be set as
+ Ant's class loader.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>classPath</a></td>
+      <td>A class path to use to create Ants class loader.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>exception</a></td>
+      <td>How to handle build failure.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>messageLevel</a></td>
+      <td>The message level for output.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>output</a></td>
+      <td>Where to write the resultant output from ant.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>project</a></td>
+      <td>A reference to project in another ant job.</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>stop</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property10'>tasks</a></td>
+      <td>The ant XML configuration for the tasks.</td>
+    </tr>
+    <tr>
+      <td><a href='#property11'>version</a></td>
+      <td>The ant version.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Running an Ant Echo Task.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Defining Ant properties in an Ant Job.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Using Oddjob variables.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>Sharing a project.</td>
+    </tr>
+    <tr>
+      <td><a href='#example5'>Example 5</a></td>
+      <td>Working with files in Ant.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>baseDir</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The base directory. Equivalent to setting the
+ basedir attribute of an ant project.
+      </p>
+    <a name='property2'><h4>classLoader</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An optional class loader which will be set as
+ Ant's class loader.
+      </p>
+    <a name='property3'><h4>classPath</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A class path to use to create Ants class loader.
+ This is often more convenient than providing a separate class loader.
+ If a class loader is also provided then it will be used as the parent
+ class loader of the class loader created from this path, otherwise
+ the class loader of this job will be used as the parent.
+      </p>
+    <a name='property4'><h4>exception</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+How to handle build failure. If true, then a build 
+ failure will in an EXCEPTION state for this job.
+      </p>
+    <a name='property5'><h4>messageLevel</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The message level for output. one of
+ DEBUG, ERROR, INFO, VERBOSE, WARN.
+      </p>
+    <a name='property6'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property7'><h4>output</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. By default the output will only be written to 
+ the logger.</td></tr>
+      </table>
+      <p>
+Where to write the resultant output from ant.
+      </p>
+    <a name='property8'><h4>project</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A reference to project in another ant job.
+ This allows reference ids to be shared.
+      </p>
+    <a name='property9'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property10'><h4>tasks</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The ant XML configuration for the tasks. The
+ document element for the task definitions is expected to be
+ &lt;tasks&gt;. Any type of content that is normally contained in
+ an Ant target is allowed as child elements of &lt;tasks&gt; including
+ properties and task definitions.
+      </p>
+    <a name='property11'><h4>version</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+The ant version.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Running an Ant Echo Task. The resultant output is captured in a buffer.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;ant id="an-ant"&gt;
+            &lt;output&gt;
+                &lt;identify id="result"&gt;
+                    &lt;value&gt;
+                        &lt;buffer/&gt;
+                    &lt;/value&gt;
+                &lt;/identify&gt;
+            &lt;/output&gt;
+            &lt;tasks&gt;
+                &lt;xml&gt;
+                    &lt;tasks&gt;
+                        &lt;echo message="${this.args[0]}"/&gt;
+                    &lt;/tasks&gt;
+                &lt;/xml&gt;
+            &lt;/tasks&gt;
+        &lt;/ant&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Defining Ant properties in an Ant Job.
+ 
+ <pre class="xml">
+&lt;ant&gt;
+    &lt;tasks&gt;
+        &lt;xml&gt;
+            &lt;tasks&gt;
+                &lt;property name="test.thing" value="Test"/&gt;
+                &lt;echo message="${test.thing}"/&gt;
+            &lt;/tasks&gt;
+        &lt;/xml&gt;
+    &lt;/tasks&gt;
+&lt;/ant&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Using Oddjob variables. Variables and properties defined in Oddjob are
+ available in the Ant tasks.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="v"&gt;
+                    &lt;fruit&gt;
+                        &lt;value value="Apples"/&gt;
+                    &lt;/fruit&gt;
+                &lt;/variables&gt;
+                &lt;ant&gt;
+                    &lt;tasks&gt;
+                        &lt;xml&gt;
+                            &lt;tasks&gt;
+                                &lt;taskdef name="result" classname="org.oddjob.ant.AntJobTest$ResultTask"/&gt;
+                                &lt;property name="our.fruit" value="${v.fruit}"/&gt;
+                                &lt;property name="v.fruit" value="Pears"/&gt;
+                                &lt;result key="one" result="${our.fruit}"/&gt;
+                                &lt;result key="two" result="${v.fruit}"/&gt;
+                            &lt;/tasks&gt;
+                        &lt;/xml&gt;
+                    &lt;/tasks&gt;
+                &lt;/ant&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ Note that the property defined in Ant does not override that defined
+ in Oddjob (as per the rules of Ant). the result of both one and two is
+ 'Apples'
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+Sharing a project.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="v"&gt;
+                    &lt;fruit&gt;
+                        &lt;value value="Apples"/&gt;
+                    &lt;/fruit&gt;
+                &lt;/variables&gt;
+                &lt;ant id="defs"&gt;
+                    &lt;tasks&gt;
+                        &lt;xml&gt;
+                            &lt;tasks&gt;
+                                &lt;taskdef name="result" classname="org.oddjob.ant.AntJobTest$ResultTask"/&gt;
+                                &lt;property name="our.fruit" value="${v.fruit}"/&gt;
+                                &lt;property name="v.fruit" value="Pears"/&gt;
+                            &lt;/tasks&gt;
+                        &lt;/xml&gt;
+                    &lt;/tasks&gt;
+                &lt;/ant&gt;
+                &lt;ant project="${defs.project}"&gt;
+                    &lt;tasks&gt;
+                        &lt;xml&gt;
+                            &lt;tasks&gt;
+                                &lt;property name="our.fruit" value="Pears"/&gt;
+                                &lt;result key="three" result="${our.fruit}"/&gt;
+                                &lt;result key="four" result="${v.fruit}"/&gt;
+                            &lt;/tasks&gt;
+                        &lt;/xml&gt;
+                    &lt;/tasks&gt;
+                &lt;/ant&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The first Ant job declares a task and properties that the second
+ Ant project can access.
+    </p>
+    <a name='example5'><h4>Example 5</h4></a>
+    <p>
+Working with files in Ant.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential name="Using Ant to Manipulate Files"&gt;
+            &lt;jobs&gt;
+                &lt;properties&gt;
+                    &lt;values&gt;
+                        &lt;value key="our.test.file.name" value="test.txt"/&gt;
+                    &lt;/values&gt;
+                &lt;/properties&gt;
+                &lt;ant baseDir="${work.dir}"&gt;
+                    &lt;tasks&gt;
+                        &lt;xml&gt;
+                            &lt;tasks&gt;
+                                &lt;patternset id="file.test"&gt;
+                                    &lt;include name="${our.test.file.name}"/&gt;
+                                &lt;/patternset&gt;
+                                &lt;touch file="${our.test.file.name}"/&gt;
+                                &lt;copy todir=".."&gt;
+                                    &lt;fileset dir="."&gt;
+                                        &lt;patternset refid="file.test"/&gt;
+                                    &lt;/fileset&gt;
+                                &lt;/copy&gt;
+                                &lt;delete file="../${our.test.file.name}"/&gt;
+                                &lt;delete file="${our.test.file.name}"/&gt;
+                                &lt;echo message="Done."/&gt;
+                            &lt;/tasks&gt;
+                        &lt;/xml&gt;
+                    &lt;/tasks&gt;
+                &lt;/ant&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>Oddjob Reference - bean</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>bean</h1>
+    <hr/>
+Create an Object of the given class. The class
+ is specified with the class attribute. If no class is specified a
+ java.lang.Object is created. 
+ <p>
+ The class must be a true Java Bean, and
+ have a no argument public constructor. 
+ <p>
+ Properties of the bean are 
+ attributes for the eight Java primitive types and their associated Objects, 
+ or a String, and elements for all other types, as is the Oddjob standard.
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Creating a bean.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Creating a bean.
+ 
+ <pre class="xml">
+&lt;bean class="org.oddjob.arooa.types.PersonBean" name="John"&gt;
+    &lt;friends&gt;
+        &lt;list&gt;
+            &lt;values&gt;
+                &lt;value value="Rod"/&gt;
+                &lt;value value="Jane"/&gt;
+                &lt;value value="Freddy"/&gt;
+            &lt;/values&gt;
+        &lt;/list&gt;
+    &lt;/friends&gt;
+&lt;/bean&gt;</pre>
+
+ 
+ Where the bean is:
+ 
+ <pre class="code">
+package org.oddjob.arooa.types;
+
+<font color="0000FF">public</font> <font color="0000FF">class</font> PersonBean {
+
+    <font color="0000FF">private</font> String name;
+    
+    <font color="0000FF">private</font> String[] friends;
+
+    <font color="0000FF">public</font> String getName() {
+        <font color="0000FF">return</font> name;
+    }
+
+    <font color="0000FF">public</font> <font color="0000FF">void</font> setName(String name) {
+        <font color="0000FF">this</font>.name = name;
+    }
+
+    <font color="0000FF">public</font> String[] getFriends() {
+        <font color="0000FF">return</font> friends;
+    }
+
+    <font color="0000FF">public</font> <font color="0000FF">void</font> setFriends(String[] friends) {
+        <font color="0000FF">this</font>.friends = friends;
+    }
+}
+</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

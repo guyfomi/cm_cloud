@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>Oddjob Reference - logout</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>logout</h1>
+    <hr/>
+Provide an output to a logger. With a default
+ Oddjob configuration log messages will be visible in the Log panel
+ of Oddjob Explorer.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>level</a></td>
+      <td>The log log4j log level.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>logger</a></td>
+      <td>The Log4j logger name to log the output to.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Copy the contents of a file to the logger.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>level</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to INFO.</td></tr>
+      </table>
+      <p>
+The log log4j log level.
+      </p>
+    <a name='property2'><h4>logger</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to org.oddjob.logging.log4j.LogoutType</td></tr>
+      </table>
+      <p>
+The Log4j logger name to log the output to.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Copy the contents of a file to the logger.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;copy&gt;
+            &lt;input&gt;
+                &lt;file file="${this.args[0]}/test/io/TestFile.txt"/&gt;
+            &lt;/input&gt;
+            &lt;output&gt;
+                &lt;logout/&gt;
+            &lt;/output&gt;
+        &lt;/copy&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

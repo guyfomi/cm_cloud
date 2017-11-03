@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <title>Oddjob Reference - files</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>files</h1>
+    <hr/>
+Specify files using a wild card pattern, or a
+ a list. The list can contain <a href='../../../org/oddjob/io/FileType.html'>file</a> or other types that 
+ can be converted into a java File object or array including this type. 
+ In this way this type can be used to build complicated collections of 
+ files.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>files</a></td>
+      <td>The files</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>list</a></td>
+      <td>More files</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A single file.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Using a wildcard expression.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Specifying a list of files.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>A complex version of building up a file list.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>files</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No</td></tr>
+      </table>
+      <p>
+The files
+      </p>
+    <a name='property2'><h4>list</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No</td></tr>
+      </table>
+      <p>
+More files
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A single file.
+ 
+ <pre class="xml">
+&lt;files files="onefile.txt"/&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Using a wildcard expression.
+ 
+ <pre class="xml">
+&lt;files files="reports/*.txt"/&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Specifying a list of files.
+ 
+ <pre class="xml">
+&lt;files&gt;
+    &lt;list&gt;
+        &lt;files files="onefile.txt"/&gt;
+        &lt;files files="reports/*.txt"/&gt;
+    &lt;/list&gt;
+&lt;/files&gt;</pre>
+
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+A complex version of building up a file list. It includes taking 
+ advantage of Oddjob's built in path conversion and adds in files
+ specified as arguments passed in to Oddjob.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;aList&gt;
+                        &lt;files&gt;
+                            &lt;list&gt;
+                                &lt;file file="a.jar"/&gt;
+                                &lt;value value="b.jar${path.separator}c.jar"/&gt;
+                                &lt;value value="${this.args}"/&gt;
+                            &lt;/list&gt;
+                        &lt;/files&gt;
+                    &lt;/aList&gt;
+                &lt;/variables&gt;
+                &lt;foreach&gt;
+                    &lt;values&gt;
+                        &lt;value value="${vars.aList}"/&gt;
+                    &lt;/values&gt;
+                    &lt;configuration&gt;
+                        &lt;xml&gt;
+                            &lt;foreach id="loop"&gt;
+                                &lt;job&gt;
+                                    &lt;echo&gt;${loop.current}&lt;/echo&gt;
+                                &lt;/job&gt;
+                            &lt;/foreach&gt;
+                        &lt;/xml&gt;
+                    &lt;/configuration&gt;
+                &lt;/foreach&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

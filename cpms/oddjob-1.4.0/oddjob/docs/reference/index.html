@@ -1,0 +1,488 @@
+<html>
+  <head>
+  [<a href="../index.html">Home</a>]
+    <title>Oddjob Reference - Contents</title>
+  </head>
+  <body>
+    <h2>Oddjob Reference</h2>
+    <ul>
+    <li>Jobs
+      <ul>
+        <li>
+          <a href='org/oddjob/ant/AntJob.html'>ant</a> - Run a series of <a href="http://ant.apache.org">Ant</a>
+ tasks.
+        </li>
+        <li>
+          <a href='org/oddjob/persist/ArchiveJob.html'>archive</a> - A Job that is capable of taking a snapshot of the
+ state of it's child jobs.
+        </li>
+        <li>
+          <a href='org/oddjob/persist/ArchiveBrowserJob.html'>archive-browser</a> - Browse archives previously create with an <a href='./org/oddjob/persist/ArchiveJob.html'>archive</a>.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/BeanType.html'>bean</a> - Create an Object of the given class.
+        </li>
+        <li>
+          <a href='org/oddjob/beanbus/mega/MegaBeanBus.html'>bean-bus</a> - A job that allows the construction of a 
+ <code><a href='./../api/org/oddjob/beanbus/BeanBus.html'>org.oddjob.beanbus.BeanBus</a></code>.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/BeanReportJob.html'>bean-report</a> - Create a simple listing of the properties of 
+ of beans.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/CheckJob.html'>check</a> - Checks a value for certain criteria.
+        </li>
+        <li>
+          <a href='org/oddjob/io/CopyJob.html'>copy</a> - A Copy job.
+        </li>
+        <li>
+          <a href='org/oddjob/io/DeleteJob.html'>delete</a> - Delete a file or directory, or files 
+ and directories.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/job/DependsJob.html'>depends</a> - This job is deprecated, use <a href='./org/oddjob/jobs/job/RunJob.html'>run</a> instead.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/EchoJob.html'>echo</a> - Echo text to the console.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/ExecJob.html'>exec</a> - Execute an external program.
+        </li>
+        <li>
+          <a href='org/oddjob/io/ExistsJob.html'>exists</a> - Test if a file exists.
+        </li>
+        <li>
+          <a href='org/oddjob/monitor/MultiExplorerLauncher.html'>explorer</a> - A container that allows multiple <code><a href='./../api/org/oddjob/monitor/OddjobExplorer.html'>org.oddjob.monitor.OddjobExplorer</a></code>s to run.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/structural/JobFolder.html'>folder</a> - Holds a collection of jobs but does not
+ execute them.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/structural/ForEachJob.html'>foreach</a> - A job which executes its child jobs for
+ each of the provided values.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/GrabJob.html'>grab</a> - Grab work to do.
+        </li>
+        <li>
+          <a href='org/oddjob/io/GrepJob.html'>grep</a> - Search files or an input stream for lines containing
+ a text value or matches for a regular expression.
+        </li>
+        <li>
+          <a href='org/oddjob/input/InputJob.html'>input</a> - Ask for input from the user.
+        </li>
+        <li>
+          <a href='org/oddjob/script/InvokeJob.html'>invoke</a> - Invoke a java method or script snippet.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/IsType.html'>is</a> - Create an Object that is the class of the
+ property.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/LaunchJob.html'>launch</a> - Launch an application via it's main method.
+        </li>
+        <li>
+          <a href='org/oddjob/io/MkdirJob.html'>mkdir</a> - Make a directory, including any necessary but 
+ nonexistent parent directories.
+        </li>
+        <li>
+          <a href='org/oddjob/Oddjob.html'>oddjob</a> - The starting point for a hierarchy of jobs.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/structural/ParallelJob.html'>parallel</a> - A job which executes it's child jobs in parallel.
+        </li>
+        <li>
+          <a href='org/oddjob/values/properties/PropertiesJob.html'>properties</a> - Creates properties that can used to configure 
+ other jobs.
+        </li>
+        <li>
+          <a href='org/oddjob/io/RenameJob.html'>rename</a> - Rename a file or directory.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/structural/RepeatJob.html'>repeat</a> - This job will repeatedly either for a number of 
+ times or until the until property is true;
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/job/ResetJob.html'>reset</a> - A job which resets another job.
+        </li>
+        <li>
+          <a href='org/oddjob/rmi/RMIRegistryJob.html'>rmireg</a> - A job which creates an RMI registry.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/job/RunJob.html'>run</a> - A job which runs another job.
+        </li>
+        <li>
+          <a href='org/oddjob/script/ScriptJob.html'>script</a> - Execute a script.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/SequenceJob.html'>sequence</a> - Provide a sequence number which is 
+ incremented each time the job is executed.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/structural/SequentialJob.html'>sequential</a> - Executes it's children in a sequence one after the
+ other.
+        </li>
+        <li>
+          <a href='org/oddjob/framework/ServicesJob.html'>services</a> - Allows objects to be registered that will
+ automatically be injected into subsequent components that
+ are configured for automatic dependency injection.
+        </li>
+        <li>
+          <a href='org/oddjob/values/SetJob.html'>set</a> - A job which sets properties in other
+ jobs when it executes.
+        </li>
+        <li>
+          <a href='org/oddjob/sql/SQLJob.html'>sql</a> - Runs one or more SQL statements.
+        </li>
+        <li>
+          <a href='org/oddjob/sql/SQLKeeperService.html'>sql-keeper-service</a> - Provides a <code><a href='./../api/org/oddjob/scheduling/Keeper.html'>org.oddjob.scheduling.Keeper</a></code> that uses a database 
+ table.
+        </li>
+        <li>
+          <a href='org/oddjob/sql/SQLPersisterService.html'>sql-persister-service</a> - Persists job state to a database.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/job/StartJob.html'>start</a> - This job will run another job.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/job/StopJob.html'>stop</a> - A job which stops another job.
+        </li>
+        <li>
+          <a href='org/oddjob/values/VariablesJob.html'>variables</a> - This job provides a 'variables' 
+ like declaration within Oddjob.
+        </li>
+        <li>
+          <a href='org/oddjob/jobs/WaitJob.html'>wait</a> - This Job will either wait a given number of milliseconds
+ or will wait for a property or job to become available.
+        </li>
+        <li>
+          <a href='org/oddjob/hsql/HsqldbJob.html'>hsql:hsqldb</a> - Start an instance of the HSQL 
+ Database engine.
+        </li>
+        <li>
+          <a href='org/oddjob/jmx/JMXClientJob.html'>jmx:client</a> - Connect to an Oddjob <a href='./org/oddjob/jmx/JMXServerJob.html'>jmx:server</a>.
+        </li>
+        <li>
+          <a href='org/oddjob/jmx/JMXServerJob.html'>jmx:server</a> - A service which allows a job hierarchy to
+ be monitored and managed remotely using a <a href='./org/oddjob/jmx/JMXClientJob.html'>jmx:client</a>.
+        </li>
+        <li>
+          <a href='org/oddjob/jmx/JMXServiceJob.html'>jmx:service</a> - Expose a JMX Server so that Oddjob jobs
+ can interact with it.
+        </li>
+        <li>
+          <a href='org/oddjob/mail/SendMailJob.html'>mail:send</a> - Send a mail message.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPClientJob.html'>net:ftp</a> - Connect to an FTP server and run a set of FTP commands.
+        </li>
+        <li>
+          <a href='org/oddjob/scheduling/Retry.html'>scheduling:retry</a> - This is a timer that runs it's job according to the schedule until
+ the schedule expires or the job completes successfully.
+        </li>
+        <li>
+          <a href='org/oddjob/scheduling/Timer.html'>scheduling:timer</a> - Provides a simple timer for periodic or once only 
+ execution of the child job.
+        </li>
+        <li>
+          <a href='org/oddjob/scheduling/Trigger.html'>scheduling:trigger</a> - A trigger runs it's job when the job being triggered
+ on enters the state specified.
+        </li>
+        <li>
+          <a href='org/oddjob/state/AndState.html'>state:and</a> - A job who's return state is a logical AND of the child states.
+        </li>
+        <li>
+          <a href='org/oddjob/state/CascadeJob.html'>state:cascade</a> - A job which triggers the next job after the previous one completes.
+        </li>
+        <li>
+          <a href='org/oddjob/state/EqualsState.html'>state:equals</a> - Runs it's child job and then compares the state of the child job to 
+ the given state.
+        </li>
+        <li>
+          <a href='org/oddjob/state/FlagState.html'>state:flag</a> - When run it's state becomes the given state.
+        </li>
+        <li>
+          <a href='org/oddjob/state/IfJob.html'>state:if</a> - This job implements an if/then/else logic based on job state.
+        </li>
+        <li>
+          <a href='org/oddjob/state/JoinJob.html'>state:join</a> - Waits for a COMPLETE state from it's child job before allowing
+ the thread of execution to continue.
+        </li>
+        <li>
+          <a href='org/oddjob/state/MirrorState.html'>state:mirror</a> - When run this job mirrors the state of the given job.
+        </li>
+        <li>
+          <a href='org/oddjob/state/OrState.html'>state:or</a> - A job who's return state is a logical OR of the child states.
+        </li>
+        <li>
+          <a href='org/oddjob/state/Resets.html'>state:resets</a> - Captures Reset actions propagating down a job tree and either hardens
+ soft resets to hard resets or softens hard resets to soft resets before
+ passing them on to the child job.
+        </li>
+      </ul></li>
+    <li>Types
+      <ul>
+        <li>
+          <a href='org/oddjob/io/AppendType.html'>append</a> - Specify a file for appending to.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/BeanType.html'>bean</a> - Create an Object of the given class.
+        </li>
+        <li>
+          <a href='org/oddjob/io/BufferType.html'>buffer</a> - A buffer can be used to accumulate output from 
+ one or more jobs which can then be used as input to another job.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/ClassType.html'>class</a> - Returns a Class for the given name.
+        </li>
+        <li>
+          <a href='org/oddjob/sql/ConnectionType.html'>connection</a> - Definition for a Database connection.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/ConvertType.html'>convert</a> - Convert a value to the given Java Class.
+        </li>
+        <li>
+          <a href='org/oddjob/values/types/DateType.html'>date</a> - Define a Date.
+        </li>
+        <li>
+          <a href='org/oddjob/io/FileType.html'>file</a> - Specify a file.
+        </li>
+        <li>
+          <a href='org/oddjob/persist/FilePersister.html'>file-persister</a> - Persist and load jobs from and to a file.
+        </li>
+        <li>
+          <a href='org/oddjob/io/FilesType.html'>files</a> - Specify files using a wild card pattern, or a
+ a list.
+        </li>
+        <li>
+          <a href='org/oddjob/values/types/FormatType.html'>format</a> - A type which can either format a
+ number or a date into the given text format.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/IdentifiableValueType.html'>identify</a> - Register the a value with an Id.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/ImportType.html'>import</a> - Import XML which is processed as if it's
+ in-line.
+        </li>
+        <li>
+          <a href='org/oddjob/input/requests/InputConfirm.html'>input-confirm</a> - A request for a yes/no confirmation.
+        </li>
+        <li>
+          <a href='org/oddjob/input/requests/InputFile.html'>input-file</a> - A request for a file or directory.
+        </li>
+        <li>
+          <a href='org/oddjob/input/requests/InputMessage.html'>input-message</a> - A Message with a prompt to continue.
+        </li>
+        <li>
+          <a href='org/oddjob/input/requests/InputPassword.html'>input-password</a> - An input request for a password.
+        </li>
+        <li>
+          <a href='org/oddjob/input/requests/InputText.html'>input-text</a> - A request for a simple line of input.
+        </li>
+        <li>
+          <a href='org/oddjob/script/InvokeType.html'>invoke</a> - Invoke a java method or script snippet, 
+ or JMX operation.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/IsType.html'>is</a> - Create an Object that is the class of the
+ property.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/ListType.html'>list</a> - A list provides a way of setting properties that are
+ either <code>java.util.List</code> types or arrays.
+        </li>
+        <li>
+          <a href='org/oddjob/logging/log4j/LogoutType.html'>logout</a> - Provide an output to a logger.
+        </li>
+        <li>
+          <a href='org/oddjob/values/types/MagicClassType.html'>magic-class</a> - Definition for a Magic Bean, which is a bean that 
+ can be defined dynamically.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/MapType.html'>map</a> - A map allows a map of strings to values to be created.
+        </li>
+        <li>
+          <a href='org/oddjob/oddballs/OddballsDescriptorFactory.html'>oddballs</a> - Create Oddjob job definition descriptors from any 
+ number of directories that follow the Oddball format.
+        </li>
+        <li>
+          <a href='org/oddjob/values/properties/PropertiesType.html'>properties</a> - A type that evaluates to a java Properties object.
+        </li>
+        <li>
+          <a href='org/oddjob/io/ResourceType.html'>resource</a> - Specify a resource on the class path.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/ScheduleType.html'>schedule</a> - Applies a schedule to a given date to provide a calculated date.
+        </li>
+        <li>
+          <a href='org/oddjob/values/types/SequenceType.html'>sequence</a> - A sequence.
+        </li>
+        <li>
+          <a href='org/oddjob/sql/SQLResultsBean.html'>sql-results-bean</a> - Captures SQL results in a bean that 
+ has properties to provide those results to other jobs.
+        </li>
+        <li>
+          <a href='org/oddjob/sql/SQLResultsSheet.html'>sql-results-sheet</a> - Writes SQL results to an output stream.
+        </li>
+        <li>
+          <a href='org/oddjob/io/StderrType.html'>stderr</a> - Provide an output to the stderr stream of 
+ the console.
+        </li>
+        <li>
+          <a href='org/oddjob/io/StdinType.html'>stdin</a> - Provide an output to the console.
+        </li>
+        <li>
+          <a href='org/oddjob/io/StdoutType.html'>stdout</a> - Provide an output to stdout stream of 
+ the console.
+        </li>
+        <li>
+          <a href='org/oddjob/io/TeeType.html'>tee</a> - Split output to multiple other outputs.
+        </li>
+        <li>
+          <a href='org/oddjob/scheduling/ExecutorThrottleType.html'>throttle</a> - Throttle parallel execution.
+        </li>
+        <li>
+          <a href='org/oddjob/values/types/TokenizerType.html'>tokenizer</a> - Tokenizes text.
+        </li>
+        <li>
+          <a href='org/oddjob/util/URLClassLoaderType.html'>url-class-loader</a> - A simple wrapper for URLClassloader.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/ValueType.html'>value</a> - A simple value.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/XMLType.html'>xml</a> - A type that converts it's XML contents into
+ a String.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/deploy/AnnotationDefinition.html'>arooa:annotation</a> - Create a synthetic annotation for a method.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/deploy/BeanDefinition.html'>arooa:bean-def</a> - Provide an element to class name mapping for a 
+ java bean.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/types/XMLConfigurationType.html'>arooa:configuration</a> - Provide Configuration in XML format.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/deploy/ArooaDescriptorBean.html'>arooa:descriptor</a> - A definition of an Arooa descriptor.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/deploy/ListDescriptorBean.html'>arooa:descriptors</a> - An Arooa Descriptor Factory that is a container
+ for a collection of other descriptors.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/beanutils/MagicBeanDescriptorFactory.html'>arooa:magic-beans</a> - Define Magic Beans.
+        </li>
+        <li>
+          <a href='org/oddjob/arooa/deploy/PropertyDefinition.html'>arooa:property</a> - Provide a definition for a property within
+ an <a href='./org/oddjob/arooa/deploy/BeanDefinition.html'>arooa:bean-def</a>.
+        </li>
+        <li>
+          <a href='org/oddjob/hsql/HsqlConnectionType.html'>hsql:connection</a> - Definition for a Database connection.
+        </li>
+        <li>
+          <a href='org/oddjob/jmx/client/UsernamePassword.html'>jmx:client-credentials</a> - Provide a JMX simple security credentials 
+ environment for a <a href='./org/oddjob/jmx/JMXClientJob.html'>jmx:client</a>.
+        </li>
+        <li>
+          <a href='org/oddjob/jmx/server/SimpleServerSecurity.html'>jmx:server-security</a> - Provide a JMX simple security environment for a
+ <a href='./org/oddjob/jmx/JMXServerJob.html'>jmx:server</a>.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPAscii.html'>net:ftp-ascii</a> - FTP command to change to ascii transfer mode.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPBinary.html'>net:ftp-bin</a> - FTP command to change to binary transfer mode.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPCd.html'>net:ftp-cd</a> - FTP command to change remote directory.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPDelete.html'>net:ftp-delete</a> - FTP command to delete a remote file.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPGet.html'>net:ftp-get</a> - FTP command to retrieve a remote file.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPList.html'>net:ftp-list</a> - FTP command to provide a listing of remote files.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPMkDir.html'>net:ftp-mk-dir</a> - FTP command to create a remote directory.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPPut.html'>net:ftp-put</a> - FTP command to transfer a file to the server.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPPwd.html'>net:ftp-pwd</a> - FTP command to get the current remote present 
+ working directory.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPRename.html'>net:ftp-rename</a> - FTP command to rename a file.
+        </li>
+        <li>
+          <a href='org/oddjob/net/ftp/FTPRmDir.html'>net:ftp-rm-dir</a> - FTP command to remove a remote directory.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/AfterSchedule.html'>schedules:after</a> - Schedule something after the given schedule.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/BrokenSchedule.html'>schedules:broken</a> - This schedule allows a normal schedule 
+ to be broken by the results of another
+ schedule.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/CountSchedule.html'>schedules:count</a> - This schedule returns up to count 
+ number of child schedules.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/DailySchedule.html'>schedules:daily</a> - A schedule for each day at, or from a given time.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/DateSchedule.html'>schedules:date</a> - Provide a schedule for a 
+ specific date or define an interval between two dates.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/DayAfterSchedule.html'>schedules:day-after</a> - A schedule that returns the day after when it's
+ parent schedule is due.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/DayBeforeSchedule.html'>schedules:day-before</a> - A schedule that returns the day before when it's
+ parent schedule is due.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/IntervalSchedule.html'>schedules:interval</a> - This schedule returns an interval 
+ from the given time to the interval time later.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/LastSchedule.html'>schedules:last</a> - This schedule will return it's last due nested 
+ schedule within the given parent interval.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/ScheduleList.html'>schedules:list</a> - Provide a schedule based on a list of schedules.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/MonthlySchedule.html'>schedules:monthly</a> - A schedule for monthly intervals.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/NowSchedule.html'>schedules:now</a> - Schedule something now.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/TimeSchedule.html'>schedules:time</a> - Provide a schedule for an interval of time.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/WeeklySchedule.html'>schedules:weekly</a> - A schedule for weekly intervals
+ specified by days of the week.
+        </li>
+        <li>
+          <a href='org/oddjob/schedules/schedules/YearlySchedule.html'>schedules:yearly</a> - A schedule for the periods of the year.
+        </li>
+      </ul></li>
+    </ul>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2013</font>
+	 </body>
+  </html>

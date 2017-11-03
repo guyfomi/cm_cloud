@@ -1,0 +1,183 @@
+<html>
+  <head>
+    <title>Oddjob Reference - net:ftp</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>net:ftp</h1>
+    <hr/>
+Connect to an FTP server and run a set of FTP commands.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>commands</a></td>
+      <td>A List of the FTP commands.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>host</a></td>
+      <td>The FTP server.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>name</a></td>
+      <td>The name of this Job.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>passive</a></td>
+      <td>True if the connection is passive.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>password</a></td>
+      <td>The password to connect to the FTP server with.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>port</a></td>
+      <td>The Port.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>result</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>username</a></td>
+      <td>The user name to connect to the FTP server with.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Doing lots of FTP things.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>commands</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A List of the FTP commands.
+      </p>
+    <a name='property2'><h4>host</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The FTP server.
+      </p>
+    <a name='property3'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The name of this Job.
+      </p>
+    <a name='property4'><h4>passive</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+True if the connection is passive.
+      </p>
+    <a name='property5'><h4>password</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes, unless user is anonymous.</td></tr>
+      </table>
+      <p>
+The password to connect to the FTP server with.
+      </p>
+    <a name='property6'><h4>port</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The Port.
+      </p>
+    <a name='property7'><h4>result</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property8'><h4>username</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The user name to connect to the FTP server with.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Doing lots of FTP things.
+ 
+ <pre class="xml">
+&lt;oddjob id="this" xmlns:net="http://rgordon.co.uk/oddjob/net"&gt;
+    &lt;job&gt;
+        &lt;net:ftp host="localhost" port="${ftp.port}" username="admin" password="admin"&gt;
+            &lt;commands&gt;
+                &lt;list&gt;
+                    &lt;values&gt;
+                        &lt;identify id="pwd"&gt;
+                            &lt;value&gt;
+                                &lt;net:ftp-pwd/&gt;
+                            &lt;/value&gt;
+                        &lt;/identify&gt;
+                        &lt;net:ftp-mk-dir path="stuff"/&gt;
+                        &lt;net:ftp-cd path="stuff"/&gt;
+                        &lt;identify id="list1"&gt;
+                            &lt;value&gt;
+                                &lt;net:ftp-list/&gt;
+                            &lt;/value&gt;
+                        &lt;/identify&gt;
+                        &lt;net:ftp-ascii/&gt;
+                        &lt;net:ftp-put remote="stuff.txt"&gt;
+                            &lt;file&gt;
+                                &lt;file file="${this.args[0]}"/&gt;
+                            &lt;/file&gt;
+                        &lt;/net:ftp-put&gt;
+                        &lt;identify id="list2"&gt;
+                            &lt;value&gt;
+                                &lt;net:ftp-list/&gt;
+                            &lt;/value&gt;
+                        &lt;/identify&gt;
+                        &lt;net:ftp-rename from="stuff.txt" to="things.txt"/&gt;
+                        &lt;net:ftp-get remote="things.txt"&gt;
+                            &lt;file&gt;
+                                &lt;file file="${this.args[1]}"/&gt;
+                            &lt;/file&gt;
+                        &lt;/net:ftp-get&gt;
+                        &lt;net:ftp-delete path="things.txt"/&gt;
+                        &lt;net:ftp-bin/&gt;
+                        &lt;net:ftp-cd/&gt;
+                        &lt;net:ftp-rm-dir path="stuff"/&gt;
+                    &lt;/values&gt;
+                &lt;/list&gt;
+            &lt;/commands&gt;
+        &lt;/net:ftp&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,302 @@
+<html>
+  <head>
+    <title>Oddjob Reference - hsql:hsqldb</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>hsql:hsqldb</h1>
+    <hr/>
+Start an instance of the HSQL 
+ Database engine. For more information on the properties please see
+ <a href="http://hsqldb.org">http://hsqldb.org</a>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>database</a></td>
+      <td>A list of key/value pairs as a  
+ which are the database name and the database path.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>properties</a></td>
+      <td>The server hsql properties.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>serverState</a></td>
+      <td>The current state of this server in numerically coded form.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Using an HSQL Server and an HSQL connection to run
+ lots of SQL.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Using an HSQL Server to provide a 
+ <a href='../../../org/oddjob/sql/SQLPersisterService.html'>sql-persister-service</a>.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>database</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A list of key/value pairs as a  
+ which are the database name and the database path. 
+ Hsqldb supports up to 10 databases per server instance.
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property3'><h4>properties</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The server hsql properties. For more information please
+ see the hsqldb documentation.
+      </p>
+    <a name='property4'><h4>serverState</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+The current state of this server in numerically coded form.
+ <p>
+ Typically, this will be one of:
+ <ol>
+  <li>ServerProperties.SERVER_STATE_ONLINE (1).</li>
+  <li>ServerProperties.SERVER_STATE_OPENING (4).</li>
+  <li>ServerProperties.SERVER_STATE_CLOSING (8).</li>
+  <li>ServerProperties.SERVER_STATE_SHUTDOWN (16).</li>
+ </ol>
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Using an HSQL Server and an HSQL connection to run
+ lots of SQL.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential id="top" name="Run in Sequence"&gt;
+            &lt;jobs&gt;
+                &lt;hsql:hsqldb name="Hsqldb Server" xmlns:hsql="http://rgordon.co.uk/oddjob/hsql"&gt;
+                    &lt;database&gt;
+                        &lt;value key="mydb" value="${work.dir}/mydb"/&gt;
+                    &lt;/database&gt;
+                    &lt;properties&gt;
+                        &lt;properties&gt;
+                            &lt;values&gt;
+                                &lt;value key="server.port" value="11001"/&gt;
+                                &lt;value key="server.silent" value="false"/&gt;
+                            &lt;/values&gt;
+                        &lt;/properties&gt;
+                    &lt;/properties&gt;
+                &lt;/hsql:hsqldb&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;connection&gt;
+                        &lt;hsql:connection url="jdbc:hsqldb:hsql://localhost:11001/mydb" username="sa" xmlns:hsql="http://rgordon.co.uk/oddjob/hsql"/&gt;
+                    &lt;/connection&gt;
+                &lt;/variables&gt;
+                &lt;folder name="Setup Sql"&gt;
+                    &lt;jobs&gt;
+                        &lt;sequential id="setup" name="All"&gt;
+                            &lt;jobs&gt;
+                                &lt;sql name="Create table"&gt;
+                                    &lt;connection&gt;
+                                        &lt;value value="${vars.connection}"/&gt;
+                                    &lt;/connection&gt;
+                                    &lt;input&gt;
+                                        &lt;buffer&gt;create table greetings  (
+style varchar(20), greeting varchar(30),constraint greetings_pk primary key (style))&lt;/buffer&gt;
+                                    &lt;/input&gt;
+                                &lt;/sql&gt;
+                                &lt;sql name="Insert1"&gt;
+                                    &lt;connection&gt;
+                                        &lt;value value="${vars.connection}"/&gt;
+                                    &lt;/connection&gt;
+                                    &lt;input&gt;
+                                        &lt;buffer&gt;insert into greetings values ('nice', 'hello')&lt;/buffer&gt;
+                                    &lt;/input&gt;
+                                &lt;/sql&gt;
+                                &lt;sql name="Insert1"&gt;
+                                    &lt;connection&gt;
+                                        &lt;value value="${vars.connection}"/&gt;
+                                    &lt;/connection&gt;
+                                    &lt;input&gt;
+                                        &lt;buffer&gt;insert into greetings values ('grumpy', 'bah humbug')&lt;/buffer&gt;
+                                    &lt;/input&gt;
+                                &lt;/sql&gt;
+                            &lt;/jobs&gt;
+                        &lt;/sequential&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+                &lt;folder name="Query Sql"&gt;
+                    &lt;jobs&gt;
+                        &lt;sequential id="single-query" name="All"&gt;
+                            &lt;jobs&gt;
+                                &lt;sql id="query" name="Query"&gt;
+                                    &lt;connection&gt;
+                                        &lt;value value="${vars.connection}"/&gt;
+                                    &lt;/connection&gt;
+                                    &lt;input&gt;
+                                        &lt;buffer&gt;select greeting from greetings where style='nice'&lt;/buffer&gt;
+                                    &lt;/input&gt;
+                                    &lt;results&gt;
+                                        &lt;sql-results-bean/&gt;
+                                    &lt;/results&gt;
+                                &lt;/sql&gt;
+                                &lt;echo id="result"&gt;${query.results.row.GREETING}&lt;/echo&gt;
+                                &lt;echo id="resultindexed"&gt;${query.results.rows[0].GREETING}&lt;/echo&gt;
+                            &lt;/jobs&gt;
+                        &lt;/sequential&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+                &lt;folder name="Query All"&gt;
+                    &lt;jobs&gt;
+                        &lt;sequential id="all-query" name="All"&gt;
+                            &lt;jobs&gt;
+                                &lt;sql id="queryall" name="Query"&gt;
+                                    &lt;connection&gt;
+                                        &lt;value value="${vars.connection}"/&gt;
+                                    &lt;/connection&gt;
+                                    &lt;input&gt;
+                                        &lt;buffer&gt;select style, greeting from greetings&lt;/buffer&gt;
+                                    &lt;/input&gt;
+                                    &lt;results&gt;
+                                        &lt;sql-results-bean/&gt;
+                                    &lt;/results&gt;
+                                &lt;/sql&gt;
+                                &lt;foreach id="for"&gt;
+                                    &lt;values&gt;
+                                        &lt;value value="${queryall.results.rows}"/&gt;
+                                    &lt;/values&gt;
+                                        &lt;configuration&gt;
+                                            &lt;xml&gt;
+                                                &lt;foreach id="for"&gt;
+                                                    &lt;job&gt;
+                                                        &lt;echo&gt;${for.current.STYLE} is ${for.current.GREETING}&lt;/echo&gt;
+                                                    &lt;/job&gt;
+                                                &lt;/foreach&gt;
+                                            &lt;/xml&gt;
+                                        &lt;/configuration&gt;
+                                &lt;/foreach&gt;
+                            &lt;/jobs&gt;
+                        &lt;/sequential&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+                &lt;folder name="Cleanup Sql"&gt;
+                    &lt;jobs&gt;
+                        &lt;sql id="clean-up" name="Sql Job"&gt;
+                            &lt;connection&gt;
+                                &lt;value value="${vars.connection}"/&gt;
+                            &lt;/connection&gt;
+                            &lt;input&gt;
+                                &lt;buffer&gt;drop table greetings&lt;/buffer&gt;
+                            &lt;/input&gt;
+                        &lt;/sql&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Using an HSQL Server to provide a 
+ <a href='../../../org/oddjob/sql/SQLPersisterService.html'>sql-persister-service</a>.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential name="Sql Persister Example"&gt;
+            &lt;jobs&gt;
+                &lt;hsql:hsqldb name="Database Server" xmlns:hsql="http://rgordon.co.uk/oddjob/hsql"&gt;
+                    &lt;database&gt;
+                        &lt;value key="ojdb" value="${work.dir}/ojdb"/&gt;
+                    &lt;/database&gt;
+                    &lt;properties&gt;
+                        &lt;properties&gt;
+                            &lt;values&gt;
+                                &lt;value key="server.port" value="11002"/&gt;
+                                &lt;value key="server.silent" value="false"/&gt;
+                            &lt;/values&gt;
+                        &lt;/properties&gt;
+                    &lt;/properties&gt;
+                &lt;/hsql:hsqldb&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;persisterConnection&gt;
+                        &lt;hsql:connection url="jdbc:hsqldb:hsql://localhost:11002/ojdb" username="sa" xmlns:hsql="http://rgordon.co.uk/oddjob/hsql"/&gt;
+                    &lt;/persisterConnection&gt;
+                &lt;/variables&gt;
+                &lt;sql name="Create table"&gt;
+                    &lt;connection&gt;
+                        &lt;value value="${vars.persisterConnection}"/&gt;
+                    &lt;/connection&gt;
+                    &lt;input&gt;
+                        &lt;buffer&gt;CREATE TABLE oddjob( path VARCHAR(32),
+id VARCHAR(32), job BLOB,
+CONSTRAINT oddjob_pk PRIMARY KEY (path, id))&lt;/buffer&gt;
+                    &lt;/input&gt;
+                &lt;/sql&gt;
+                &lt;sql-persister-service id="persister-service"&gt;
+                    &lt;connection&gt;
+                        &lt;value value="${vars.persisterConnection}"/&gt;
+                    &lt;/connection&gt;
+                &lt;/sql-persister-service&gt;
+                &lt;oddjob id="database-persist-example" name="A Database Persisted Oddjob"&gt;
+                    &lt;configuration&gt;
+                        &lt;arooa:configuration resource="org/oddjob/hsql/OddjobToPersist.xml" xmlns:arooa="http://rgordon.co.uk/oddjob/arooa"/&gt;
+                    &lt;/configuration&gt;
+                    &lt;persister&gt;
+                        &lt;value value="${persister-service.persister(example)}"/&gt;
+                    &lt;/persister&gt;
+                &lt;/oddjob&gt;
+                &lt;folder name="Cleanup Sql"&gt;
+                    &lt;jobs&gt;
+                        &lt;sql id="clean-up" name="Sql Job"&gt;
+                            &lt;connection&gt;
+                                &lt;value value="${vars.persisterConnection}"/&gt;
+                            &lt;/connection&gt;
+                            &lt;input&gt;
+                                &lt;buffer&gt;drop table oddjob&lt;/buffer&gt;
+                            &lt;/input&gt;
+                        &lt;/sql&gt;
+                    &lt;/jobs&gt;
+                &lt;/folder&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

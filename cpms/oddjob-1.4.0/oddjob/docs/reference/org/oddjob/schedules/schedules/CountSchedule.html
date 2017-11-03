@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedules:count</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>schedules:count</h1>
+    <hr/>
+This schedule returns up to count 
+ number of child schedules. It is typically
+ used to count a number intervals for re-trying something.
+ <p>
+ If there is more than one count in a schedule a key must be provided
+ to differentiate their internally store numbers, otherwise the count value
+ would be shared.
+ <p>
+ If the nested schedule isn't specified it defaults to 
+ <a href='../../../../org/oddjob/schedules/schedules/NowSchedule.html'>schedules:now</a>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>count</a></td>
+      <td>The number to count to.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>identifier</a></td>
+      <td>If there are more than one count schedules in a
+ schedule then this key is required to differentiate them.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>refinement</a></td>
+      <td>Provide a refinement to this schedule.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A schedule for 5 times at intervals of 15 minutes.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>A schedule for 3 times each day at 5 minute intervals.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Nested count schedules.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>count</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The number to count to.
+      </p>
+    <a name='property2'><h4>identifier</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+If there are more than one count schedules in a
+ schedule then this key is required to differentiate them. It can be any
+ text.
+      </p>
+    <a name='property3'><h4>refinement</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Provide a refinement to this schedule.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A schedule for 5 times at intervals of 15 minutes.
+ 
+ <pre class="xml">
+&lt;schedules:count count="5" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;refinement&gt;
+        &lt;schedules:interval interval="00:15"/&gt;
+    &lt;/refinement&gt;
+&lt;/schedules:count&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+A schedule for 3 times each day at 5 minute intervals.
+ 
+ <pre class="xml">
+&lt;schedules:daily xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;refinement&gt;
+        &lt;schedules:time from="11:00"&gt;
+            &lt;refinement&gt;
+                &lt;schedules:count count="3"&gt;
+                    &lt;refinement&gt;
+                        &lt;schedules:interval interval="00:05"/&gt;
+                    &lt;/refinement&gt;
+                &lt;/schedules:count&gt;
+            &lt;/refinement&gt;
+        &lt;/schedules:time&gt;
+    &lt;/refinement&gt;
+&lt;/schedules:daily&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Nested count schedules. This slightly contrived example would cause a timer
+ to run a job twice at 1 minute intervals for 3 days. Note that we need a
+ key on one of the schedules to differentiate them.
+ 
+ <pre class="xml">
+&lt;schedules:count identifier="outer" count="6" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;refinement&gt;
+        &lt;schedules:daily from="11:00"&gt;
+            &lt;refinement&gt;
+                &lt;schedules:count count="2"&gt;
+                    &lt;refinement&gt;
+                        &lt;schedules:interval interval="00:01"/&gt;
+                    &lt;/refinement&gt;
+                &lt;/schedules:count&gt;
+            &lt;/refinement&gt;
+        &lt;/schedules:daily&gt;
+    &lt;/refinement&gt;
+&lt;/schedules:count&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

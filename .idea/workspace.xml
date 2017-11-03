@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" name="Default" comment="" />
+    <ignored path="seca.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/login.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1493461341465" ignored="false" />
+    <file path="/login.css" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1488035453093" ignored="false" />
+    <file path="/roles_grid.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1488578188985" ignored="false" />
+    <file path="/communication.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1488535317396" ignored="false" />
+    <file path="/articles.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1488902504838" ignored="false" />
+    <file path="/main.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1509041623826" ignored="false" />
+    <file path="/roles_dialog.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1488554823039" ignored="false" />
+    <file path="/roles.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494323429858" ignored="false" />
+    <file path="/users_dialog.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1488578803005" ignored="false" />
+    <file path="/users_data_panel.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494503129212" ignored="false" />
+    <file path="/fr_FR.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1488812288090" ignored="false" />
+    <file path="/all.css" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1501512276940" ignored="false" />
+    <file path="/users.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494859403366" ignored="false" />
+    <file path="/content_manager.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494924051604" ignored="false" />
+    <file path="/customers_data_panel.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1493895086369" ignored="false" />
+    <file path="/default.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1495540680745" ignored="false" />
+    <file path="/customers.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494427621003" ignored="false" />
+    <file path="/a.dummy" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1501263198133" ignored="false" />
+    <file path="/LayoutTreePanel.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1499624803551" ignored="false" />
+    <file path="/categories.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1509460929451" ignored="false" />
+    <file path="/layout_tree.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1499775682191" ignored="false" />
+    <file path="/access.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1488888758359" ignored="false" />
+    <file path="/layout.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1488902455520" ignored="false" />
+    <file path="/innovics.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1509015905347" ignored="false" />
+    <file path="/plant.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1507822432485" ignored="false" />
+    <file path="/line.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490367963121" ignored="false" />
+    <file path="/asset.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1509041683693" ignored="false" />
+    <file path="/sensor.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1497360656232" ignored="false" />
+    <file path="/layout_main_panel.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1493469920261" ignored="false" />
+    <file path="/content_documents_panel.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1493642278677" ignored="false" />
+    <file path="/content_documents_dialog.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1489953489987" ignored="false" />
+    <file path="/content.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1497357706960" ignored="false" />
+    <file path="/content_permissions_panel.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490179851444" ignored="false" />
+    <file path="/customers_groups_grid.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490000974912" ignored="false" />
+    <file path="/customers_dialog.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490045230251" ignored="false" />
+    <file path="/customers_grid.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490086359442" ignored="false" />
+    <file path="/component.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1497359318121" ignored="false" />
+    <file path="/asset_main_panel.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1509040244231" ignored="false" />
+    <file path="/asset.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490886666178" ignored="false" />
+    <file path="/parameters_grid.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490893779812" ignored="false" />
+    <file path="/imports_main_panel.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490959277615" ignored="false" />
+    <file path="/customers.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1509099318722" ignored="false" />
+    <file path="/imports_grid.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1491846819008" ignored="false" />
+    <file path="/html_output.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490962261010" ignored="false" />
+    <file path="/imports.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490963254552" ignored="false" />
+    <file path="/xxxxxxx.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1490971930761" ignored="false" />
+    <file path="/all.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1491229500992" ignored="false" />
+    <file path="/charts.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1509105472101" ignored="false" />
+    <file path="/content_images_grid.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1493815128176" ignored="false" />
+    <file path="/content_images_panel.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1492942474801" ignored="false" />
+    <file path="/eventlog_grid.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1493469383924" ignored="false" />
+    <file path="/eventlog.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1493467159352" ignored="false" />
+    <file path="/osticket.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494505773698" ignored="false" />
+    <file path="/application_top.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1493821732855" ignored="false" />
+    <file path="/database.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1493900302719" ignored="false" />
+    <file path="/osticketRest.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494360370097" ignored="false" />
+    <file path="/osticketException.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494343600209" ignored="false" />
+    <file path="/JasperHelper.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494344681070" ignored="false" />
+    <file path="/tickets_grid.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494751357616" ignored="false" />
+    <file path="/tickets_dialog.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494752232099" ignored="false" />
+    <file path="/content_comments_panel.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494946275230" ignored="false" />
+    <file path="/tickets.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494760201570" ignored="false" />
+    <file path="/content_description.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494778345825" ignored="false" />
+    <file path="/class.phpmailer.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1494836396832" ignored="false" />
+    <file path="/language.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1496152115288" ignored="false" />
+    <file path="/cache.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1496158223182" ignored="false" />
+    <file path="/xxx.js" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1501508539395" ignored="false" />
+    <file path="/reports.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1501509109917" ignored="false" />
+    <file path="/kibana.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1501509204673" ignored="false" />
+    <file path="/elastic.php" changelist="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" time="1501853723444" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="seca" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="categories.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/includes/jsons/categories.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3686" column="30" selection-start="202774" selection-end="202774" vertical-scroll-proportion="0.507722">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="categories.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/includes/classes/categories.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="490" column="0" selection-start="26033" selection-end="26033" vertical-scroll-proportion="-0.65384614">
+              <folding>
+                <marker date="1509462239859" expanded="false" signature="188843:188855" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="188879:188960" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="191556:191568" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="191592:191673" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="194170:194182" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="194206:194287" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="196887:196899" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="196923:197004" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="199388:199400" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="199424:199505" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="201871:201883" placeholder="..." />
+                <marker date="1509462239859" expanded="false" signature="201907:201988" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/includes/jsons/users.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="226" column="44" selection-start="8180" selection-end="8180" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="asset_main_panel.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/includes/extmodules/asset/asset_main_panel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="69" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/includes/extmodules/asset/main.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="20" selection-start="708" selection-end="708" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xxxx.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/includes/extmodules/asset/xxxx.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="30" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="asset.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/templates/default/extensions/content/asset.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="552" column="49" selection-start="23275" selection-end="23275" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="charts.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/templates/default/extensions/content/charts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="234" column="37" selection-start="7374" selection-end="7374" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customers.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/templates/default/extensions/content/customers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="13" selection-start="369" selection-end="447" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1509099324112" expanded="true" signature="15163:15183" placeholder="..." />
+                <marker date="1509099324112" expanded="true" signature="18607:18627" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="innovics.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/templates/default/extensions/content/innovics.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2437" column="49" selection-start="92842" selection-end="92842" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1509016260180" expanded="false" signature="75061:75076" placeholder="..." />
+                <marker date="1509016260180" expanded="false" signature="75204:75219" placeholder="..." />
+                <marker date="1509016260180" expanded="false" signature="76276:76291" placeholder="..." />
+                <marker date="1509016260180" expanded="false" signature="76419:76434" placeholder="..." />
+                <marker date="1509016260180" expanded="false" signature="83229:83249" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/admin/includes/classes/elastic.php" />
+        <option value="$PROJECT_DIR$/admin/includes/jsons/elastic.php" />
+        <option value="$PROJECT_DIR$/admin/templates/default/extensions/content/plant.js" />
+        <option value="$PROJECT_DIR$/admin/includes/jsons/roles.php" />
+        <option value="$PROJECT_DIR$/admin/includes/jsons/users.php" />
+        <option value="$PROJECT_DIR$/admin/includes/classes/content.php" />
+        <option value="$PROJECT_DIR$/admin/includes/classes/users.php" />
+        <option value="$PROJECT_DIR$/admin/templates/default/extensions/content/innovics.js" />
+        <option value="$PROJECT_DIR$/admin/includes/extmodules/asset/xxxx.js" />
+        <option value="$PROJECT_DIR$/admin/includes/extmodules/asset/asset_main_panel.php" />
+        <option value="$PROJECT_DIR$/admin/includes/extmodules/asset/main.php" />
+        <option value="$PROJECT_DIR$/admin/templates/default/extensions/content/asset.js" />
+        <option value="$PROJECT_DIR$/admin/templates/default/extensions/content/customers.js" />
+        <option value="$PROJECT_DIR$/admin/templates/default/extensions/content/charts.js" />
+        <option value="$PROJECT_DIR$/admin/includes/classes/categories.php" />
+        <option value="$PROJECT_DIR$/admin/includes/jsons/categories.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <option name="servers">
+      <server debugger_id="php.debugger.ZendDebugger" host="localhost" name="localhost" />
+      <server debugger_id="php.debugger.ZendDebugger" host="127.0.0.1" name="127.0.0.1" />
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1374" />
+    <option name="height" value="748" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents ProjectPane="true" />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource ProjectPane="true" />
+      <autoscrollFromSource ProjectPane="true" />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seca" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seca" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="innovics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seca" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="innovics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seca" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="innovics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seca" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="innovics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seca" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="innovics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsons" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seca" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="innovics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="seca">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="All">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="seca">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Favorites" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="options.lastSelected" value="preferences.fileTypes" />
+    <property name="recentsLimit" value="5" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="FullScreen" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\innovics\admin\includes\classes" />
+      <recent name="C:\xampp\htdocs\innovics\admin\includes\jsons" />
+      <recent name="C:\xampp\htdocs\innovics\admin\includes\modules\access" />
+      <recent name="C:\xampp\htdocs\innovics\admin\includes\languages\fr_FR\modules\access" />
+      <recent name="C:\xampp\htdocs\innovics\admin\includes\extmodules" />
+    </key>
+  </component>
+  <component name="RunManager" selected="PHP Web Application.seca">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="PHP Web Application.seca" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value="SHOW_INHERITED,ALPHA_COMPARATOR" />
+  </component>
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <configuration useDefault="true">C:\Documents and Settings\Administrator.DEV\Application Data\Subversion</configuration>
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f2a68a4b-e256-4e35-9206-fbbc29c8dd52" name="Default" comment="" />
+      <created>1315243980718</created>
+      <updated>1315243980718</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-4" y="-4" width="1374" height="748" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864675" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21666667" sideWeight="0.39403972" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32958034" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21666667" sideWeight="0.60596025" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3825397" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32724252" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/admin/includes/jsons/templates_modules.php</url>
+          <line>39</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/admin/includes/classes/image.php</url>
+          <line>184</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/seca/modules/content/rss_listing.php</url>
+          <line>19</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/ext/last_rss/lastRSS.php</url>
+          <line>91</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/admin/includes/classes/template.php</url>
+          <line>201</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/seca/content/products/info.php</url>
+          <line>18</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/admin/includes/classes/json.php</url>
+          <line>68</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/admin/includes/classes/content.php</url>
+          <line>764</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/admin/includes/classes/slide_images.php</url>
+          <line>150</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/admin/includes/jsons/categories.php</url>
+          <line>2121</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/includes/content/news/news.php</url>
+          <line>30</line>
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/admin/includes/extmodules/layout/layout_main_panel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="979" selection-end="979" vertical-scroll-proportion="0.7118644" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/templates/default/extensions/content/sensor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="194" column="0" selection-start="9942" selection-end="9942" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/classes/users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="289" column="34" selection-start="11236" selection-end="11236" vertical-scroll-proportion="-6.1923075" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/extmodules/layout/element_grid.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="111" column="31" selection-start="3119" selection-end="3119" vertical-scroll-proportion="0.2953668" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/extmodules/layout/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="37" selection-start="184" selection-end="184" vertical-scroll-proportion="-0.65384614" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/jsons/users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="226" column="44" selection-start="8180" selection-end="8180" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/extmodules/asset/xxxx.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="30" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/jsons/roles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="0" selection-start="2539" selection-end="2539" vertical-scroll-proportion="-16.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/extmodules/asset/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="20" selection-start="708" selection-end="708" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/extmodules/asset/asset_main_panel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="69" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/templates/default/extensions/content/innovics.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2437" column="49" selection-start="92842" selection-end="92842" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1509016260180" expanded="false" signature="75061:75076" placeholder="..." />
+            <marker date="1509016260180" expanded="false" signature="75204:75219" placeholder="..." />
+            <marker date="1509016260180" expanded="false" signature="76276:76291" placeholder="..." />
+            <marker date="1509016260180" expanded="false" signature="76419:76434" placeholder="..." />
+            <marker date="1509016260180" expanded="false" signature="83229:83249" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/templates/default/extensions/content/customers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="13" selection-start="369" selection-end="447" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1509099324112" expanded="true" signature="15163:15183" placeholder="..." />
+            <marker date="1509099324112" expanded="true" signature="18607:18627" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/templates/default/extensions/content/asset.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="552" column="49" selection-start="23275" selection-end="23275" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/templates/default/extensions/content/charts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="234" column="37" selection-start="7374" selection-end="7374" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/classes/categories.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="490" column="0" selection-start="26033" selection-end="26033" vertical-scroll-proportion="-0.65384614">
+          <folding>
+            <marker date="1509462239859" expanded="false" signature="188843:188855" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="188879:188960" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="191556:191568" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="191592:191673" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="194170:194182" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="194206:194287" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="196887:196899" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="196923:197004" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="199388:199400" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="199424:199505" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="201871:201883" placeholder="..." />
+            <marker date="1509462239859" expanded="false" signature="201907:201988" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/includes/jsons/categories.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3686" column="30" selection-start="202774" selection-end="202774" vertical-scroll-proportion="0.507722">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <title>Oddjob Reference - reset</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>reset</h1>
+    <hr/>
+A job which resets another job. This job is 
+ useful to reset jobs or services that have been persisted, and
+ loaded back in their previous COMPLETE states. The reset 
+ can be used to set them back to READY.
+ <p>
+ A reset might also be needed before running a job elsewhere
+ such as on a remote server.
+ <p>
+ As of version 1.4 of Oddjob, this job can now also be used to force
+ jobs that are <code><a href='../../../../../api/org/oddjob/Forceable.html'>org.oddjob.Forceable</a></code> by specify 'force' as level.
+ <p>
+ This job is not Serializable and so won't be persisted
+ itself.
+ <p>
+ See also the <a href='../../../../org/oddjob/state/Resets.html'>state:resets</a> job.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>job</a></td>
+      <td>Job to reset.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>level</a></td>
+      <td>The reset level, hard or soft</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>stop</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Using reset in explorer.xml.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Force a job to complete.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+Job to reset.
+      </p>
+    <a name='property2'><h4>level</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to soft.</td></tr>
+      </table>
+      <p>
+The reset level, hard or soft
+      </p>
+    <a name='property3'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property4'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Using reset in explorer.xml. 
+ <p>
+ Look at the explorer.xml file in Oddjob's home directory. This file is 
+ loaded by the default oddjob.xml file when Oddjob first runs.
+ The explorer.xml configuration is run with a <a href='../../../../org/oddjob/persist/FilePersister.html'>file-persister</a> 
+ persister that persists the Explorers state when it 
+ completes. When Oddjob is run again the Explorer will be
+ loaded with it's previous COMPLETE state and so won't run. The reset
+ is necessary to set it back to READY.
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Force a job to complete.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;reset job="${echo}" level="force"/&gt;
+                &lt;echo id="echo"&gt;You will never see this!&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

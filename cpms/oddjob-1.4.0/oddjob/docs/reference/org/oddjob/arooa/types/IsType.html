@@ -1,0 +1,147 @@
+<html>
+  <head>
+    <title>Oddjob Reference - is</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>is</h1>
+    <hr/>
+Create an Object that is the class of the
+ property. The properties class must have a public zero argument
+ constructor.
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Using <code>is</code> to set a simple property.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Using <code>is</code> to set an indexed property.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Using <code>is</code> to set a mapped property.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Using <code>is</code> to set a simple property.
+ 
+ <pre class="xml">
+&lt;snack&gt;
+    &lt;fruit&gt;
+        &lt;is type="apple" colour="red"/&gt;
+    &lt;/fruit&gt;
+&lt;/snack&gt;</pre>
+
+ 
+ Where the <code>snack</code> bean is:
+ 
+ <pre class="code">
+    <font color="0000FF">public</font> <font color="0000FF">static</font> <font color="0000FF">class</font> SnackBean {
+        FruitBean fruit;
+        
+        <font color="0000FF">public</font> <font color="0000FF">void</font> setFruit(FruitBean bean) {
+            <font color="0000FF">this</font>.fruit = bean;
+        }
+    }
+</pre>
+
+ 
+ and the <code>fruit</code> bean is:
+ 
+ <pre class="code">
+    <font color="0000FF">public</font> <font color="0000FF">static</font> <font color="0000FF">class</font> FruitBean {
+        
+        <font color="0000FF">private</font> String type;
+        <font color="0000FF">private</font> String colour;
+                
+        <font color="0000FF">public</font> <font color="0000FF">void</font> setType(String type) {
+            <font color="0000FF">this</font>.type = type;
+        }
+        
+        <font color="0000FF">public</font> <font color="0000FF">void</font> setColour(String colour) {
+            <font color="0000FF">this</font>.colour = colour;
+        }
+    }
+</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Using <code>is</code> to set an indexed property.
+ 
+ <pre class="xml">
+&lt;snack&gt;
+    &lt;fruit&gt;
+        &lt;is type="apple" colour="red"/&gt;
+        &lt;is type="pear" colour="green"/&gt;
+    &lt;/fruit&gt;
+&lt;/snack&gt;</pre>
+
+ 
+ Where the <code>snack</code> bean is:
+ 
+ <pre class="code">
+    <font color="0000FF">public</font> <font color="0000FF">static</font> <font color="0000FF">class</font> IndexedSnack {
+        
+        <font color="0000FF">private</font> List&lt;FruitBean&gt; fruit = 
+            <font color="0000FF">new</font> ArrayList&lt;FruitBean&gt;();
+        
+        <font color="0000FF">public</font> <font color="0000FF">void</font> setFruit(<font color="0000FF">int</font> index, FruitBean bean) {
+            <font color="0000FF">if</font> (bean == null) {
+                fruit.remove(index);
+            }
+            <font color="0000FF">else</font> {
+                fruit.add(index, bean);
+            }
+        }
+    }
+</pre>
+
+ 
+ and the <code>fruit</code> bean is as above.
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Using <code>is</code> to set a mapped property.
+ 
+ <pre class="xml">
+&lt;snack&gt;
+    &lt;fruit&gt;
+        &lt;is key="morning" type="apple" colour="red"/&gt;
+        &lt;is key="afternoon" type="grapes" colour="white"/&gt;
+    &lt;/fruit&gt;
+&lt;/snack&gt;</pre>
+
+ 
+ Where the <code>snack</code> bean is:
+ 
+ <pre class="code">
+    <font color="0000FF">public</font> <font color="0000FF">static</font> <font color="0000FF">class</font> MappedSnack {
+
+        <font color="0000FF">private</font> Map&lt;String, FruitBean&gt; fruit =
+            <font color="0000FF">new</font> HashMap&lt;String, FruitBean&gt;();
+        
+        <font color="0000FF">public</font> <font color="0000FF">void</font> setFruit(String key, FruitBean bean) {
+            <font color="0000FF">if</font> (fruit == null) {
+                fruit.remove(key);
+            }
+            <font color="0000FF">else</font> {
+                <font color="0000FF">this</font>.fruit.put(key, bean);
+            }
+        }
+    }
+</pre>
+
+ 
+ and the <code>fruit</code> bean is as above.
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

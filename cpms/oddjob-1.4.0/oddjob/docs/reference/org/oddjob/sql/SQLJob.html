@@ -1,0 +1,468 @@
+<html>
+  <head>
+    <title>Oddjob Reference - sql</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>sql</h1>
+    <hr/>
+Runs one or more SQL statements.
+ <p>
+ <h3>Parsing</h3>
+ The SQL will be parsed and broken into individual statements
+ before being executed using JDBC. The statements are broken according
+ to the <code>delimiter</code> and <code>delimiterType</code> properties. 
+ Setting the <code>expandProperties</code> property to true will cause
+ Oddjob to expand ${} expressions within the SQL. Comments are achieved
+ by starting a line with <code>--</code> or <code>//</code> or 
+ <code>REM</code>. Note that <code>/* &#42;/</code> is not yet supported.
+ 
+ <h3>Result Processing</h3>
+ An optional result processor may be provided. <a href='../../../org/oddjob/sql/SQLResultsSheet.html'>sql-results-sheet</a> 
+ allows the results to be displayed on a result sheet in a similar style 
+ to an SQL query tool. <a href='../../../org/oddjob/sql/SQLResultsBean.html'>sql-results-bean</a> allows results to be 
+ captured as beans who's properties can be used elsewhere in Oddjob.
+ 
+ <h3>Errors and Auto Commit</h3>
+ The <code>onError</code> property controls what to do if a statement fails.
+ By default it is ABORT. Auto commit is false by default so the changes
+ are rolled back. If auto commit is true the ABORT has the same affect as
+ STOP which commits statements already executed.
+ 
+ <h3>Parameterised Statements and Procedures</h3>
+ SQL statements can be parameterised, and can be stored procedure or 
+ function calls. Out parameter values can also be accessed and used
+ elsewhere in Oddjob by wrapping them with an 
+ <a href='../../../org/oddjob/arooa/types/IdentifiableValueType.html'>identify</a>. See example 2 for an example of this.
+ 
+ <h3>Caveats</h3>
+ SQLServer stored procedures with parameters must be made using the JDBC
+ style call. E.g. { call sp_help(?) } otherwise an exception is thrown
+ from <code>getParameterMetaData</code>.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>autocommit</a></td>
+      <td>Autocommit statements once executed.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>callable</a></td>
+      <td>If the statement calls a stored procedure.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>connection</a></td>
+      <td>The connection to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>delimiter</a></td>
+      <td>Set the delimiter that separates SQL statements.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>delimiterType</a></td>
+      <td>Set the delimiter type: NORMAL or ROW.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>dialect</a></td>
+      <td>Allows a <code><a href='../../../../api/org/oddjob/sql/DatabaseDialect.html'>org.oddjob.sql.DatabaseDialect</a></code> to be provided 
+ that can tune the way the result set is processed.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>encoding</a></td>
+      <td>Set the string encoding to use on the SQL read in.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>escapeProcessing</a></td>
+      <td>Set escape processing for statements.</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>executedSQLCount</a></td>
+      <td>The number of SQL statements executed.</td>
+    </tr>
+    <tr>
+      <td><a href='#property10'>expandProperties</a></td>
+      <td>Enable property expansion inside the SQL statements
+ read from the input.</td>
+    </tr>
+    <tr>
+      <td><a href='#property11'>input</a></td>
+      <td>The input from where to read the SQL query 
+ or DML statement(s) to run.</td>
+    </tr>
+    <tr>
+      <td><a href='#property12'>keepFormat</a></td>
+      <td>Whether or not the format of the
+ SQL should be preserved.</td>
+    </tr>
+    <tr>
+      <td><a href='#property13'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property14'>onError</a></td>
+      <td>What to do when a statement fails:
+ <dl>
+ <dt>CONTINUE</dt>
+ <dd>Ignore the failure and continue executing.</dd>
+ <dt>STOP</dt>
+ <dd>Commit what has been executed but don't execute any more.</dd>
+ <dt>ABORT</dt>
+ <dd>Rollback what has been executed and don't execute any more.</dd>
+ </dl>
+ Note that if <code>autocommit</code> is true then ABORT behaves
+ like STOP as no roll back is possible.</td>
+    </tr>
+    <tr>
+      <td><a href='#property15'>parameters</a></td>
+      <td>Parameters to be bound to statement(s).</td>
+    </tr>
+    <tr>
+      <td><a href='#property16'>results</a></td>
+      <td>Optional result processor.</td>
+    </tr>
+    <tr>
+      <td><a href='#property17'>services</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property18'>successfulSQLCount</a></td>
+      <td>The number of SQL statements successfully executed.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A simple example shows first the execution of multiple statements, 
+ then a simple parameterised query.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>An Callable Statement example.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>autocommit</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+Autocommit statements once executed.
+      </p>
+    <a name='property2'><h4>callable</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+If the statement calls a stored procedure.
+      </p>
+    <a name='property3'><h4>connection</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The connection to use. This can be provided
+ by a <a href='../../../org/oddjob/sql/ConnectionType.html'>connection</a> or by some other means such as custom
+ data source. This SQL job will always close the connection once
+ it has run.
+      </p>
+    <a name='property4'><h4>delimiter</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to ;</td></tr>
+      </table>
+      <p>
+Set the delimiter that separates SQL statements. 
+ Defaults to a semicolon.
+ <p>
+ For scripts that use a separate line delimiter like "GO" 
+ also set the <code>delimiterType</code> to "ROW".
+ <p>
+ The delimiter is case insensitive so either "GO" or "go" can be 
+ used interchangeably.
+      </p>
+    <a name='property5'><h4>delimiterType</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to NORMAL.</td></tr>
+      </table>
+      <p>
+Set the delimiter type: NORMAL or ROW.
+ <p>
+ NORMAL means that any occurrence of the delimiter terminates the SQL
+ command whereas with ROW, only a line containing just the
+ delimiter is recognised as the end of the command.
+ <p>
+ ROW is used with delimiters such as GO.
+      </p>
+    <a name='property6'><h4>dialect</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. A default is used.</td></tr>
+      </table>
+      <p>
+Allows a <code><a href='../../../../api/org/oddjob/sql/DatabaseDialect.html'>org.oddjob.sql.DatabaseDialect</a></code> to be provided 
+ that can tune the way the result set is processed.
+      </p>
+    <a name='property7'><h4>encoding</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Set the string encoding to use on the SQL read in.
+      </p>
+    <a name='property8'><h4>escapeProcessing</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+Set escape processing for statements. See the java doc for 
+ <code>Statement.setEscapeProcessing</code> for more information.
+      </p>
+    <a name='property9'><h4>executedSQLCount</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+The number of SQL statements executed.
+      </p>
+    <a name='property10'><h4>expandProperties</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+Enable property expansion inside the SQL statements
+ read from the input.
+      </p>
+    <a name='property11'><h4>input</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The input from where to read the SQL query 
+ or DML statement(s) to run. Probably either <a href='../../../org/oddjob/io/FileType.html'>file</a> for
+ reading the SQL from a file or <a href='../../../org/oddjob/io/BufferType.html'>buffer</a> for configuring
+ the SQL in line.
+      </p>
+    <a name='property12'><h4>keepFormat</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to false.</td></tr>
+      </table>
+      <p>
+Whether or not the format of the
+ SQL should be preserved.
+      </p>
+    <a name='property13'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property14'><h4>onError</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to ABORT.</td></tr>
+      </table>
+      <p>
+What to do when a statement fails:
+ <dl>
+ <dt>CONTINUE</dt>
+ <dd>Ignore the failure and continue executing.</dd>
+ <dt>STOP</dt>
+ <dd>Commit what has been executed but don't execute any more.</dd>
+ <dt>ABORT</dt>
+ <dd>Rollback what has been executed and don't execute any more.</dd>
+ </dl>
+ Note that if <code>autocommit</code> is true then ABORT behaves
+ like STOP as no roll back is possible.
+      </p>
+    <a name='property15'><h4>parameters</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Parameters to be bound to statement(s). This
+ is either a <a href='../../../org/oddjob/arooa/types/ValueType.html'>value</a> or an <a href='../../../org/oddjob/arooa/types/IdentifiableValueType.html'>identify</a> 
+ if the parameter is an out parameter that is to be identifiable by 
+ an id for other jobs to access.
+      </p>
+    <a name='property16'><h4>results</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to none.</td></tr>
+      </table>
+      <p>
+Optional result processor. Probably one of
+ <a href='../../../org/oddjob/sql/SQLResultsBean.html'>sql-results-bean</a> or <a href='../../../org/oddjob/sql/SQLResultsSheet.html'>sql-results-sheet</a>.
+      </p>
+    <a name='property17'><h4>services</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property18'><h4>successfulSQLCount</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+The number of SQL statements successfully executed.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A simple example shows first the execution of multiple statements, 
+ then a simple parameterised query.
+
+ <pre class="xml">
+&lt;oddjob&gt;
+  &lt;job&gt;
+    &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;variables id="vars"&gt;
+          &lt;connection&gt;
+            &lt;connection driver="org.hsqldb.jdbcDriver" url="jdbc:hsqldb:mem:test" username="sa"/&gt;
+          &lt;/connection&gt;
+        &lt;/variables&gt;
+        &lt;sql name="Create table"&gt;
+          &lt;connection&gt;
+            &lt;value value="${vars.connection}"/&gt;
+          &lt;/connection&gt;
+          &lt;input&gt;
+            &lt;buffer&gt;
+	        	            
+create table GREETINGS(STYLE varchar(20),
+       TEXT varchar(20))
+       
+insert into GREETINGS values('nice', 'Hello')
+
+insert into GREETINGS values('grumpy', 'Bah Humbug')
+
+            &lt;/buffer&gt;
+          &lt;/input&gt;
+        &lt;/sql&gt;
+        &lt;sql id="query"&gt;
+          &lt;connection&gt;
+            &lt;value value="${vars.connection}"/&gt;
+          &lt;/connection&gt;
+          &lt;input&gt;
+            &lt;buffer&gt;
+	        	            
+select TEXT from GREETINGS where STYLE = ?
+
+            &lt;/buffer&gt;
+          &lt;/input&gt;
+          &lt;parameters&gt;
+            &lt;value value="nice"/&gt;
+          &lt;/parameters&gt;
+          &lt;results&gt;
+            &lt;sql-results-bean/&gt;
+          &lt;/results&gt;
+        &lt;/sql&gt;
+        &lt;echo name="Single Row Result"&gt;${query.results.row.TEXT}&lt;/echo&gt;
+        &lt;echo name="Result By Row Index"&gt;${query.results.rows[0].TEXT}&lt;/echo&gt;
+      &lt;/jobs&gt;
+    &lt;/sequential&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+
+ The results are made available to the echo jobs using a 
+ <a href='../../../org/oddjob/sql/SQLResultsBean.html'>sql-results-bean</a>.
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+An Callable Statement example. Showing support for IN, INOUT, and OUT
+ parameters. Note that declaring the stored procedure requires a change
+ in delimiter otherwise the semicolon is inturprited as an end of 
+ statement.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+  &lt;job&gt;
+    &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;variables id="vars"&gt;
+          &lt;connection&gt;
+            &lt;connection driver="org.hsqldb.jdbcDriver" url="jdbc:hsqldb:mem:test" username="sa"/&gt;
+          &lt;/connection&gt;
+        &lt;/variables&gt;
+        &lt;sql callable="true" delimiterType="ROW"&gt;
+          &lt;connection&gt;
+            &lt;value value="${vars.connection}"/&gt;
+          &lt;/connection&gt;
+          &lt;input&gt;
+            &lt;buffer&gt;
+              create procedure TEST (out a int, inout b int, in c int)
+              MODIFIES SQL DATA
+              begin atomic
+              set a = b;
+              set b = c;
+              end
+            &lt;/buffer&gt;
+          &lt;/input&gt;
+        &lt;/sql&gt;
+        &lt;sql id="sql-call" callable="true"&gt;
+          &lt;connection&gt;
+            &lt;value value="${vars.connection}"/&gt;
+          &lt;/connection&gt;
+          &lt;parameters&gt;
+            &lt;identify id="a"&gt;
+              &lt;value&gt;
+                &lt;value/&gt;
+              &lt;/value&gt;
+            &lt;/identify&gt;
+            &lt;identify id="b"&gt;
+              &lt;value&gt;
+                &lt;value value="2"/&gt;
+              &lt;/value&gt;
+            &lt;/identify&gt;
+            &lt;value value="3"/&gt;
+          &lt;/parameters&gt;
+          &lt;input&gt;
+            &lt;buffer&gt;
+              call TEST (?, ?, ?)
+            &lt;/buffer&gt;
+          &lt;/input&gt;
+        &lt;/sql&gt;
+        &lt;echo&gt;a=${a}, b=${b}.&lt;/echo&gt;
+      &lt;/jobs&gt;
+    &lt;/sequential&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

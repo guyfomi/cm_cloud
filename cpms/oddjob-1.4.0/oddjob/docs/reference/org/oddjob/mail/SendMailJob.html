@@ -1,0 +1,160 @@
+<html>
+  <head>
+    <title>Oddjob Reference - mail:send</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>mail:send</h1>
+    <hr/>
+Send a mail message.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>files</a></td>
+      <td>An list of attachment files.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>from</a></td>
+      <td>The from address.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>host</a></td>
+      <td>The host name of the server.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>message</a></td>
+      <td>The message body as text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>name</a></td>
+      <td>The name of the job.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>subject</a></td>
+      <td>The subject.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>to</a></td>
+      <td>The to addresses.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Send a simple message.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Send attachements.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>files</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An list of attachment files.
+      </p>
+    <a name='property2'><h4>from</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The from address.
+      </p>
+    <a name='property3'><h4>host</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The host name of the server.
+      </p>
+    <a name='property4'><h4>message</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>TEXT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The message body as text.
+      </p>
+    <a name='property5'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The name of the job. Any text.
+      </p>
+    <a name='property6'><h4>subject</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to (no subject).</td></tr>
+      </table>
+      <p>
+The subject.
+      </p>
+    <a name='property7'><h4>to</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The to addresses. A semicolon delimited list.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Send a simple message.
+ 
+ <pre class="xml">
+&lt;oddjob xmlns:mail="http://rgordon.co.uk/oddjob/mail"&gt;
+    &lt;job&gt;
+        &lt;mail:send name="Send alert mail" from="${my.alert.from}" to="${my.alert.to}" host="${my.mailhost}" subject="FTP download failed"&gt;
+            Important jobs Failed!
+        &lt;/mail:send&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Send attachements. This example rather unimagineatively sends the build
+ file as two seperate attachements.
+ 
+ <pre class="xml">
+&lt;oddjob xmlns:mail="http://rgordon.co.uk/oddjob/mail"&gt;
+    &lt;job&gt;
+        &lt;mail:send name="Send Attachments" from="${my.alert.from}" to="${my.alert.to}" host="${my.mailhost}" subject="Some Attachements"&gt;
+            &lt;files&gt;
+                &lt;list&gt;
+                    &lt;values&gt;
+                        &lt;file file="build.xml"/&gt;
+                        &lt;file file="build.xml"/&gt;
+                    &lt;/values&gt;
+                &lt;/list&gt;
+            &lt;/files&gt;
+        &lt;/mail:send&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

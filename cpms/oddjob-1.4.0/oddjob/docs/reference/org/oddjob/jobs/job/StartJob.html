@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>Oddjob Reference - start</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>start</h1>
+    <hr/>
+This job will run another job. It is intended
+ for starting services or jobs on remote servers which is why it is
+ named start. If it used on a local job it will block until the local
+ job has run.
+ 
+ <p>
+ Unlike the <a href='../../../../org/oddjob/jobs/job/RunJob.html'>run</a>, this job will not monitor or reflect the
+ state of the started job. To monitor the state of the started job the
+ job could be followed by a <a href='../../../../org/oddjob/state/MirrorState.html'>state:mirror</a>.
+ <p>
+ The start job won't reset the job to be started. If the job to start
+ isn't started because it's in the wrong state this job will still
+ COMPLETE. This job can be preceded by a <a href='../../../../org/oddjob/jobs/job/ResetJob.html'>reset</a> if resetting
+ is required.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>job</a></td>
+      <td>The job to start</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>stop</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Starting a service.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The job to start
+      </p>
+    <a name='property2'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property3'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Starting a service. A folder contains a choice of services. The service
+ id to use is provided at runtime with a property such as 
+ -DpriceService=nonCachingPriceService. The selected service is started
+ and used by the Pricing Job.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+  &lt;job&gt;
+    &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;folder name="services"&gt;
+          &lt;jobs&gt;
+            &lt;bean id="cachingPriceService" class="org.oddjob.examples.CachingPriceService"/&gt;
+            &lt;bean id="nonCachingPriceService" class="org.oddjob.examples.NonCachingPriceService"/&gt;
+          &lt;/jobs&gt;
+        &lt;/folder&gt;
+        &lt;start job="${${priceService}}"/&gt;
+        &lt;bean id="pricingJob" class="org.oddjob.examples.PricingJob" priceService="${${priceService}}"/&gt;
+      &lt;/jobs&gt;
+    &lt;/sequential&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

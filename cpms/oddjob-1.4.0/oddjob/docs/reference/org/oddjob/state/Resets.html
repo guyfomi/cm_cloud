@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>Oddjob Reference - state:resets</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>state:resets</h1>
+    <hr/>
+Captures Reset actions propagating down a job tree and either hardens
+ soft resets to hard resets or softens hard resets to soft resets before
+ passing them on to the child job.
+ <p>
+ Execute and Stop actions are cascaded as normal to the child job.
+ <p> 
+ See also the <a href='../../../org/oddjob/jobs/job/ResetJob.html'>reset</a> job.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>harden</a></td>
+      <td>Harden soft resets.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>job</a></td>
+      <td>The job to pass resets on to.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>soften</a></td>
+      <td>Soften hard resets.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>stop</a></td>
+      <td>Read only view of the internal stop flag.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Examples elsewhere.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>harden</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+Harden soft resets. True/False.
+      </p>
+    <a name='property2'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The job to pass resets on to.
+      </p>
+    <a name='property3'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property4'><h4>soften</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to false.</td></tr>
+      </table>
+      <p>
+Soften hard resets. True/False
+      </p>
+    <a name='property5'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Read only view of the internal stop flag. 
+ This flag is cleared with a reset.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Examples elsewhere.
+ <ul>
+  <li>See the <a href='../../../org/oddjob/state/EqualsState.html'>state:equals</a> example. The resets are 
+  required because retry only sends a soft reset on retry
+  and it must be hardened to reset the <a href='../../../org/oddjob/io/ExistsJob.html'>exists</a>.
+  </li>
+ </ul>
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <title>Oddjob Reference - schedules:broken</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>schedules:broken</h1>
+    <hr/>
+This schedule allows a normal schedule 
+ to be broken by the results of another
+ schedule. This might be a list of bank holidays, or time of day, or any other
+ schedule.
+ <p>
+ This schedule works by moving the schedule forward if the start time of the
+ next interval falls within the next interval defined by the break. In the
+ example below for a time of Midday on 24th of December the logic is as follows:
+ <ul>
+   <li>The schedule is next due at 10:00 on the 25th of December.</li>
+   <li>This is within the break, move the schedule on.</li>
+   <li>The schedule is next due at 10:00 on the 26th of December.</li>
+   <li>This is within the break, move the schedule on.</li>
+   <li>The schedule is next due at 10:00 on the 27th of December.</li>
+   <li>This schedule is outside the break, use this result.</li>
+ </ul>
+ <p>
+ The optional alternative property defines a schedule to be used during the
+ breaks, instead of simply moving the interval forward.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>alternative</a></td>
+      <td>An alternative schedule to apply during a break.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>breaks</a></td>
+      <td>The breaks.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>schedule</a></td>
+      <td>The schedule.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A schedule that breaks for Christmas.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>A schedule with an alternative.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Examples elsewhere.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>alternative</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+An alternative schedule to apply during a break.
+ The alternative schedule will be passed the interval that is the break.
+      </p>
+    <a name='property2'><h4>breaks</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, but this schedule is pointless if none are provided.</td></tr>
+      </table>
+      <p>
+The breaks.
+      </p>
+    <a name='property3'><h4>schedule</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The schedule.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A schedule that breaks for Christmas.
+ 
+ <pre class="xml">
+&lt;schedules:broken xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;schedule&gt;
+        &lt;schedules:daily at="10:00"/&gt;
+    &lt;/schedule&gt;
+    &lt;breaks&gt;
+        &lt;schedules:yearly fromDate="12-25" toDate="12-26"/&gt;
+    &lt;/breaks&gt;
+&lt;/schedules:broken&gt;</pre>
+
+ 
+ The logic is explained above.
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+A schedule with an alternative. The schedule breaks at weekends and for 
+ Christmas. During the break the schedule will be due once at 11am the
+ first day of the break, instead of the usual 10am.
+ 
+ <pre class="xml">
+&lt;schedules:broken xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"&gt;
+    &lt;schedule&gt;
+         &lt;schedules:daily from="10:00"/&gt;
+    &lt;/schedule&gt;
+    &lt;breaks&gt;
+        &lt;schedules:list&gt;
+            &lt;schedules&gt;
+                &lt;schedules:weekly from="Saturday" to="Sunday"/&gt;
+                &lt;schedules:date on="2011-12-26"/&gt;
+                &lt;schedules:date on="2011-12-27"/&gt;
+            &lt;/schedules&gt;
+        &lt;/schedules:list&gt;        
+    &lt;/breaks&gt;
+    &lt;alternative&gt;
+        &lt;schedules:time from="11:00"/&gt;
+    &lt;/alternative&gt;
+&lt;/schedules:broken&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Examples elsewhere.
+ <ul>
+  <li>The <a href='../../../../org/oddjob/schedules/schedules/AfterSchedule.html'>schedules:after</a> documentation has an example that uses the 
+  <code>broken</code> schedule to calculate the day after the next
+  working day.</li>
+  <li>The <a href='../../../../org/oddjob/schedules/ScheduleType.html'>schedule</a> documentation shows a <code>broken</code>
+  schedule being used to calculate the next working day.</li>
+  <li>The <a href='../../../../org/oddjob/schedules/schedules/DayAfterSchedule.html'>schedules:day-after</a> and <a href='../../../../org/oddjob/schedules/schedules/DayBeforeSchedule.html'>schedules:day-before</a> documentation 
+  shows a <code>broken</code> schedule being used to move the last day of the month.</li>
+ </ul>
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

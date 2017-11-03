@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>Oddjob Reference - value</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>value</h1>
+    <hr/>
+A simple value. This is the most commonly used
+ type. 
+ <p>
+ A value can be:
+ <ul>
+ <li>Any simple type, either text or a number or boolean.</li>
+ <li>It can also be a reference to any other type somewhere else. i.e.
+ value can contain a ${someid.anyvalue} reference.</li>
+ </ul>
+ <p>
+ The ValueType value is expected to be an <code><a href='../../../../../api/org/oddjob/arooa/ArooaValue.html'>org.oddjob.arooa.ArooaValue</a></code>. This ensures
+ that references to other types aren't converted until the ValueType 
+ itself is converted. Because of this, simple values will be wrapped
+ as an <code><a href='../../../../../api/org/oddjob/arooa/types/ArooaObject.html'>org.oddjob.arooa.types.ArooaObject</a></code> by the automatic internal conversion. For
+ normal use this is entirely transparent. An example below demonstrates
+ this.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>value</a></td>
+      <td>The value.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A value that is a constant string value.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>A value that is a reference to a property.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Examining the internals of a value in Oddjob.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>value</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The value.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A value that is a constant string value.
+ 
+ <pre class="xml">
+&lt;value value="apple"/&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+A value that is a reference to a property.
+ 
+ <pre class="xml">
+&lt;value value="${vars.fruit}"/&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Examining the internals of a value in Oddjob.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;fruit&gt;
+                        &lt;value value="apple"/&gt;
+                    &lt;/fruit&gt;
+                &lt;/variables&gt;
+                &lt;echo&gt;${vars.fruit}
+${vars.fruit.class}
+${vars.fruit.value}
+${vars.fruit.value.class}
+${vars.fruit.value.value}
+${vars.fruit.value.value.class}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The output is:
+ 
+ <pre>
+apple
+class org.oddjob.arooa.types.ValueType
+apple
+class org.oddjob.arooa.types.ArooaObject
+apple
+class java.lang.String
+</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

@@ -1,0 +1,194 @@
+<html>
+  <head>
+    <title>Oddjob Reference - copy</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>copy</h1>
+    <hr/>
+A Copy job. Copy either:
+ <ul>
+   <li>A file from one name to another.</li> 
+   <li>A file or files or directories to a different directory.</li>
+   <li>An input (from another job) to a file.</li>
+   <li>A file to an output.</li>
+   <li>An input to an output.</li>
+ </ul>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>directoriesCopied</a></td>
+      <td>The number of directories copied.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>filesCopied</a></td>
+      <td>The number of files copied.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>from</a></td>
+      <td>The from file.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>input</a></td>
+      <td>An input.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>output</a></td>
+      <td>The output.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>to</a></td>
+      <td>The from file.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Copy a file.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Copy a directory.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Copy from a file to a buffer.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>directoriesCopied</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+The number of directories copied.
+      </p>
+    <a name='property2'><h4>filesCopied</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+The number of files copied.
+      </p>
+    <a name='property3'><h4>from</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes unless input supplied.</td></tr>
+      </table>
+      <p>
+The from file.
+      </p>
+    <a name='property4'><h4>input</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes unless from supplied.</td></tr>
+      </table>
+      <p>
+An input.
+      </p>
+    <a name='property5'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property6'><h4>output</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes unless to supplied.</td></tr>
+      </table>
+      <p>
+The output.
+      </p>
+    <a name='property7'><h4>to</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes unless output supplied.</td></tr>
+      </table>
+      <p>
+The from file.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Copy a file.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;copy to="${this.args[0]}/work/io/copy"&gt;
+            &lt;from&gt;
+                &lt;file file="${this.args[0]}/test/io/reference/test1.txt"/&gt;
+            &lt;/from&gt;
+        &lt;/copy&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Copy a directory.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;copy to="${this.args[0]}/work/io/copy"&gt;
+            &lt;from&gt;
+                &lt;file file="${this.args[0]}/test/io/reference/a"/&gt;
+            &lt;/from&gt;
+        &lt;/copy&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Copy from a file to a buffer.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;copy name="Copy from a file to a buffer"&gt;
+                    &lt;from&gt;
+                        &lt;file file="${this.args[0]}/test/io/reference/test1.txt"/&gt;
+                    &lt;/from&gt;
+                    &lt;output&gt;
+                        &lt;identify id="buff"&gt;
+                            &lt;value&gt;
+                                &lt;buffer/&gt;
+                            &lt;/value&gt;
+                        &lt;/identify&gt;
+
+                    &lt;/output&gt;
+                &lt;/copy&gt;
+                &lt;echo id="e" name="What's in the file?"&gt;${buff}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

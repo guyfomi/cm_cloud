@@ -1,0 +1,233 @@
+<html>
+  <head>
+    <title>Oddjob Reference - parallel</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>parallel</h1>
+    <hr/>
+A job which executes it's child jobs in parallel.
+ <p>
+ Once the child jobs are submitted, Oddjob's thread of execution continues
+ on out of this job. The state is set to ACTIVE and will continue to
+ change depending on the state of the child Jobs. The <code>join</code>
+ property can be used to hold the thread of execution until the 
+ submitted jobs have finished executing - but it's use is discouraged. 
+ See the property documentation below for more information.
+ 
+ The state of job, including its modification by the 
+ <code>stateOperator</code> property is identical to <a href='../../../../org/oddjob/jobs/structural/SequentialJob.html'>sequential</a>
+ and is well documented there. Likewise with the transient property.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>executorService</a></td>
+      <td>The ExecutorService to use.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>jobs</a></td>
+      <td>The child jobs.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>join</a></td>
+      <td>Should the execution thread of this job wait 
+ for the execution threads of the child jobs.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>stateOperator</a></td>
+      <td>Set the way the children's state is 
+ evaluated and reflected by the parent.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>stop</a></td>
+      <td>Read only view of the internal stop flag.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>transient</a></td>
+      <td>Is this job transient.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Two jobs running in parallel.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Two services started in parallel.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Examples elsewhere.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>executorService</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The ExecutorService to use. This will 
+ be automatically set by Oddjob.
+      </p>
+    <a name='property2'><h4>jobs</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No, but pointless if missing.</td></tr>
+      </table>
+      <p>
+The child jobs.
+      </p>
+    <a name='property3'><h4>join</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Defaults to false</td></tr>
+      </table>
+      <p>
+Should the execution thread of this job wait 
+ for the execution threads of the child jobs.
+ <p>
+ This property 
+ re-introduces the default behaviour of parallel before version 1.0. 
+ Behaviour was changed to encourage the use of event driven
+ configuration that didn't cause a thread to wait by using 
+ <a href='../../../../org/oddjob/state/CascadeJob.html'>state:cascade</a> or 
+ <a href='../../../../org/oddjob/scheduling/Trigger.html'>scheduling:trigger</a>.
+ <p>
+ There are situations where this is really convenient as otherwise
+ large reworking of the configuration is required. If possible - 
+ it is better practice to try and use the job state.
+      </p>
+    <a name='property4'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property5'><h4>stateOperator</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, default is ACTIVE.</td></tr>
+      </table>
+      <p>
+Set the way the children's state is 
+ evaluated and reflected by the parent. Values can be WORST, 
+ ACTIVE, or SERVICES.
+      </p>
+    <a name='property6'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Read only view of the internal stop flag. 
+ This flag is cleared with a reset.
+      </p>
+    <a name='property7'><h4>transient</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, default is false.</td></tr>
+      </table>
+      <p>
+Is this job transient. If true state will not
+ be persisted.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Two jobs running in parallel. Note that the order of execution of the
+ two child jobs is not predictable.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;parallel&gt;
+            &lt;jobs&gt;
+                &lt;echo&gt;This runs in parallel&lt;/echo&gt;
+                &lt;echo&gt;With this which could be displayed first!&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/parallel&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Two services started in parallel. This might be quite useful if the
+ services took a long time to start - maybe because they loaded a lot
+ of data into a cache for instance.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;state:cascade xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+            &lt;jobs&gt;
+                &lt;parallel&gt;
+                    &lt;jobs&gt;
+                        &lt;bean class="org.oddjob.jobs.structural.ServiceManagerTest$Lights" id="lights"/&gt;
+                        &lt;bean class="org.oddjob.jobs.structural.ServiceManagerTest$MachineThatGoes" goes="ping" id="machine"/&gt;
+                    &lt;/jobs&gt;
+                &lt;/parallel&gt;
+                &lt;echo&gt;The lights are ${lights.are} and the machine goes ${machine.goes}.&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/state:cascade&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The <a href='../../../../org/oddjob/state/CascadeJob.html'>state:cascade</a> will execute the final job only once both services
+ have started, and it will continue be in a STARTED after execution has
+ completed.
+ <p>
+ Adding a SERVICES stateOperator property will mean that parallel is
+ COMPLETE once the services have started and so the whole cascade shows
+ as complete.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;state:cascade xmlns:state="http://rgordon.co.uk/oddjob/state"&gt;
+            &lt;jobs&gt;
+                &lt;parallel stateOperator="SERVICES"&gt;
+                    &lt;jobs&gt;
+                        &lt;bean class="org.oddjob.jobs.structural.ServiceManagerTest$Lights" id="lights"/&gt;
+                        &lt;bean class="org.oddjob.jobs.structural.ServiceManagerTest$MachineThatGoes" goes="ping" id="machine"/&gt;
+                    &lt;/jobs&gt;
+                &lt;/parallel&gt;
+                &lt;echo&gt;The lights are ${lights.are} and the machine goes ${machine.goes}.&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/state:cascade&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Examples elsewhere.
+ <ul>
+  <li><a href='../../../../org/oddjob/scheduling/ExecutorThrottleType.html'>throttle</a> has an example of limiting the number
+  of concurrently executing jobs.</li>
+ </ul>
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

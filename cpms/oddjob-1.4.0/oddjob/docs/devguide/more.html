@@ -1,0 +1,263 @@
+<html>
+	<head>
+		<title>Dev Guide - More on Jobs</title>
+		<style type="text/css">
+			@import url(styles.css);
+		</style>
+	</head>	
+	<body>
+	
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="background.html">Previous</a>]
+		[<a href="arooa.html">Next</a>]
+	
+		<h1>More on Jobs</h1>
+
+		<ul>
+			<li><a href="#completion">Completion States</a></li>
+			<li><a href="#stopping">Stopping</a></li>
+			<li><a href="#logging">Logging</a></li>
+			<li><a href="#services">Services</a></li>
+			<li><a href="#serialization">Serialization</a></li>
+		</ul>
+
+		<h4 id="completion">Comletion States</h4>
+		
+		<p>So far we've written a nice job that run's without errors - but
+		what happens if something goes wrong?</p>
+		
+		<p>Oddjob will catch all Throwables during job execution and 
+		set the job state to Exception. Let see with an example.</p>
+		
+<pre class="code">
+package org.oddjob.devguide;
+
+<font color="0000FF">public</font> <font color="0000FF">class</font> NaughtyJob <font color="0000FF">implements</font> Runnable {
+
+    <font color="0000FF">public</font> <font color="0000FF">void</font> run() {
+        <font color="0000FF">throw</font> <font color="0000FF">new</font> RuntimeException(<font color="FF0000"><i>&quot;I won't run. I won't!&quot;</i></font>);
+    }
+}
+</pre>
+
+
+		<p>And run it...</p>
+		
+		<a href="images/naughty.gif"><img src="images/naughty.gif"
+			height="320" width="500" alt="A Naughty Job"/></a>
+				
+		<p>You can try resetting the job and re-running it however 
+		this job will not start behaving! The import thing is that 
+		it's naughtiness is contained.</p>
+		
+		<p>Oddjob will also recognise the result property and use it
+		to either set a job complete or not complete. If the result
+		is 0 the job is state is complete, any other value and it's 
+		not complete.</p>
+		
+<pre class="code">
+package org.oddjob.devguide;
+
+<font color="0000FF">public</font> <font color="0000FF">class</font> NotCompleteJob <font color="0000FF">implements</font> Runnable {
+
+    <font color="0000FF">public</font> <font color="0000FF">int</font> getResult() {
+        <font color="0000FF">return</font> 1;
+    }
+    
+    <font color="0000FF">public</font> <font color="0000FF">void</font> run() {
+    }
+}
+</pre>
+
+
+		<p>And run it...</p>
+		
+		<a href="images/notcomplete.gif"><img src="images/notcomplete.gif"
+			height="320" width="500" alt="A Naughty Job"/></a>
+						
+
+	<h4 id="stopping">Stopping a Job</h4>
+		
+		<p>To stop a job Oddjob will interrupt the thread it's running. 
+		Long running jobs should be written to cope with this.
+		</p>
+		
+		<p>Here's an example.</p>
+
+<pre class="code">
+package org.oddjob.devguide;
+
+<font color="0000FF">public</font> <font color="0000FF">class</font> StoppingJob <font color="0000FF">implements</font> Runnable {
+
+    <font color="0000FF">public</font> <font color="0000FF">void</font> run() {
+        <font color="0000FF">synchronized</font>(<font color="0000FF">this</font>) {
+            <font color="0000FF">try</font> {
+                wait();
+            } <font color="0000FF">catch</font> (InterruptedException e) {
+                System.out.println(<font color="FF0000"><i>&quot;OK - I'll stop.&quot;</i></font>);
+            }
+        }
+    }
+}
+</pre>
+
+		
+		<h4 id="logging">Logging</h4>
+
+		<p>Oddjob uses <a href="http://logging.apache.org/log4j">log4j</a>. If
+		you also use Log4j, any logging in your job's <code>run()</code> method
+		will be captured by Oddjob and displayed in the log panel of Oddjob 
+		Explorer.
+
+		<h4 id="services">Services</h4>
+
+		<p>Sometimes you don't want a job to run and complete,
+		but to keep running in the background, probably providing some
+		kind of service, such as Scheduling.</p>
+		
+		<p>
+		Oddjob will recognise the method signature of 
+		<code>public void start()</code> and <code>public void stop()</code> and
+		treat that object as a service. When you run the job, the start
+		method will be called, but when it returns the state will still
+		be seen as executing. The service will be stopped when you
+		stop the job.
+		</p>
+		
+		<p>Here's an example.</p>
+		
+<pre class="code">
+package org.oddjob.devguide;
+
+<font color="0000FF">import</font> java.util.concurrent.CountDownLatch;
+
+<font color="0000FF">public</font> <font color="0000FF">class</font> SimpleService {
+
+    <font color="0000FF">private</font> <font color="0000FF">volatile</font> <font color="0000FF">boolean</font> stop;
+
+    <font color="0000FF">private</font> <font color="0000FF">volatile</font> Thread thread;
+    
+    <font color="0000FF">public</font> <font color="0000FF">void</font> start() <font color="0000FF">throws</font> InterruptedException {
+        
+        <font color="0000FF">final</font> CountDownLatch serviceStarted = <font color="0000FF">new</font> CountDownLatch(1);
+        
+        thread = <font color="0000FF">new</font> Thread(<font color="0000FF">new</font> Runnable() {
+            <font color="0000FF">public</font> <font color="0000FF">void</font> run() {
+                <font color="0000FF">while</font> (!stop) {
+                    System.out.println(<font color="FF0000"><i>&quot;I could be useful.&quot;</i></font>);
+                    serviceStarted.countDown();
+                    <font color="0000FF">synchronized</font> (SimpleService.<font color="0000FF">this</font>) {
+                        <font color="0000FF">try</font> {
+                            SimpleService.<font color="0000FF">this</font>.wait();
+                        } <font color="0000FF">catch</font> (InterruptedException e) {
+                            <font color="0000FF">break</font>;
+                        }
+                    }
+                }
+                System.out.println(<font color="FF0000"><i>&quot;Service Stopping.&quot;</i></font>);
+            }});
+        thread.start();
+        
+        serviceStarted.await();
+    }
+
+    <font color="0000FF">public</font> <font color="0000FF">void</font> stop() <font color="0000FF">throws</font> InterruptedException {
+        <font color="0000FF">synchronized</font>(<font color="0000FF">this</font>) {
+            stop = true;
+            notifyAll();
+        }
+        <font color="0000FF">if</font> (thread != null) {
+            thread.join();
+        }
+    }
+}
+</pre>
+
+
+		<p>A service has the advantage that when used in a sequential
+		job, jobs after the service will run once the
+		service has started, and can then use that service for something.</p>
+		
+		<p>Because the job that runs immediately after the service may
+		consume that service, the writer of the service we must ensure
+		that the service is guaranteed to be available once the 
+		<code>start</code> method
+		completes (or an Exception is thrown). In our example we ensure 
+		this is case by using a 
+		<code>CountDownLatch</code>.
+		
+		<p>The observant reader may be wondering what happens if the thread
+		executing start has been interrupted? Won't the service be started
+		but an Exception also thrown? Oddjob will ensure that the interrupted
+		flag is cleared before it enters the start method so you don't need
+		to check.</p>
+
+		<p>Ensuring that a service is stopped before the <code>stop</code>
+		method completes isn't as important. It depends on the nature of
+		the service. What happens if a service is stopped and started 
+		quickly for instance? In our example it could be argued that it 
+		wouldn't matter that a new thread was created before the previous 
+		one had completed - however if we wished to write a unit test that
+		relied on the order of output (which you can find in the source 
+		distribution) we need to guarantee the behaviour of stop which we 
+		do by using
+		<code>thread.join()</code>.
+		 </p>
+		 
+		<p>Here's a configuration that uses this service.</p>
+		
+<pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+      &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;bean id="service" class="org.oddjob.devguide.SimpleService"/&gt;
+        &lt;echo&gt;Service Has Started.&lt;/echo&gt;
+        &lt;stop job="${service}"/&gt;
+        &lt;echo&gt;Service Has Stopped.&lt;/echo&gt;
+      &lt;/jobs&gt;
+      &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+
+	<p>First the service is started, next an echo tells us the service has
+	started, then the service is stopped, and finally another echo tells us
+	the service has stopped. Here's the result of running this configuration 
+	with Oddjob.</p>
+	
+<pre class="command">
+I could be useful.
+Service Has Started.
+Service Stopping.
+Service Has Stopped.
+ </pre>
+
+	<p>Because of the way we wrote our service this order is guaranteed.
+	To summarise: You need to guarantee a service is started in 
+	<code>start()</code> but you can
+	use your discretion as to whether it's really stopped by 
+	<code>stop()</code>.</p>
+
+
+		<h4 id="serialization">Serialization</h4>
+
+		<p>If your job implements <code>java.io.Serializable</code> and Oddjob is
+		running with a persister then Oddjob will serialise the state of your
+		job when it completes. When Oddjob next runs, it re-creates the 
+		job from the serialised form.</p>
+		
+		<p>After your job is restored, Oddjob will continue to configure your
+		job from the configuration file. Thus any serialised properties that
+		appear in the configuration will be overwritten.</p>
+				
+		<hr/>
+	
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="background.html">Previous</a>]
+		[<a href="arooa.html">Next</a>]
+	
+	</body>
+</html>

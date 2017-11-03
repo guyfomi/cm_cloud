@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <title>Oddjob Reference - arooa:descriptor</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>arooa:descriptor</h1>
+    <hr/>
+A definition of an Arooa descriptor.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>components</a></td>
+      <td>A list of <a href='../../../../org/oddjob/arooa/deploy/BeanDefinition.html'>arooa:bean-def</a>s for components.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>conversions</a></td>
+      <td>List of class names that must implement
+ the <code><a href='../../../../../api/org/oddjob/arooa/convert/ConversionProvider.html'>org.oddjob.arooa.convert.ConversionProvider</a></code> interface.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>namespace</a></td>
+      <td>The name space that applies to 
+ all elements defined in definitions.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>prefix</a></td>
+      <td>The default prefix for the name space.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>values</a></td>
+      <td>A list of <a href='../../../../org/oddjob/arooa/deploy/BeanDefinition.html'>arooa:bean-def</a>s for values.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>See the Dev Guide.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>The descriptor for the JMX client and server.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>components</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A list of <a href='../../../../org/oddjob/arooa/deploy/BeanDefinition.html'>arooa:bean-def</a>s for components.
+      </p>
+    <a name='property2'><h4>conversions</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+List of class names that must implement
+ the <code><a href='../../../../../api/org/oddjob/arooa/convert/ConversionProvider.html'>org.oddjob.arooa.convert.ConversionProvider</a></code> interface.
+      </p>
+    <a name='property3'><h4>namespace</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The name space that applies to 
+ all elements defined in definitions.
+      </p>
+    <a name='property4'><h4>prefix</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes if name space is provided.</td></tr>
+      </table>
+      <p>
+The default prefix for the name space.
+      </p>
+    <a name='property5'><h4>values</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A list of <a href='../../../../org/oddjob/arooa/deploy/BeanDefinition.html'>arooa:bean-def</a>s for values.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+See the Dev Guide. There is an example of a custom descriptor
+ <a href="http://rgordon.co.uk/projects/oddjob/devguide/oddballs.html">here</a>.
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+The descriptor for the JMX client and server. This is the internal descriptor 
+ used by Oddjob.
+ 
+ <pre class="xml">
+&lt;arooa:descriptor prefix="jmx" namespace="http://rgordon.co.uk/oddjob/jmx" xmlns:arooa="http://rgordon.co.uk/oddjob/arooa"&gt;
+    &lt;values&gt;
+        &lt;arooa:bean-def element="server-security" className="org.oddjob.jmx.server.SimpleServerSecurity"/&gt;
+        &lt;arooa:bean-def element="client-credentials" className="org.oddjob.jmx.client.UsernamePassword"/&gt;
+    &lt;/values&gt;
+    &lt;components&gt;
+        &lt;arooa:bean-def element="client" className="org.oddjob.jmx.JMXClientJob" designFactory="org.oddjob.designer.components.ClientDC"/&gt;
+        &lt;arooa:bean-def element="server" className="org.oddjob.jmx.JMXServerJob" designFactory="org.oddjob.designer.components.ServerDC"/&gt;
+        &lt;arooa:bean-def element="service" className="org.oddjob.jmx.JMXServiceJob" designFactory="org.oddjob.designer.components.JMXServiceDC"/&gt;
+        
+    &lt;/components&gt;
+&lt;/arooa:descriptor&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

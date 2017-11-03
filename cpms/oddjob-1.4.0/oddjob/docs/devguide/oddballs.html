@@ -1,0 +1,379 @@
+<html>
+	<head>
+		<title>Dev Guide - Modularity</title>
+		<style type="text/css">
+			@import url(styles.css);
+		</style>
+	</head>	
+	<body>
+	
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="jsr330.html">Previous</a>]
+		[<a href="exposed.html">Next</a>]
+		
+		<h1>Modularity And Oddballs</h1>
+
+		<p>Oddjob's extension points.</p>
+		
+		<p>In this section we take a look at 
+		the many options for making our classes available to Oddjob. We'll
+	 learn how to tell Oddjob to use nice short element names like 
+	 <code>&lt;copy&gt;</code>
+	 and we'll learn how to write an Oddball which is an Oddjob plugin.</p>
+		
+	<ul>
+		<li><a href="#class">The Class System</a></li>
+		<li><a href="#factory">The Descriptor Factory</a></li>
+		<li><a href="#design">Dynamic Design</a></li>
+		<li><a href="#oddjob">Per Oddjob Modularity</a></li>
+		<li><a href="#oddballs">Oddballs</a></li>
+	</ul>
+
+	<!-- ============================================== -->
+	
+	<h4 id="class">The Class System</h4>
+	
+	<p>In the first instance Oddjob finds its classes...</p>
+
+	<ul>
+	<li>On the path given by the <code>-classpath</code> option.</li>
+	<li>In any <code>.jar</code> in the <code>lib</code> directory.</li>
+	<li>In any <code>.jar</code> in the <code>opt/lib</code> directory.</li>
+	<li>In the <code>opt/classes</code> directory.</li> 
+	</ul>
+	
+	<p>We can prove this by copying an example class:</p>
+	
+<pre class="command">
+$ mkdir opt/classes/org
+$ mkdir opt/classes/org/oddjob
+$ mkdir opt/classes/org/oddjob/devguide
+$ cp examples/classes/org/oddjob/devguide/HelloWorldJob.class opt/classes/org/oddjob/devguide
+$ java -jar run-oddjob.jar -f examples/devguide/hello1.xml
+Hello World!
+</pre>
+	
+	<!-- ============================================== -->
+	
+	<h4 id="factory">The Descriptor Factory</h4>
+
+	<p>How can we use our own XML elements instead of boring old <code>
+	&lt;bean&gt;</code> elements? 
+	Provide an implementation of an
+	<a href="../api/org/oddjob/arooa/deploy/ArooaDescriptorFactory.html">ArooaDescriptorFactory</a>.
+	</p>
+	
+	<p>When Oddjob starts it has one of these factory things that scans the classpath
+	for any number of <code>META-INF/arooa.xml</code> XML files which it 
+	expects to be able to parse to create another factory. It joins all these little 
+	factories together and creates a big factory (For those that like design patterns 
+	this is of course the classic Composite Pattern).
+	</p>
+	
+	<p>There's an example of one of these XML files in the examples directory called
+	<code>helloperson-arooa.xml</code>. It's for our HelloPersonJob example from the
+	previous section and it looks like this.
+	
+	
+<pre class="xml">
+&lt;arooa:descriptor xmlns:arooa="http://rgordon.co.uk/oddjob/arooa"&gt;
+    &lt;components&gt;
+        &lt;arooa:bean-def element="hello" className="org.oddjob.devguide.HelloPersonJob"/&gt;
+    &lt;/components&gt;
+    &lt;values&gt;
+        &lt;arooa:bean-def element="person" className="org.oddjob.devguide.Person"/&gt;
+    &lt;/values&gt;
+&lt;/arooa:descriptor&gt;</pre>
+
+	
+	Now as Arooa is a Java Bean Framework, it probably comes as no surprise to 
+	learn that this is Java Bean implementation of
+	an ArooaDescriptorFactory and it's parsed with... Arooa of course. See
+	<a href="../reference/org/oddjob/arooa/deploy/ArooaDescriptorBean.html">&lt;arooa:descriptor&gt;</a>
+	in the reference for more on how to configure this bean.</p>
+	
+	<p>If we copy the descriptor:</p>
+	
+<pre class="command">
+$ cp examples/devguide/helloperson-arooa.xml examples/classes/META-INF/arooa.xml
+</pre>
+	
+	<p>We can modify our original configuration to become:</p>
+	 
+<pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;hello formal="true"&gt;
+            &lt;person&gt;
+                &lt;person title="Mr" firstname="John" surname="Smith"/&gt;
+            &lt;/person&gt;
+        &lt;/hello&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+
+	<p>And run it:</p>
+	
+<pre class="command">
+$ java -jar run-oddjob.jar -cp examples/classes -f examples/devguide/helloperson2.xml
+Hello Mr Smith.
+</pre>
+	
+	<!-- ============================================== -->
+	
+	<h4 id="design">Dynamic Design</h4>
+	
+	<p>Once a component has been given an element to
+	class mapping, Oddjob Designer will automatically create a form for it:
+	</p>
+	
+	<a href="images/arooa8.gif"><img src="images/arooa8.gif"
+				height="320" width="500" alt="Component Design"/></a>
+
+	<p>And for person too:</p>
+	
+	<a href="images/arooa9.gif"><img src="images/arooa9.gif"
+				height="320" width="500" alt="Property Design"/></a>
+
+	<p>Ok, not pretty - but it can make a pleasant change from XML.</p>
+
+	<!-- ============================================== -->
+	
+	<h4 id="oddjob">Per Oddjob Modularity</h4>
+	
+	<p>A nested Oddjob job within Oddjob can also be configured with it's own class 
+	loader and descriptor factory.</p>
+	
+<pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;oddjob file="${this.dir}/helloperson2.xml"&gt;
+            &lt;descriptorFactory&gt;
+                &lt;import file="${this.dir}/helloperson-arooa.xml"/&gt;
+            &lt;/descriptorFactory&gt;
+            &lt;classLoader&gt;
+                &lt;url-class-loader&gt;
+                    &lt;files&gt;
+                        &lt;file file="${this.dir}/../classes"/&gt;
+                    &lt;/files&gt;
+                &lt;/url-class-loader&gt;
+            &lt;/classLoader&gt;
+        &lt;/oddjob&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+
+	<p>This does the same as the above. No classpath required.</p>
+	
+<pre class="command">
+$ java -jar run-oddjob.jar -f examples/devguide/helloperson-main.xml
+Hello Mr Smith.
+</pre>
+	
+	<p>The difference is that a new class loader is created by Oddjob and used 
+	when processing the descriptor factory to
+	load the <code>HelloPersonJob</code> class.</p>
+	
+
+	<!-- ============================================== -->
+	
+	<h4 id="oddballs">Oddballs</h4>
+
+	<p>Oddballs are Oddjob's plugin architecture.</p>
+	
+	<p>Oddballs extends the above features of Oddjob modularity by 
+	defining a 
+	recognised directory structure for deploying a set of job classes and
+	their dependent libraries.</p>
+	
+	<p>An Oddball is any directory in Oddjob's <code>oddballs</code> directory.
+	Oddballs find their classes...</p>
+	
+	<ul>
+		<li>In any <code>.jar</code> in the <code>lib</code> directory.</li>
+		<li>In the <code>classes</code> directory.</li> 
+	</ul>
+	
+	<p>(Familiar to those who know Servlets. But there's no 
+	<code>web.xml</code>, instead...)</p>
+	
+	<p>When the Oddball loads it scans this classpath
+	for any number of <code>META-INF/arooa.xml</code> XML file from which it 
+	creates it's ArooaDescriptorFactory.</p>
+	
+	<p><b>Pre-Installed Oddballs</b></p>
+	
+	<p>Oddjob comes pre-installed with some Oddballs for Ant tasks, mail, 
+	FTP, and an HSQL database server. Here's a screenshot of a deployed
+	Oddjob and it's Oddballs:
+	</p>
+	
+	<a href="images/oddjob-oddballs.jpg"><img src="images/oddjob-oddballs.jpg"
+				alt="Oddjob with Oddballs"/></a>
+	
+	<p><b>Developing an Oddball</b></p>
+	
+	
+	<p>In the deployed Oddballs above, the <code>META-INF/arooa.xml</code> 
+	file is combined with Oddjob 
+	job beans in a jar for neat deployment. While developing an Oddball
+	ensuring the project directory also adheres to the Oddball layout 
+	allows for testing without any deployment:
+	</p>
+	
+	<a href="images/oddball-development.jpg"><img src="images/oddball-development.jpg"
+				alt="Developing an Oddball"/></a>
+
+	<p><b>Launching with Odballs not In The Oddballs Directory</b></p>
+
+	<p>Here's an eclipse launch configuration used to Launch Oddjob with
+	all it's Oddballs:</p>
+	
+<pre class="xml">
+&lt;launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication"&gt;
+&lt;listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS"&gt;
+&lt;listEntry value="/projects.oddjob/src/java/org/oddjob/Main.java"/&gt;
+&lt;/listAttribute&gt;
+&lt;listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES"&gt;
+&lt;listEntry value="1"/&gt;
+&lt;/listAttribute&gt;
+&lt;stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.oddjob.Main"/&gt;
+&lt;stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-op ${workspace_loc:projects.oj-ant};${workspace_loc:projects.oj-examples};${workspace_loc:projects.oj-hsql};${workspace_loc:projects.oj-mail};${workspace_loc:projects.oj-net};${workspace_loc:projects.oj-spring}/target;"/&gt;
+&lt;stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="projects.oddjob"/&gt;
+&lt;/launchConfiguration&gt;</pre>
+
+	
+	<p>The <code>-op</code> argument stands for 'Oddball Path'. Notice that
+	the Spring Oddball (<code>oj-spring</code>) points to a 'target' 
+	directory. This is because it is built with Maven. Fortunately 
+	a Maven Install creates a directory structure that is Oddball conformant too!
+	</p>
+	
+	<p><b>The Spring Oddball</b></p>
+	
+	<p>
+	The Spring Oddball is a separate download. It's available from Sourceforge
+	<a href="http://sourceforge.net/projects/ojob/files/oj-spring/">here</a>.  To deploy the Spring Oddball simply
+	download the binary and unzip it into the Oddjob's
+	 <code>oddballs</code> directory, and restart Oddjob.</p>
+	
+	
+	<p><b>Un-Installing Oddballs</b></p>
+	
+	<p>To un-install an Oddball, simply move it out of the <code>oddballs</code>
+	directory, and restart Oddjob.</p>
+	
+	<p><b>Using Oddball Jars In Your Own App Classpath</b></p>
+	
+	<p>
+	If you want to use an Oddball jar with your own application classpath, 
+	you can can just drop it in with your own libs but the <code>arooa.xml</code>
+	will not be automatically loaded. To load it we can use use  a
+	<a href="../api/org/oddjob/arooa/deploy/ClassPathDescriptorFactory.html">
+	ClassPathDescriptorFactory.html</a>. Here's an example of using the
+	And Oddball jars without it being an Oddball.
+	</p>
+	
+<pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;oddjob file="${this.dir}/hello-from-ant.xml"&gt;
+            &lt;descriptorFactory&gt;
+                &lt;bean class="org.oddjob.arooa.deploy.ClassPathDescriptorFactory" excludeParent="true"/&gt;
+            &lt;/descriptorFactory&gt;
+            &lt;classLoader&gt;
+                &lt;url-class-loader&gt;
+                    &lt;files&gt;
+                        &lt;files&gt;
+                            &lt;list&gt;
+                                &lt;file file="${my-app.dir}/classes"/&gt;
+                                &lt;files files="${my-app.dir}/lib/*.jar"/&gt;
+                            &lt;/list&gt;
+                        &lt;/files&gt;
+                    &lt;/files&gt;
+                &lt;/url-class-loader&gt;
+            &lt;/classLoader&gt;
+        &lt;/oddjob&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+
+	<p><b>Explicitly Loading Oddballs For a Nested Oddjob</b></p>
+	
+	<p>An Oddball or many Oddballs can be explicitly loaded using the 
+	<a href="../reference/org/oddjob/oddballs/OddballsDescriptorFactory.html">&lt;oddballs&gt;</a>
+	type
+	
+<pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;oddjob file="${this.dir}/echo-ant-classpath.xml"&gt;
+            &lt;descriptorFactory&gt;
+                &lt;oddballs&gt;
+                    &lt;files&gt;
+                        &lt;file file="${my-app.dir}"/&gt;
+                    &lt;/files&gt;
+                &lt;/oddballs&gt;
+            &lt;/descriptorFactory&gt;
+        &lt;/oddjob&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+
+	<p><b>Extending an Oddballs Classpath</b></p>
+	
+	<p>If you want to extend an Oddballs classpath you can do so by
+	using a 
+	<a href="../reference/org/oddjob/util/URLClassLoaderType.html">&lt;url-class-loader&gt;</a>
+	and refering to the class loader of the component as the parent class loader.
+	</p>
+	
+<pre class="xml">
+&lt;oddjob id="this"&gt;
+  &lt;job&gt;
+    &lt;ant id="my-ant" baseDir="${this.dir}"&gt;
+      &lt;tasks&gt;
+        &lt;xml&gt;
+          &lt;tasks&gt;
+            &lt;whichresource resource="/org/oddjob/devguide/MyAntTask.class" property="my-task.url"/&gt;
+            &lt;echo message="${my-task.url}"/&gt;
+          &lt;/tasks&gt;
+        &lt;/xml&gt;
+      &lt;/tasks&gt;
+      &lt;output&gt;
+        &lt;stdout/&gt;
+      &lt;/output&gt;
+      &lt;classLoader&gt;
+        &lt;url-class-loader&gt;
+          &lt;files&gt;
+            &lt;file file="${this.dir}/../classes"/&gt;
+          &lt;/files&gt;
+          &lt;parent&gt;
+            &lt;value value="${my-ant.class.classLoader}"/&gt;
+          &lt;/parent&gt;
+        &lt;/url-class-loader&gt;
+      &lt;/classLoader&gt;
+    &lt;/ant&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+
+	<p>The author was hoping to show the running of a custom task using
+	our extended classpath - However, although our task can be found by Ant, as,
+	if you run this example you will see, Ant's Taskdef doesn't use an Ant's 
+	projects own core classloader! Hopefully though you get the point. Oddjob's 
+	build process (<code>oj-assembly</code> in the source distribution) uses
+	this technique to ensure that the ant-junit.jar is available during the
+	build.
+	</p>
+	
+		<hr/>
+
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="jsr330.html">Previous</a>]
+		[<a href="exposed.html">Next</a>]
+		
+	</body>
+</html>

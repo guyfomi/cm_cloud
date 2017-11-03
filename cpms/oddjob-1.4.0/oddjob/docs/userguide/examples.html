@@ -1,0 +1,126 @@
+<html>
+	<head>
+		<title>Oddjob - Examples</title>
+	</head>
+	<body>
+
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="explorer.html">Previous</a>]
+		[<a href="first.html">Next</a>]
+		
+		<h1>Examples</h1>
+
+		<p>Let's see what Oddjob can do.</p>
+
+		<ul>
+			<li><a href="#simple">Hello World</a></li>
+			<li><a href="#exec">Execute a Batch File</a></li>
+			<li><a href="#workflow">Conditional Paths</a></li>
+			<li><a href="#scheduling">A Scheduler Example</a></li>
+			<li><a href="#distributed">Distributed Scheduling</a></li>
+			<li><a href="#sharing">Sharing Jobs on A Network</a></li>
+		</ul>
+
+		<p>In addition to these examples, there are also many examples
+		from the Reference, this User Guide, and the Developer Guide
+		in the <code>examples</code> directory</p>
+
+		<h4 id="simple">Hello World</h4>
+
+		<p>All examples should begin with the simplest example possible and
+		here it is!</p>
+		
+		<a href="images/examples1.gif"><img src="images/examples1.gif"
+				height="320" width="500" alt="Hello World"/></a>
+				
+		<h4 id="exec">Execute a batch file</h4>
+		
+		<p>This example demonstrates executing a batch file from Oddjob
+			and introduces us to using sequences of jobs
+			and variables.</p>
+
+		<p>The example consists of a sequence of two jobs. The 
+		first sets a variable, 
+		the second executes the batch file with the variable value
+		passed in as an argument.</p>
+
+		<a href="images/examples2.gif"><img src="images/examples2.gif"
+				height="320" width="500" alt="Exec Example"/></a>
+
+		<h4 id="workflow">Conditional Paths</h4>
+		
+		<p>An 'if' job uses the return state of one job to decide
+			which of a number of alternate job branches to execute.</p>
+		
+		<p>This job uses a random task to simulate jobs executing 
+			with mixed results.
+			The example is run in a timer loop to
+			continually show the flow of events.</p>
+
+		<a href="images/examples4.gif"><img src="images/examples4.gif"
+				height="320" width="500" alt="Hello World"/></a>
+
+		<h4 id="scheduling">A Scheduling Example</h4>
+
+		<p>This is a demonstration of the flexible scheduling features of 
+			Oddjob. A file is downloaded via ftp daily. If the download
+			fails after a number of retries an email is sent.</p>
+
+		<a href="images/examples5.gif"><img src="images/examples5.gif"
+				height="320" width="500" alt="Scheduling"/></a>
+
+		
+		<p>The files are downloaded from the <a href="http://www.cme.com">CME</a>
+		ftp site. This is one of the real life scheduling examples that inspired
+		Oddjob. Points of interest include that the filename contains the date and
+		the files are sourced from different time zones.</p>
+		
+		<p>An <a href="../reference/org/oddjob/persist/ArchiveJob.html">Archive</a>
+		job captures the results of each run. A folder contains
+		<a href="../reference/org/oddjob/persist/ArchiveBrowserJob.html">
+		Archive Browser</a> jobs that allow the results of previous runs to be
+		viewed.</p>
+		 
+		<h4 id="distributed">Distributed Scheduling</h4>
+
+		<p>Demonstrates how Oddjob could be used to schedule jobs over different
+		servers. The three nested Oddjobs - Worker 1, 2 and 3 would be identical
+		job configurations on three different servers. They use a central 
+		database to coordinate grabbing for work.</p>
+
+		<p>The <a href="grabbing.html">Distributing Work</a> section of this
+		user guide has another simple example of this.
+		
+		<h4 id="sharing">Sharing Jobs on A Network</h4>
+
+		<p>This example shows how an 
+		Oddjob client can be used to monitor Oddjob running on a remote server.
+		</p>
+		
+		<a href="images/examples6.gif"><img src="images/examples6.gif"
+				height="320" width="500" alt="Sharing Oddjob"/></a>
+				
+		<p>Although here we have the client and server running in the same
+		folder.</p>
+		
+		<p>If this example doesn't work it might be because your machine 
+		doesn't recognise
+		<code>localhost</code>. When you've learnt about configuring Oddjob
+		come back and try changing the client and server configurations to contain
+		your network name or IP address.</p>
+		
+		<p>To see the examples really working across the network
+		change the client configuration from
+		<code>localhost</code> to the name or IP address of your server and run the
+		client example on a different machine.</p>
+
+		<hr/>
+		
+		[<a href="../index.html">Home</a>]
+		[<a href="index.html">Index</a>]
+		[<a href="explorer.html">Previous</a>]
+		[<a href="first.html">Next</a>]
+		
+	</body>
+</html>

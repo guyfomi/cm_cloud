@@ -1,0 +1,10 @@
+<oddjob>
+    <job>
+        <sequential>
+            <jobs>
+                <echo>This is followed...</echo>
+                <echo>...By this</echo>
+            </jobs>
+        </sequential>
+    </job>
+</oddjob>

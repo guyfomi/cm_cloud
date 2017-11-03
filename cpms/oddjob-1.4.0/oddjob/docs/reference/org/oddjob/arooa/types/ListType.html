@@ -1,0 +1,334 @@
+<html>
+  <head>
+    <title>Oddjob Reference - list</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>list</h1>
+    <hr/>
+A list provides a way of setting properties that are
+ either <code>java.util.List</code> types or arrays. A list can include any other 
+ type including another list or array type.
+ <p>
+ Handling of multi-dimensional arrays has not been considered. Such properties
+ are probably best defined with a custom <code><a href='../../../../../api/org/oddjob/arooa/ArooaValue.html'>org.oddjob.arooa.ArooaValue</a></code>.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>elementType</a></td>
+      <td>The required element type.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>merge</a></td>
+      <td>If the element is a list or array
+ the values are merged into this list.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>unique</a></td>
+      <td>Ensures the list contains only
+ unique elements.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>values</a></td>
+      <td>Any values.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>A simple list of things.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>A Merged list.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>A Converted list.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>Add to a list the fly.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>elementType</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. Elements will be left being what they want to
+ be.</td></tr>
+      </table>
+      <p>
+The required element type. If this is specified
+ all elements of the array will attempt to be converted to this type.
+      </p>
+    <a name='property2'><h4>merge</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No, defaults to not merging.</td></tr>
+      </table>
+      <p>
+If the element is a list or array
+ the values are merged into this list.
+      </p>
+    <a name='property3'><h4>unique</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Ensures the list contains only
+ unique elements.
+      </p>
+    <a name='property4'><h4>values</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Any values.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+A simple list of things. The list contains 3 things two Strings and a 
+ nested list that contains one String.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+  &lt;job&gt;
+    &lt;sequential&gt;
+      &lt;jobs&gt;
+        &lt;variables id="vars"&gt;
+          &lt;ourList&gt;
+            &lt;list&gt;
+              &lt;values&gt;
+                &lt;value value="Hello World"/&gt;
+                &lt;value value="Goodbye World"/&gt;
+                &lt;list&gt;
+                  &lt;values&gt;
+                    &lt;value value="I'm in another list"/&gt;
+                  &lt;/values&gt;
+                &lt;/list&gt;
+              &lt;/values&gt;
+            &lt;/list&gt;
+          &lt;/ourList&gt;
+        &lt;/variables&gt;
+        &lt;repeat id="each"&gt;
+          &lt;values&gt;
+            &lt;value value="${vars.ourList}"/&gt;
+          &lt;/values&gt;
+          &lt;job&gt;
+            &lt;echo&gt;${each.current}&lt;/echo&gt;
+          &lt;/job&gt;
+        &lt;/repeat&gt;
+      &lt;/jobs&gt;
+    &lt;/sequential&gt;
+  &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The output is:
+ 
+ <pre>
+Hello World
+Goodbye World
+[I'm in another list]
+</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+A Merged list. This list merges a plain value, a sub list and
+ and array into a list of 5 separate values.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;aList&gt;
+                        &lt;list merge="true"&gt;
+                            &lt;values&gt;
+                                &lt;value value="apples"/&gt;
+                                &lt;list&gt;
+                                    &lt;values&gt;
+                                        &lt;value value="oranges"/&gt;
+                                        &lt;value value="bananas"/&gt;
+                                    &lt;/values&gt;
+                                &lt;/list&gt;
+                                &lt;tokenizer text="kiwis, mangos"/&gt;
+                            &lt;/values&gt;
+                        &lt;/list&gt;
+                    &lt;/aList&gt;
+                &lt;/variables&gt;
+                &lt;foreach&gt;
+                    &lt;values&gt;
+                        &lt;value value="${vars.aList}"/&gt;
+                    &lt;/values&gt;
+                    &lt;configuration&gt;
+                        &lt;xml&gt;
+                            &lt;foreach id="loop"&gt;
+                                &lt;job&gt;
+                                    &lt;echo&gt;${loop.current}&lt;/echo&gt;
+                                &lt;/job&gt;
+                            &lt;/foreach&gt;
+                        &lt;/xml&gt;
+                    &lt;/configuration&gt;
+                &lt;/foreach&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The output is:
+ 
+ <pre>
+apples
+oranges
+bananas
+kiwis
+mangos
+</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+A Converted list. The elements of the list are converted to an array of
+ Strings.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;aList&gt;
+                        &lt;list&gt;
+                            &lt;elementType&gt;
+                                &lt;class name="[Ljava.lang.String;"/&gt;
+                            &lt;/elementType&gt;
+                            &lt;values&gt;
+                                &lt;value value="&amp;quot;grapes, red&amp;quot;, &amp;quot;grapes, white&amp;quot;, gratefruit"/&gt;
+                                &lt;list&gt;
+                                  &lt;values&gt;
+                                    &lt;value value="apples"/&gt;
+                                    &lt;value value="pears"/&gt;
+                                  &lt;/values&gt;
+                                &lt;/list&gt;
+                            &lt;/values&gt;
+                        &lt;/list&gt;
+                    &lt;/aList&gt;
+                &lt;/variables&gt;
+                &lt;foreach&gt;
+                    &lt;values&gt;
+                        &lt;value value="${vars.aList}"/&gt;
+                    &lt;/values&gt;
+                    &lt;configuration&gt;
+                        &lt;xml&gt;
+                            &lt;foreach id="loop"&gt;
+                                &lt;job&gt;
+                                    &lt;foreach&gt;
+                                        &lt;values&gt;
+                                            &lt;value value="${loop.current}"/&gt;
+                                        &lt;/values&gt;
+                                        &lt;configuration&gt;
+                                            &lt;xml&gt;
+                                                &lt;foreach id="inner"&gt;
+                                                    &lt;job&gt;
+                                                        &lt;echo&gt;${inner.current}&lt;/echo&gt;
+                                                    &lt;/job&gt;
+                                                &lt;/foreach&gt;
+                                            &lt;/xml&gt;
+                                        &lt;/configuration&gt;
+                                    &lt;/foreach&gt;
+                                &lt;/job&gt;
+                            &lt;/foreach&gt;
+                        &lt;/xml&gt;
+                    &lt;/configuration&gt;
+                &lt;/foreach&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The output is:
+ 
+ <pre>
+grapes, red
+grapes, white
+gratefruit
+apples
+pears
+</pre>
+
+ 
+ Although it can't be seen in the output, but can be seen when this
+ example is run in Oddjob Explorer, the list contains to String array 
+ elements.
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+Add to a list the fly. This example demonstrates setting the 
+ hidden 'add' property. The property is hidden so that it can't be set
+ via configuration which could be confusing. A side affect of this is that 
+ it is also hidden from the Reference Guide generator.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;aList&gt;
+                        &lt;list/&gt;
+                    &lt;/aList&gt;
+                &lt;/variables&gt;
+                &lt;set&gt;
+                    &lt;values&gt;
+                        &lt;value key="vars.aList.add" value="apples"/&gt;
+                    &lt;/values&gt;
+                &lt;/set&gt;
+                &lt;set&gt;
+                    &lt;values&gt;
+                        &lt;value key="vars.aList.add" value="bananas"/&gt;
+                    &lt;/values&gt;
+                &lt;/set&gt;
+                &lt;repeat id="each"&gt;
+                    &lt;values&gt;
+                        &lt;value value="${vars.aList}"/&gt;
+                    &lt;/values&gt;
+                    &lt;job&gt;
+                        &lt;echo&gt;${each.current}&lt;/echo&gt;
+                    &lt;/job&gt;
+                &lt;/repeat&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The output is:
+ 
+ <pre>
+apples
+bananas
+</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

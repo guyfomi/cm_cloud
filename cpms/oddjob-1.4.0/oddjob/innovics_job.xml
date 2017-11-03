@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oddjob id="upload">
+    <job>
+        <scheduling:timer name="schedule" xmlns:scheduling="http://rgordon.co.uk/oddjob/scheduling">
+            <schedule>
+                <schedules:interval interval="00:00:05" xmlns:schedules="http://rgordon.co.uk/oddjob/schedules"/>
+            </schedule>
+            <job>
+                <sequential name="Transfert Parameters">
+                    <jobs>
+                        <exec name="upload"><![CDATA[C:\xampp\htdocs\innovics\cpms\upload.bat]]></exec>
+                        <exec name="move_stage"><![CDATA[C:\xampp\htdocs\innovics\cpms\move_stage.bat]]></exec>
+                        <exec name="upload"><![CDATA[C:\xampp\htdocs\innovics\cpms\upload.bat]]></exec>
+                        <exec name="import"><![CDATA[C:\xampp\htdocs\innovics\cpms\import.bat]]></exec>
+                        <exec name="move_archives"><![CDATA[C:\xampp\htdocs\innovics\cpms\move_archives.bat]]></exec>
+                    </jobs>
+                </sequential>
+            </job>
+        </scheduling:timer>
+    </job>
+</oddjob>

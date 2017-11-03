@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>Oddjob Reference - launch</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>launch</h1>
+    <hr/>
+Launch an application via it's main method. The 
+ application is launched in same JVM as Oddjob, but in it's own class loader.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>args</a></td>
+      <td>The arguments to pass to main.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>classLoader</a></td>
+      <td>The class loader in which to find the main class.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>className</a></td>
+      <td>The name of the class that contains the main method.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>name</a></td>
+      <td>The name of this job.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>An Oddjob the launches Oddjob.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>args</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The arguments to pass to main.
+      </p>
+    <a name='property2'><h4>classLoader</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The class loader in which to find the main class.
+      </p>
+    <a name='property3'><h4>className</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The name of the class that contains the main method.
+      </p>
+    <a name='property4'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The name of this job.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+An Oddjob the launches Oddjob. args[0] is org.oddjob.Main, args[1] is the 
+ oddjob home directory. The classes directory is included in the class path
+ for the log4j.properties file otherwise Log4j would attempt to use one
+ from ClassLoader.getSystemLoader() which will be the original application
+ class loader.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;launch className="${this.args[1]}"&gt;
+            &lt;args&gt;
+                &lt;list&gt;
+                    &lt;values&gt;
+                        &lt;value value="-nb"/&gt;
+                        &lt;value value="-f"/&gt;
+                        &lt;value value="${this.args[0]}/test/conf/echo-class-loader.xml"/&gt;
+                    &lt;/values&gt;
+                &lt;/list&gt;
+            &lt;/args&gt;
+            &lt;classLoader&gt;
+                &lt;url-class-loader noInherit="true"&gt;
+                    &lt;files&gt;
+                        &lt;files files="${this.args[0]}/lib/*.jar"&gt;
+                            &lt;list&gt;
+                                &lt;file file="${this.args[0]}/opt/classes"/&gt;
+                            &lt;/list&gt;
+                        &lt;/files&gt;
+                    &lt;/files&gt;
+                &lt;/url-class-loader&gt;
+            &lt;/classLoader&gt;
+        &lt;/launch&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

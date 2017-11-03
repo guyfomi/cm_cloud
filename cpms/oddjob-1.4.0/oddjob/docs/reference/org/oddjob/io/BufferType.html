@@ -1,0 +1,211 @@
+<html>
+  <head>
+    <title>Oddjob Reference - buffer</title>
+  </head>
+  <body>
+  [<a href="../../../index.html">Index</a>]
+    <h1>buffer</h1>
+    <hr/>
+A buffer can be used to accumulate output from 
+ one or more jobs which can then be used as input to another job.
+ <p>
+ A buffer can be used wherever input or output can be specified. A job
+ <p>
+ A buffer can be initialised with text, or lines of text and will can
+ also provide it's contents as text.
+ <p>
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>lines</a></td>
+      <td>The buffer contents as an array of lines.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>text</a></td>
+      <td>The buffer as a text property.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Capturing the contents of a file in a buffer.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Accumulate output in a buffer.</td>
+    </tr>
+    <tr>
+      <td><a href='#example3'>Example 3</a></td>
+      <td>Write the contents of a buffer to file.</td>
+    </tr>
+    <tr>
+      <td><a href='#example4'>Example 4</a></td>
+      <td>Using the contents of a buffer as lines.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>lines</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The buffer contents as an array of lines. Either set the contents to be the array
+ or read the contents of the buffer as an array.
+      </p>
+    <a name='property2'><h4>text</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>TEXT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The buffer as a text property. Either set the
+ buffer contents from text or get the buffer contents as text.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Capturing the contents of a file in a buffer.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="v"&gt;
+                    &lt;buff&gt;
+                        &lt;buffer/&gt;
+                    &lt;/buff&gt;
+                &lt;/variables&gt;
+                &lt;copy id="foo"&gt;
+                    &lt;from&gt;
+                        &lt;file file="${this.args[0]}/work/io/buffer_example.txt"/&gt;
+                    &lt;/from&gt;
+                    &lt;output&gt;
+                        &lt;value value="${v.buff}"/&gt;
+                    &lt;/output&gt;
+                &lt;/copy&gt;
+                &lt;echo id="e"&gt;${v.buff}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Accumulate output in a buffer.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential id="jobs"&gt;
+            &lt;jobs&gt;
+                &lt;variables id="v"&gt;
+                    &lt;buff&gt;
+                        &lt;buffer/&gt;
+                    &lt;/buff&gt;
+                &lt;/variables&gt;
+                &lt;echo&gt;apples
+                    &lt;output&gt;
+                        &lt;value value="${v.buff}"/&gt;
+                    &lt;/output&gt;
+                &lt;/echo&gt;
+                &lt;echo&gt;oranges
+                    &lt;output&gt;
+                        &lt;value value="${v.buff}"/&gt;
+                    &lt;/output&gt;
+                &lt;/echo&gt;
+                &lt;echo&gt;${v.buff}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example3'><h4>Example 3</h4></a>
+    <p>
+Write the contents of a buffer to file. This example also shows 
+ initialising the buffer with a list.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;mkdir dir="${this.args[0]}/work/io"/&gt;
+                &lt;variables id="v"&gt;
+                    &lt;buff&gt;
+                        &lt;buffer&gt;
+                            &lt;lines&gt;
+                                &lt;list&gt;
+                                    &lt;values&gt;
+                                        &lt;value value="apples"/&gt;
+                                        &lt;value value="oranges"/&gt;
+                                    &lt;/values&gt;
+                                &lt;/list&gt;
+                            &lt;/lines&gt;
+                        &lt;/buffer&gt;
+                    &lt;/buff&gt;
+                &lt;/variables&gt;
+                &lt;copy&gt;
+                    &lt;input&gt;
+                        &lt;value value="${v.buff}"/&gt;
+                    &lt;/input&gt;
+                    &lt;output&gt;
+                        &lt;file file="${this.args[0]}/work/io/buffer_example.txt"/&gt;
+                    &lt;/output&gt;
+                &lt;/copy&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <a name='example4'><h4>Example 4</h4></a>
+    <p>
+Using the contents of a buffer as lines. This also shows how a buffer
+ can be initialised with text.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="v"&gt;
+                    &lt;buff&gt;
+                        &lt;buffer&gt;apples
+oranges&lt;/buffer&gt;
+                    &lt;/buff&gt;
+                &lt;/variables&gt;
+                &lt;foreach&gt;
+                    &lt;values&gt;
+                        &lt;value value="${v.buff.lines}"/&gt;
+                    &lt;/values&gt;
+                    &lt;configuration&gt;
+                        &lt;xml&gt;
+                            &lt;foreach id="f"&gt;
+                                &lt;job&gt;
+                                    &lt;echo&gt;Line ${f.index} is ${f.current}.&lt;/echo&gt;
+                                &lt;/job&gt;
+                            &lt;/foreach&gt;
+                        &lt;/xml&gt;
+                    &lt;/configuration&gt;
+                &lt;/foreach&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

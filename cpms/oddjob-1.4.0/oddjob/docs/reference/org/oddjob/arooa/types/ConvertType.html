@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <title>Oddjob Reference - convert</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>convert</h1>
+    <hr/>
+Convert a value to the given Java Class. Most of
+ the time Oddjob's own automatic conversions are fine for setting
+ job properties but occasionally it can be useful to force a conversion
+ to a different type. 
+ <p>
+ This type uses Oddjob's internal converters itself to perform the 
+ conversion. 
+ <p>
+ The <code>is</code> property can provide direct access to the converted
+ value. This can be useful for gaining access to a Java type from Oddjob's
+ wrapper types.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>is</a></td>
+      <td>The result of the conversion.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>to</a></td>
+      <td>The name of the java class to convert to.</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>value</a></td>
+      <td>The value to convert.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Convert a delimited list to an array of Strings.</td>
+    </tr>
+    <tr>
+      <td><a href='#example2'>Example 2</a></td>
+      <td>Demonstrate the use of the is property.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>is</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+The result of the conversion.
+      </p>
+    <a name='property2'><h4>to</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The name of the java class to convert to.
+      </p>
+    <a name='property3'><h4>value</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No. If missing the result of the conversion will be
+ null.</td></tr>
+      </table>
+      <p>
+The value to convert.
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Convert a delimited list to an array of Strings.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;foreach&gt;
+            &lt;values&gt;
+                &lt;convert&gt;
+                    &lt;to&gt;
+                        &lt;class name="[Ljava.lang.String;"/&gt;
+                    &lt;/to&gt;
+                    &lt;value&gt;
+                        &lt;value value="&amp;quot;grapes, red&amp;quot;, &amp;quot;grapes, white&amp;quot;, gratefruit"/&gt;
+                    &lt;/value&gt;
+                &lt;/convert&gt;
+            &lt;/values&gt;
+            &lt;configuration&gt;
+                &lt;xml&gt;
+                    &lt;foreach id="loop"&gt;
+                        &lt;job&gt;
+                            &lt;echo&gt;${loop.current}&lt;/echo&gt;
+                        &lt;/job&gt;
+                    &lt;/foreach&gt;
+                &lt;/xml&gt;
+            &lt;/configuration&gt;
+        &lt;/foreach&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The output is:
+ 
+ <pre>
+grapes, red
+grapes, white
+gratefruit
+</pre>
+
+    </p>
+    <a name='example2'><h4>Example 2</h4></a>
+    <p>
+Demonstrate the use of the is property.
+ 
+ <pre class="xml">
+&lt;oddjob id="this"&gt;
+    &lt;job&gt;
+        &lt;sequential&gt;
+            &lt;jobs&gt;
+                &lt;variables id="vars"&gt;
+                    &lt;aNumber&gt;
+                        &lt;convert&gt;
+                            &lt;to&gt;
+                                &lt;class name="java.lang.Integer"/&gt;
+                            &lt;/to&gt;
+                            &lt;value&gt;
+                                &lt;value value="42"/&gt;
+                            &lt;/value&gt;
+                        &lt;/convert&gt;
+                    &lt;/aNumber&gt;
+                &lt;/variables&gt;
+                &lt;echo&gt;${vars.aNumber}
+${vars.aNumber.class}
+${vars.aNumber.value}
+${vars.aNumber.value.class}
+${vars.aNumber.is}
+${vars.aNumber.is.class}&lt;/echo&gt;
+            &lt;/jobs&gt;
+        &lt;/sequential&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+ 
+ The output is:
+ 
+ <pre>
+42
+class org.oddjob.arooa.types.ConvertType
+42
+class org.oddjob.arooa.types.ValueType
+42
+class java.lang.Integer
+</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>

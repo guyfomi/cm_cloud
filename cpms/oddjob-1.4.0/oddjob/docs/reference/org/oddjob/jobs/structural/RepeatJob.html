@@ -1,0 +1,164 @@
+<html>
+  <head>
+    <title>Oddjob Reference - repeat</title>
+  </head>
+  <body>
+  [<a href="../../../../index.html">Index</a>]
+    <h1>repeat</h1>
+    <hr/>
+This job will repeatedly either for a number of 
+ times or until the until property is true; 
+ <p>
+ Without either a until or a times the job will loop indefinitely.
+    <hr/>
+    <h3>Property Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#property1'>count</a></td>
+      <td>The count of repeats.</td>
+    </tr>
+    <tr>
+      <td><a href='#property2'>current</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href='#property3'>index</a></td>
+      <td>The same as count.</td>
+    </tr>
+    <tr>
+      <td><a href='#property4'>job</a></td>
+      <td>The job who's execution 
+ to schedule.</td>
+    </tr>
+    <tr>
+      <td><a href='#property5'>name</a></td>
+      <td>A name, can be any text.</td>
+    </tr>
+    <tr>
+      <td><a href='#property6'>stop</a></td>
+      <td>Read only view of the internal stop flag.</td>
+    </tr>
+    <tr>
+      <td><a href='#property7'>times</a></td>
+      <td>The number of times to repeat.</td>
+    </tr>
+    <tr>
+      <td><a href='#property8'>until</a></td>
+      <td>Repeat will repeat until the value of
+ this property is true.</td>
+    </tr>
+    <tr>
+      <td><a href='#property9'>values</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Example Summary</h3>
+    <table width='100%' border='1' cellpadding='3' cellspacing='0'>
+    <tr>
+      <td><a href='#example1'>Example 1</a></td>
+      <td>Repeat a job 3 times.</td>
+    </tr>
+    </table>
+    <hr/>
+    <h3>Property Detail</h3>
+    <a name='property1'><h4>count</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read Only.</td></tr>
+      </table>
+      <p>
+The count of repeats.
+      </p>
+    <a name='property2'><h4>current</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <a name='property3'><h4>index</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      </table>
+      <p>
+The same as count. Provided so configurations
+ can be swapped between this and <a href='../../../../org/oddjob/jobs/structural/ForEachJob.html'>foreach</a> job.
+      </p>
+    <a name='property4'><h4>job</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>WRITE_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Yes.</td></tr>
+      </table>
+      <p>
+The job who's execution 
+ to schedule.
+      </p>
+    <a name='property5'><h4>name</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+A name, can be any text.
+      </p>
+    <a name='property6'><h4>stop</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Access</i></td><td>READ_ONLY</td></tr>
+      <tr><td><i>Required</i></td><td>Read only.</td></tr>
+      </table>
+      <p>
+Read only view of the internal stop flag. 
+ This flag is cleared with a reset.
+      </p>
+    <a name='property7'><h4>times</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ATTRIBUTE</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+The number of times to repeat.
+      </p>
+    <a name='property8'><h4>until</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      <tr><td><i>Required</i></td><td>No.</td></tr>
+      </table>
+      <p>
+Repeat will repeat until the value of
+ this property is true.
+      </p>
+    <a name='property9'><h4>values</h4></a>
+      <table style='font-size:smaller'>
+      <tr><td><i>Configured By</i></td><td>ELEMENT</td></tr>
+      <tr><td><i>Access</i></td><td>READ_WRITE</td></tr>
+      </table>
+      <p>
+
+      </p>
+    <hr/>
+    <h3>Examples</h3>
+    <a name='example1'><h4>Example 1</h4></a>
+    <p>
+Repeat a job 3 times.
+ 
+ <pre class="xml">
+&lt;oddjob&gt;
+    &lt;job&gt;
+        &lt;repeat times="3" id="repeat"&gt;
+            &lt;job&gt;
+                &lt;echo&gt;Hello ${repeat.count}&lt;/echo&gt;
+            &lt;/job&gt;
+        &lt;/repeat&gt;
+    &lt;/job&gt;
+&lt;/oddjob&gt;</pre>
+
+    </p>
+    <hr/>
+    <font size='-1' align='center'>(c) Rob Gordon 2005 - 2014</font>
+	 </body>
+  </html>
